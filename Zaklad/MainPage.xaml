@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Zaklad.MainPage"
+             xmlns:local="clr-namespace:Zaklad"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#303030">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="75"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <ListView x:DataType="local:MainPageViewModel" ItemsSource="{Binding Products}" Grid.Row="0">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="local:Product">
+                    <ViewCell>
+                        <StackLayout BackgroundColor="#303030">
+                            <Label Text="{Binding Name}" TextColor="Red" FontAttributes="Bold" FontSize="36"/>
+                            <HorizontalStackLayout>
+                                <Label TextColor="White">Białko:</Label>
+                                <Label TextColor="White" Text="{Binding Proteins}"></Label>
+                            </HorizontalStackLayout>
+                            <HorizontalStackLayout>
+                                <Label TextColor="White">Tłuszcze :</Label>
+                                <Label TextColor="White" Text="{Binding Fat}"></Label>
+                            </HorizontalStackLayout>
+                            <HorizontalStackLayout>
+                                <Label TextColor="White">Węgle:</Label>
+                                <Label TextColor="White" Text="{Binding Proteins}"></Label>
+                            </HorizontalStackLayout>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Frame Grid.Row="1" BackgroundColor="#212121" BorderColor="Transparent" >
+            <HorizontalStackLayout BackgroundColor="Red" Spacing="20" HorizontalOptions="CenterAndExpand" x:DataType="local:MainPageViewModel">
+                <HorizontalStackLayout.Resources>
+                    <Style TargetType="{x:Type Label}">
+                        <Setter Property="FontSize" Value="16"/>
+                        <Setter Property="FontAttributes" Value="Bold"/>
+                    </Style>
+                </HorizontalStackLayout.Resources>
+                <HorizontalStackLayout Spacing="10">
+                    <Label TextColor="#4287f5">Białko:</Label>
+                    <Label TextColor="#4287f5" Text="{Binding Proteins}"></Label>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Spacing="10">
+                    <Label TextColor="#ecff3d">Tłuszcze:</Label>
+                    <Label TextColor="#ecff3d" Text="{Binding Fat}"></Label>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Spacing="10">
+                    <Label TextColor="White">Cukry:</Label>
+                    <Label TextColor="White" Text="{Binding Carbohydrates}"></Label>
+                </HorizontalStackLayout>
+            </HorizontalStackLayout>
+        </Frame>
+        <FlexLayout AlignContent="SpaceBetween" Grid.Row="2" x:DataType="local:MainPageViewModel" BackgroundColor="Blue">
+            <FlexLayout.Resources>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="BackgroundColor" Value="Transparent"/>
+                    <Setter Property="BorderColor" Value="Transparent"/>
+                    <Setter Property="FontSize" Value="16"/>
+                    <Setter Property="WidthRequest" Value="60"/>
+                    <Setter Property="FontAttributes" Value="Bold"/>
+                    <Setter Property="Command" Value="{Binding ChangeDateOfWeekCommand}"/>
+                </Style>
+            </FlexLayout.Resources>
+            <VerticalStackLayout>
+                <Label>date</Label>
+                <Button Pressed="ChangeButtonBackgroundOnPress" CommandParameter="{Binding Text, Source={x:Reference MondayButton}}" x:Name="MondayButton" TextColor="White" Text="Pon" ></Button>
+            </VerticalStackLayout>
+            <Button Pressed="ChangeButtonBackgroundOnPress" CommandParameter="{Binding Text, Source={x:Reference TuesdayButton}}" x:Name="TuesdayButton" TextColor="White" Text="Wt"></Button>
+            <Button Pressed="ChangeButtonBackgroundOnPress" CommandParameter="{Binding Text, Source={x:Reference WednesdayButton}}" x:Name="WednesdayButton" TextColor="White" Text="Śr"></Button>
+            <Button Pressed="ChangeButtonBackgroundOnPress" CommandParameter="{Binding Text, Source={x:Reference ThursdayButton}}" x:Name="ThursdayButton" TextColor="White" Text="Czw"></Button>
+            <Button Pressed="ChangeButtonBackgroundOnPress" CommandParameter="{Binding Text, Source={x:Reference FridayButton}}" x:Name="FridayButton" TextColor="White" Text="Pt"></Button>
+            <Button Pressed="ChangeButtonBackgroundOnPress" CommandParameter="{Binding Text, Source={x:Reference SobButton}}" x:Name="SobButton" TextColor="Red" Text="Sob"></Button>
+            <Button Pressed="ChangeButtonBackgroundOnPress" CommandParameter="{Binding Text, Source={x:Reference SaturdayButton}}" x:Name="SaturdayButton" TextColor="Red" Text="Nd"></Button>
+        </FlexLayout>
+    </Grid>
+</ContentPage>
