@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:cal="clr-namespace:Plugin.Maui.Calendar.Controls;assembly=Plugin.Maui.Calendar"
+             x:Class="Zaklad.MainPage"
+             xmlns:local="clr-namespace:Zaklad"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#303030">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="75"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <ListView x:DataType="local:ViewModel.MainPageViewModel" ItemsSource="{Binding Products}" Grid.Row="0">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="local:Models.Product">
+                    <ViewCell>
+                        <local:ProductView ProductName="{Binding Name}" Proteins="{Binding Proteins}" Fat="{Binding Fat}" Carbohydrates="{Binding Carbohydrates}" ProductImageSource="{Binding ProductImage}" Kcal="{Binding Kcal}">
+
+                        </local:ProductView>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Grid Grid.Row="1" BackgroundColor="#212121" x:DataType="local:ViewModel.MainPageViewModel">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.Resources>
+                <Style TargetType="{x:Type Label}">
+                    <Setter Property="FontSize" Value="16"/>
+                    <Setter Property="FontAttributes" Value="Bold"/>
+                    <Setter Property="VerticalOptions" Value="Center"/>
+                </Style>
+            </Grid.Resources>
+            <Label Grid.Column="1" TextColor="#4287f5">Bialko:</Label>
+            <Label Grid.Column="2" TextColor="#4287f5" Text="{Binding Proteins}"></Label>
+            <Label Grid.Column="4" TextColor="#ecff3d">Tluszcze:</Label>
+            <Label Grid.Column="5" TextColor="#ecff3d" Text="{Binding Fat}"></Label>
+            <Label Grid.Column="7" TextColor="White">Cukry:</Label>
+            <Label Grid.Column="8" TextColor="White" Text="{Binding Carbohydrates}"></Label>
+        </Grid>
+        <Grid Grid.Row="3" BackgroundColor="#212121" x:Name="DatesGrid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.Resources>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="BackgroundColor" Value="Transparent"/>
+                    <Setter Property="BorderColor" Value="Transparent"/>
+                    <Setter Property="FontSize" Value="16"/>
+                    <Setter Property="WidthRequest" Value="60"/>
+                    <Setter Property="FontAttributes" Value="Bold"/>
+                </Style>
+                <Style TargetType="{x:Type Label}">
+                    <Setter Property="FontSize" Value="14"/>
+                    <Setter Property="TextColor" Value="Gray"/>
+                    <Setter Property="FontAttributes" Value="Italic"/>
+                </Style>
+                <Style TargetType="{x:Type Frame}">
+                    <Setter Property="HeightRequest" Value="70"/>
+                </Style>
+            </Grid.Resources>
+            <Frame x:Name="MondayTapFrameBackground" VerticalOptions="Center" x:DataType="local:ViewModel.MainPageViewModel" CornerRadius="10" Grid.Column="1" BackgroundColor="#1c1c1c" BorderColor="Transparent" Margin="0" Padding="0">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ChangeDateOfWeekCommand}" CommandParameter="{Binding Text, Source={x:Reference MondayDate}}"/>
+                    <TapGestureRecognizer Tapped="ChangeDaysButtonsBackgroundOnPress"/>
+                </Frame.GestureRecognizers>
+                <VerticalStackLayout VerticalOptions="Center">
+                    <Label x:Name="MondayDate" HorizontalOptions="Center" x:DataType="local:ViewModel.MainPageViewModel" Text="{Binding DateManager.Monday}"></Label>
+                    <Label x:Name="Monday" TextColor="White" HorizontalOptions="Center" FontSize="16" FontAttributes="Bold" Text="Pon"/>
+                </VerticalStackLayout>
+            </Frame>
+            <Frame x:Name="TuesdayTapFrameBackground" VerticalOptions="Center" x:DataType="local:ViewModel.MainPageViewModel" CornerRadius="10" Grid.Column="3" BackgroundColor="#1c1c1c" BorderColor="Transparent" Margin="0" Padding="0">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ChangeDateOfWeekCommand}" CommandParameter="{Binding Text, Source={x:Reference TuesdayDate}}"/>
+                    <TapGestureRecognizer Tapped="ChangeDaysButtonsBackgroundOnPress"/>
+                </Frame.GestureRecognizers>
+                <VerticalStackLayout VerticalOptions="Center">
+                    <Label x:Name="TuesdayDate" HorizontalOptions="Center" x:DataType="local:ViewModel.MainPageViewModel" Text="{Binding DateManager.Tuesday}"></Label>
+                    <Label x:Name="Tuesday" TextColor="White" HorizontalOptions="Center" FontSize="16" FontAttributes="Bold" Text="Wt"/>
+                </VerticalStackLayout>
+            </Frame>
+            <Frame x:Name="WednesdayTapFrameBackground" VerticalOptions="Center" x:DataType="local:ViewModel.MainPageViewModel" CornerRadius="10" Grid.Column="5" BackgroundColor="#1c1c1c" BorderColor="Transparent" Margin="0" Padding="0">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ChangeDateOfWeekCommand}" CommandParameter="{Binding Text, Source={x:Reference WednesdayDate}}"/>
+                    <TapGestureRecognizer Tapped="ChangeDaysButtonsBackgroundOnPress"/>
+                </Frame.GestureRecognizers>
+                <VerticalStackLayout VerticalOptions="Center">
+                    <Label x:Name="WednesdayDate" HorizontalOptions="Center" x:DataType="local:ViewModel.MainPageViewModel" Text="{Binding DateManager.Wednesday}"></Label>
+                    <Label x:Name="Wednesday" TextColor="White" HorizontalOptions="Center" FontSize="16" FontAttributes="Bold" Text="Sr"/>
+                </VerticalStackLayout>
+            </Frame>
+            <Frame x:Name="ThursdayTapFrameBackground" VerticalOptions="Center" x:DataType="local:ViewModel.MainPageViewModel" CornerRadius="10" Grid.Column="7" BackgroundColor="#1c1c1c" BorderColor="Transparent" Margin="0" Padding="0">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ChangeDateOfWeekCommand}" CommandParameter="{Binding Text, Source={x:Reference ThursdayDate}}"/>
+                    <TapGestureRecognizer Tapped="ChangeDaysButtonsBackgroundOnPress"/>
+                </Frame.GestureRecognizers>
+                <VerticalStackLayout VerticalOptions="Center">
+                    <Label x:Name="ThursdayDate" HorizontalOptions="Center" x:DataType="local:ViewModel.MainPageViewModel" Text="{Binding DateManager.Thursday}"></Label>
+                    <Label x:Name="Thursday" TextColor="White" HorizontalOptions="Center" FontSize="16" FontAttributes="Bold" Text="Czw"/>
+                </VerticalStackLayout>
+            </Frame>
+            <Frame x:Name="FridayTapFrameBackground" VerticalOptions="Center" x:DataType="local:ViewModel.MainPageViewModel" CornerRadius="10" Grid.Column="9" BackgroundColor="#1c1c1c" BorderColor="Transparent" Margin="0" Padding="0">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ChangeDateOfWeekCommand}" CommandParameter="{Binding Text, Source={x:Reference FridayDate}}"/>
+                    <TapGestureRecognizer Tapped="ChangeDaysButtonsBackgroundOnPress"/>
+                </Frame.GestureRecognizers>
+                <VerticalStackLayout VerticalOptions="Center">
+                    <Label x:Name="FridayDate" HorizontalOptions="Center" x:DataType="local:ViewModel.MainPageViewModel" Text="{Binding DateManager.Friday}"></Label>
+                    <Label x:Name="Friday" TextColor="White" HorizontalOptions="Center" FontSize="16" FontAttributes="Bold" Text="Pt"/>
+                </VerticalStackLayout>
+            </Frame>
+            <Frame x:Name="SaturdayTapFrameBackground" VerticalOptions="Center" x:DataType="local:ViewModel.MainPageViewModel" CornerRadius="10" Grid.Column="11" BackgroundColor="#1c1c1c" BorderColor="Transparent" Margin="0" Padding="0">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ChangeDateOfWeekCommand}" CommandParameter="{Binding Text, Source={x:Reference SaturdayDate}}"/>
+                    <TapGestureRecognizer Tapped="ChangeDaysButtonsBackgroundOnPress"/>
+                </Frame.GestureRecognizers>
+                <VerticalStackLayout VerticalOptions="Center">
+                    <Label x:Name="SaturdayDate" HorizontalOptions="Center" x:DataType="local:ViewModel.MainPageViewModel" Text="{Binding DateManager.Saturday}"></Label>
+                    <Label x:Name="Saturday" TextColor="Red" HorizontalOptions="Center" FontSize="16" FontAttributes="Bold" Text="Sob"/>
+                </VerticalStackLayout>
+            </Frame>
+            <Frame x:Name="SundayTapFrameBackground" VerticalOptions="Center" x:DataType="local:ViewModel.MainPageViewModel" CornerRadius="10" Grid.Column="13" BackgroundColor="#1c1c1c" BorderColor="Transparent" Margin="0" Padding="0">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ChangeDateOfWeekCommand}" CommandParameter="{Binding Text, Source={x:Reference SundayDate}}"/>
+                    <TapGestureRecognizer Tapped="ChangeDaysButtonsBackgroundOnPress"/>
+                </Frame.GestureRecognizers>
+                <VerticalStackLayout VerticalOptions="Center">
+                    <Label x:Name="SundayDate" HorizontalOptions="Center" x:DataType="local:ViewModel.MainPageViewModel" Text="{Binding DateManager.Sunday}"></Label>
+                    <Label x:Name="Sunday" TextColor="Red" HorizontalOptions="Center" FontSize="16" FontAttributes="Bold" Text="Nd"/>
+                </VerticalStackLayout>
+            </Frame>
+            <Frame VerticalOptions="Center" CornerRadius="10" Grid.Column="15" BackgroundColor="#1c1c1c" BorderColor="Transparent" Margin="0" Padding="0" x:DataType="local:ViewModel.MainPageViewModel">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ShowCalendarCommand}"/>
+                </Frame.GestureRecognizers>
+                <VerticalStackLayout VerticalOptions="Center">
+                    <Image x:Name="CalendarButton" Source="calendar_icon.png" Aspect="AspectFit" BackgroundColor="Transparent"></Image>
+                </VerticalStackLayout>
+            </Frame>
+        </Grid>
+    </Grid>
+</ContentPage>

@@ -1,6 +1,8 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 using System.Globalization;
+using Zaklad.Models;
+using Zaklad.ViewModel;
 using ZXing.Net.Maui.Controls;
 
 namespace Zaklad
@@ -19,12 +21,14 @@ namespace Zaklad
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 }).UseBarcodeReader();
-
+            builder.Services.AddSingleton<IPopupService, Models.PopupService>();
+            builder.Services.AddSingleton<IMainPageViewModel, MainPageViewModel>();
+            builder.Services.AddSingleton<IAlertService, AlertService>();
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
-            return builder.Build();
+            return builder.Build(); 
         }
     }
 }

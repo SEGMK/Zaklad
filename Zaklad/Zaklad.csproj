@@ -62,17 +62,42 @@
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.14" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0-preview.5.24306.7" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="Plugin.Maui.Calendar" Version="1.1.4" />
 		<PackageReference Include="ZXing.Net.Maui.Controls" Version="0.4.0" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="AddItemByName.xaml.cs">
+	  <Compile Update="Views\AddItemByBarcode.xaml.cs">
+	    <DependentUpon>AddItemByBarcode.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\CalendarPopup.xaml.cs">
+	    <DependentUpon>CalendarPopup.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\AddItemByName.xaml.cs">
 	    <DependentUpon>AddItemByName.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\ProductEditor.xaml.cs">
+	    <DependentUpon>ProductEditor.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="CustomControls\ProductView.xaml.cs">
+	    <DependentUpon>ProductView.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="AddItemByName.xaml">
+	  <MauiXaml Update="Views\AddItemByBarcode.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\CalendarPopup.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\AddItemByName.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ProductEditor.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="CustomControls\ProductView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

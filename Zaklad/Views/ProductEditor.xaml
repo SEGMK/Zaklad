@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Zaklad.ProductEditor"
+             xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             CanBeDismissedByTappingOutsideOfPopup="False"
+             x:Name="ThisPopup"
+             Color="#303030">
+    <mct:Popup.Resources>
+        <Style TargetType="{x:Type mct:Popup}">
+            <Setter Property="Size" Value="500,800"/>
+        </Style>
+    </mct:Popup.Resources>
+
+    <!--<ScrollView BackgroundColor="Red">-->
+    <Grid BackgroundColor="Blue" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="300"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="400"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        <HorizontalStackLayout Grid.Row="1" Grid.Column="1">
+            <Image Source="{Binding ProductImage}" Aspect="AspectFit" HeightRequest="200" WidthRequest="200"/>
+            <Label Text="product_name" VerticalOptions="Center" FontSize="26" TextColor="Red" FontAttributes="Bold"/>
+        </HorizontalStackLayout>
+        <Grid Grid.Row="3" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="10"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="10"/>
+            </Grid.ColumnDefinitions>
+            <Grid.Resources>
+                <Style TargetType="{x:Type Label}">
+                    <Setter Property="FontSize" Value="16"/>
+                    <Setter Property="VerticalOptions" Value="Center"/>
+                    <Setter Property="FontAttributes" Value="Bold"/>
+                </Style>
+                <Style TargetType="{x:Type Entry}">
+                    <Setter Property="VerticalOptions" Value="Center"/>
+                </Style>
+            </Grid.Resources>
+            <Label Grid.Row="1" Grid.Column="1" TextColor="Gray" Text="Gramatura:"/>
+            <Label Grid.Row="1" Grid.Column="2" TextColor="Gray" Text="100g"/>
+            <Label Grid.Row="3" Grid.Column="1" TextColor="Gray" Text="Kcal:"/>
+            <Entry Grid.Row="3" Grid.Column="2" TextColor="Gray" Text="{Binding EditableKcal}" Keyboard="Numeric" HeightRequest="10" WidthRequest="100"/>
+            <Label Grid.Row="3" Grid.Column="3" TextColor="Gray" Text="g"/>
+            <Label Grid.Row="5" Grid.Column="1" TextColor="Blue" Text="Białka:"/>
+            <Entry Grid.Row="5" Grid.Column="2" TextColor="Blue" Text="{Binding EditableProteins}" Keyboard="Numeric"/>
+            <Label Grid.Row="5" Grid.Column="3" TextColor="Blue" Text="g"/>
+            <Label Grid.Row="7" Grid.Column="1" TextColor="Yellow" Text="Tłuszcze:"/>
+            <Entry Grid.Row="7" Grid.Column="2" TextColor="Yellow" Text="{Binding EditableFat}" Keyboard="Numeric"/>
+            <Label Grid.Row="7" Grid.Column="3" TextColor="Yellow" Text="g"/>
+            <Label Grid.Row="9" Grid.Column="1" TextColor="White" Text="Cukry:"/>
+            <Entry Grid.Row="9" Grid.Column="2" TextColor="White" Text="{Binding EditableCarbohydrates}" Keyboard="Numeric"/>
+            <Label Grid.Row="9" Grid.Column="3" TextColor="White" Text="g"/>
+        </Grid>
+        <Button Grid.Row="5" Grid.Column="1" Pressed="Button_Pressed" Text="Dodaj produkt" FontSize="36" TextColor="Gray" FontAttributes="Bold"/>
+    </Grid>
+    <!--</ScrollView>-->
+
+</mct:Popup>

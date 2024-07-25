@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Zaklad.AddItemByName"
+             Title="AddItemByName"
+             xmlns:local="clr-namespace:Zaklad"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#303030">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+        <FlexLayout x:DataType="local:ViewModel.AddItemByNameViewModel" Direction="Row"  JustifyContent="Center"  HorizontalOptions="Fill" VerticalOptions="Center" Grid.Row="1" BackgroundColor="#212121">
+            <Entry Placeholder="Produkt" Text="{Binding UserInputProduct}" WidthRequest="300" BackgroundColor="#1c1c1c" VerticalOptions="Center" TextColor="White">
+                
+            </Entry>
+            <Button Text="Szukaj" WidthRequest="100" VerticalOptions="Center" Command="{Binding SearchCommand}" CommandParameter="{Binding UserInputProduct}"/>
+        </FlexLayout>
+        <ListView x:DataType="local:ViewModel.AddItemByNameViewModel" ItemsSource="{Binding Products}" Grid.Row="3">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="local:Models.Product">
+                    <ViewCell>
+                        <local:ProductView ProductName="{Binding Name}" Proteins="{Binding Proteins}" Fat="{Binding Fat}" Carbohydrates="{Binding Carbohydrates}" ProductImageSource="{Binding ProductImage}" Kcal="{Binding Kcal}">
+
+                        </local:ProductView>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</ContentPage> 
