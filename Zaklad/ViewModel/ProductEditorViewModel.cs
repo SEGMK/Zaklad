@@ -67,6 +67,19 @@ namespace Zaklad.ViewModel
                 ChoosenProduct.Carbohydrates = value;
             }
         }
+        private string _productName;
+        public string ProductName
+        {
+            get
+            {
+                return _productName;
+            }
+            set
+            { 
+                _productName = value;
+                ChoosenProduct.Name = value;
+            }
+        }
         public ProductEditorViewModel(Product product)
         {
             ChoosenProduct = product;
@@ -74,6 +87,7 @@ namespace Zaklad.ViewModel
             _editableFat = product.Fat ?? 0;
             _editableKcal = product.Kcal ?? 0;
             _editableProteins = product.Proteins ?? 0;
+            _productName = string.IsNullOrWhiteSpace(product.Name) ? "product_name" : product.Name;
             ProductImage = product.ProductImage ?? "no_product.png";
         }
     }

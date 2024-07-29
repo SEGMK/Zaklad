@@ -20,15 +20,13 @@ namespace Zaklad.ViewModel
         {
             PopupService = ServiceHelper.Current.GetService<IPopupService>();
         }
-        public async void AddItemByBarcode(string barcode, CameraBarcodeReaderView camera)
+        public async Task AddItemByBarcode(string barcode)
         {
             try
             {
-                camera.IsDetecting = false;
                 ChoosenProduct = await FoodAPI.GetFoodDataBarcode(barcode);
                 await PopupService.ShowPopupAsync(new ProductEditor(ChoosenProduct));
                 UserProductsData.SaveProduct(ChoosenProduct, DateManager.CurrentDate);
-                camera.IsDetecting = true;
             }
             catch (HttpRequestException ex)
             {
@@ -40,7 +38,7 @@ namespace Zaklad.ViewModel
             }
             catch (Exception ex)
             {
-                camera.IsDetecting = true;
+                ServiceHelper.Current.GetService<IAlertService>().ShowAlert("Wystąpił nieoczekiwany błąd", ex.Message);
             }
         }
     }
