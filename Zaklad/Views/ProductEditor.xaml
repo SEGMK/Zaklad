@@ -28,10 +28,10 @@
             <ColumnDefinition Width="400"/>
             <ColumnDefinition Width="10"/>
         </Grid.ColumnDefinitions>
-        <HorizontalStackLayout Grid.Row="1" Grid.Column="1">
-            <Image Source="{Binding ProductImage}" Aspect="AspectFit" HeightRequest="200" WidthRequest="200"/>
-            <Label Text="product_name" VerticalOptions="Center" FontSize="26" TextColor="Red" FontAttributes="Bold"/>
-        </HorizontalStackLayout>
+        <VerticalStackLayout Grid.Row="1" Grid.Column="1">
+            <Image Source="{Binding ProductImage}" Aspect="AspectFit" HeightRequest="150" WidthRequest="150"/>
+            <Entry Text="{Binding ProductName}" VerticalOptions="Center" FontSize="16" TextColor="Red" FontAttributes="Bold" HorizontalTextAlignment="Center" BackgroundColor="WhiteSmoke"/>
+        </VerticalStackLayout>
         <Grid Grid.Row="3" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="10"/>

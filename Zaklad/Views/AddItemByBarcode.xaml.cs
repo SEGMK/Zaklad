@@ -3,6 +3,7 @@ using Zaklad.Models;
 using Zaklad.ViewModel;
 using ZXing;
 using ZXing.Net.Maui.Controls;
+using static Microsoft.Maui.ApplicationModel.Permissions;
 
 namespace Zaklad
 {
@@ -15,13 +16,15 @@ namespace Zaklad
             Context = new AddItemByBarcodeViewModel();
 		}
 
-        private void BarcodeReader_BarcodesDetected(object sender, ZXing.Net.Maui.BarcodeDetectionEventArgs e)
+        private async void BarcodeReader_BarcodesDetected(object sender, ZXing.Net.Maui.BarcodeDetectionEventArgs e)
         {
             CameraBarcodeReaderView cameraBarcodeReader = sender as CameraBarcodeReaderView;
             var first = e.Results?.FirstOrDefault();
             if (first == null)
                 return;
-            Context.AddItemByBarcode(first.Value, cameraBarcodeReader);
+            cameraBarcodeReader.IsDetecting = false;
+            await Context.AddItemByBarcode(first.Value);
+            cameraBarcodeReader.IsDetecting = true;
         }
     }
 }
