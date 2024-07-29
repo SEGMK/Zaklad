@@ -33,6 +33,8 @@ namespace Zaklad.ViewModel
 
         private async void GetProducts(string productName)
         {
+            if(String.IsNullOrWhiteSpace(productName))
+                return;
             try
             {
                 Products.Clear();
