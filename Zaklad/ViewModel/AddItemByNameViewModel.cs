@@ -10,7 +10,7 @@ using Zaklad.Models;
 
 namespace Zaklad.ViewModel
 {
-    internal class AddItemByNameViewModel : INotifyPropertyChanged
+    internal class AddItemByNameViewModel : IAddItemByNameViewModel
     {
         private string _userInputProduct;
         public string UserInputProduct
@@ -25,7 +25,7 @@ namespace Zaklad.ViewModel
                 OnPropertyChange(nameof(UserInputProduct));
             }
         }
-        public ObservableCollection<Product> Products { get; private set; } = new ObservableCollection<Product>();
+        public RangeObservableCollection<Product> Products { get; private set; } = new RangeObservableCollection<Product>();
         public ICommand SearchCommand => new Command<string>(GetProducts);
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -37,12 +37,8 @@ namespace Zaklad.ViewModel
                 return;
             try
             {
-                Products.Clear();
                 List<Product> products = await FoodAPI.GetFoodDataByName(productName);
-                foreach (var i in products)
-                {
-                    Products.Add(i);
-                }
+                Products.ReplaceRange(products);
             }
             catch (HttpRequestException ex)
             {

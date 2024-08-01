@@ -18,7 +18,7 @@ namespace Zaklad.ViewModel
     internal class MainPageViewModel : IMainPageViewModel
     {
         public DateManager DateManager { get; private set; } = new DateManager();
-        public ObservableCollection<Product> Products { get; private set; } = new ObservableCollection<Product>();
+        public RangeObservableCollection<Product> Products { get; private set; } = new RangeObservableCollection<Product>();
         public string Proteins { get; private set; } = string.Empty;
         public string Fat { get; private set; } = string.Empty;
         public string Carbohydrates { get; private set; } = string.Empty;
@@ -38,21 +38,13 @@ namespace Zaklad.ViewModel
         private void GetProductsCollection(string date)
         {
             DateManager.ChangeCurrentDate(DateTime.ParseExact(date, DateManager.DateFormat, null));
-            Products.Clear();
             List<Product> products = UserProductsData.GetProducts(DateManager.CurrentDate);
-            foreach (Product product in products)
-            {
-                Products.Add(product);
-            }
+            Products.ReplaceRange(products);
         }
         private void GetProductsCollection()
         {
-            Products.Clear();
             List<Product> products = UserProductsData.GetProducts(DateManager.CurrentDate);
-            foreach (Product product in products)
-            {
-                Products.Add(product);
-            }
+            Products.ReplaceRange(products);
         }
         private void CalculateMakro()
         {

@@ -24,7 +24,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:Models.Product">
                     <ViewCell>
-                        <local:ProductView ProductName="{Binding Name}" Proteins="{Binding Proteins}" Fat="{Binding Fat}" Carbohydrates="{Binding Carbohydrates}" ProductImageSource="{Binding ProductImage}" Kcal="{Binding Kcal}">
+                        <local:ProductView Product="{Binding .}">
 
                         </local:ProductView>
                     </ViewCell>

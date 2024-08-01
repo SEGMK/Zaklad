@@ -24,6 +24,7 @@ namespace Zaklad
             builder.Services.AddSingleton<IPopupService, Models.PopupService>();
             builder.Services.AddSingleton<IMainPageViewModel, MainPageViewModel>();
             builder.Services.AddSingleton<IAlertService, AlertService>();
+            builder.Services.AddSingleton<IAddItemByNameViewModel, AddItemByNameViewModel>();
 #if DEBUG
             builder.Logging.AddDebug();
 #endif

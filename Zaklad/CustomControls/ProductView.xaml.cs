@@ -1,83 +1,43 @@
 ﻿using System.Runtime.CompilerServices;
+using System.Windows.Input;
+using Zaklad.Models;
 
 namespace Zaklad;
 
 public partial class ProductView : ContentView
 {
-    //this is probably done to easly extened possibilities in case of property value changed. Can be done with just default properties.
-    public static readonly BindableProperty ProductNameProperty = BindableProperty.Create(nameof(ProductName), typeof(string), typeof(ProductView), "product_name", propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var control = (ProductView)bindable;
-            if (!string.IsNullOrWhiteSpace((string)newValue))
-            {
-                control.labelProductName.TextColor = Color.FromHex("#575757");
-                control.labelProductName.Text = (string)newValue;
-            }
-            else
-            {
-                control.labelProductName.TextColor = Color.FromHex("#4d0000");
-                control.labelProductName.Text = "Brak nazwy";
-            }
-        });
-    public static readonly BindableProperty ProteinsProperty = BindableProperty.Create(nameof(Proteins), typeof(decimal), typeof(ProductView), 0m, propertyChanged: (bindable, oldValue, newValue) =>
+    public static readonly BindableProperty ProductProperty = BindableProperty.Create(nameof(Product), typeof(Product), typeof(ProductView), null, propertyChanged: (bindable, oldValue, newValue) =>
     {
         var control = (ProductView)bindable;
-        control.labelProteins.Text = $"Białka: {newValue}g";
+        Product product = (Product)newValue;
+        //ObservableList is raising events when data deleted. Cuz of that the ListView is passing a null objects to this control - not critical but would be great to fix that
+        if (product == null)
+            return;
+        control.labelKcal.Text = $"Energia: {((decimal)product.Kcal).ToString("F2")} Kcal";
+        control.labelCarbohydrates.Text = $"Cukry: {product.Carbohydrates}g";
+        control.labelFat.Text = $"Tłuszcze: {product.Fat}g";
+        control.labelProteins.Text = $"Białka: {product.Proteins}g";
+        control.labelProductName.Text = product.Name;
+        if(product.ProductImage != null)
+            control.imageProductImage.Source = product.ProductImage;
     });
-    public static readonly BindableProperty FatProperty = BindableProperty.Create(nameof(Fat), typeof(decimal), typeof(ProductView), 0m, propertyChanged: (bindable, oldValue, newValue) =>
+    public static readonly BindableProperty TapCommandProperty = BindableProperty.Create(nameof(Product), typeof(Product), typeof(ProductView), null, propertyChanged: (bindable, oldValue, newValue) =>
     {
         var control = (ProductView)bindable;
-        control.labelFat.Text = $"Tłuszcze: {newValue}g";
-    });
-    public static readonly BindableProperty CarbohydratesProperty = BindableProperty.Create(nameof(Carbohydrates), typeof(decimal), typeof(ProductView), 0m, propertyChanged: (bindable, oldValue, newValue) =>
-    {
-        var control = (ProductView)bindable;
-        control.labelCarbohydrates.Text = $"Cukry: {newValue}g";
-    });
-    public static readonly BindableProperty ProductImageSourceProperty = BindableProperty.Create(nameof(ProductImageSource), typeof(ImageSource), typeof(ProductView), null, propertyChanged: (bindable, oldValue, newValue) =>
-    {
-        var control = (ProductView)bindable;
-        if ((ImageSource)newValue != null)
-            control.imageProductImage.Source = (ImageSource)newValue;
-    });
-    public static readonly BindableProperty KcalProperty = BindableProperty.Create(nameof(Kcal), typeof(decimal), typeof(ProductView), null, propertyChanged: (bindable, oldValue, newValue) =>
-    {
-        var control = (ProductView)bindable;
-        string formatedValue = ((decimal)newValue).ToString("F2");
-        control.labelKcal.Text = $"Energia: {formatedValue} Kcal";
+        control.MyTapGestrueRecognizer.Command = (ICommand)newValue;
     });
     public ProductView()
     {
         InitializeComponent();
     }
-    public string ProductName
+    public Product Product
     {
-        get => (string)GetValue(ProductNameProperty);
-        set => SetValue(ProductNameProperty, value);
+        get => (Product)GetValue(ProductProperty);
+        set => SetValue(ProductProperty, value);
     }
-    public decimal Proteins
+    public ICommand TapCommand
     {
-        get => (decimal)GetValue(ProteinsProperty);
-        set => SetValue(ProteinsProperty, value);
-    }
-    public decimal Fat
-    {
-        get => (decimal)GetValue(FatProperty);
-        set => SetValue(FatProperty, value);
-    }
-    public decimal Carbohydrates
-    {
-        get => (decimal)GetValue(CarbohydratesProperty);
-        set => SetValue(CarbohydratesProperty, value);
-    }
-    public ImageSource ProductImageSource
-    {
-        get => (ImageSource)GetValue(ProductImageSourceProperty);
-        set => SetValue(ProductImageSourceProperty, value);
-    }
-    public decimal Kcal
-    {
-        get => (decimal)GetValue(ProductImageSourceProperty);
-        set => SetValue(ProductImageSourceProperty, value);
+        get => (ICommand)GetValue(TapCommandProperty);
+        set => SetValue(TapCommandProperty, value);
     }
 }

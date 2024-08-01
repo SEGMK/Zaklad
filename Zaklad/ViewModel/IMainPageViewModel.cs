@@ -19,6 +19,6 @@ namespace Zaklad.ViewModel
         string Carbohydrates { get; }
         ICommand ChangeDateOfWeekCommand { get; }
         ICommand ShowCalendarCommand { get; }
-        ObservableCollection<Product> Products { get; }
+        RangeObservableCollection<Product> Products { get; }
     }
 }

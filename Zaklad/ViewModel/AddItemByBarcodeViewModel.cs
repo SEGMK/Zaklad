@@ -1,14 +1,5 @@
 ﻿using Microsoft.CSharp.RuntimeBinder;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using Zaklad.Models;
-using ZXing.Net.Maui;
-using ZXing.Net.Maui.Controls;
 
 namespace Zaklad.ViewModel
 {
@@ -27,6 +18,7 @@ namespace Zaklad.ViewModel
                 ChoosenProduct = await FoodAPI.GetFoodDataBarcode(barcode);
                 await PopupService.ShowPopupAsync(new ProductEditor(ChoosenProduct));
                 UserProductsData.SaveProduct(ChoosenProduct, DateManager.CurrentDate);
+                await Shell.Current.GoToAsync($"///{nameof(Zaklad.MainPage)}");
             }
             catch (HttpRequestException ex)
             {
@@ -34,7 +26,7 @@ namespace Zaklad.ViewModel
             }
             catch (RuntimeBinderException ex)
             {
-                ServiceHelper.Current.GetService<IAlertService>().ShowAlert("Brak produktu", "podany produkt nie istnieje w bazie lub baza nie posiada wszystkich informacji na temat produktu");
+                ServiceHelper.Current.GetService<IAlertService>().ShowAlert("Brak produktu", "podany produkt nie istnieje w bazie");
             }
             catch (Exception ex)
             {
