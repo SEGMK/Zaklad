@@ -3,9 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="Zaklad.ProductView">
     <Border>
-        <Border.GestureRecognizers>
-            <TapGestureRecognizer x:Name="MyTapGestrueRecognizer"/>
-        </Border.GestureRecognizers>
         <HorizontalStackLayout>
             <Image x:Name="imageProductImage" WidthRequest="150" HeightRequest="150" Aspect="AspectFit" Source="no_product.png">
 

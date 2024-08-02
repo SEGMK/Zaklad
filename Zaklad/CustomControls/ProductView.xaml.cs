@@ -21,11 +21,6 @@ public partial class ProductView : ContentView
         if(product.ProductImage != null)
             control.imageProductImage.Source = product.ProductImage;
     });
-    public static readonly BindableProperty TapCommandProperty = BindableProperty.Create(nameof(Product), typeof(Product), typeof(ProductView), null, propertyChanged: (bindable, oldValue, newValue) =>
-    {
-        var control = (ProductView)bindable;
-        control.MyTapGestrueRecognizer.Command = (ICommand)newValue;
-    });
     public ProductView()
     {
         InitializeComponent();
@@ -34,10 +29,5 @@ public partial class ProductView : ContentView
     {
         get => (Product)GetValue(ProductProperty);
         set => SetValue(ProductProperty, value);
-    }
-    public ICommand TapCommand
-    {
-        get => (ICommand)GetValue(TapCommandProperty);
-        set => SetValue(TapCommandProperty, value);
     }
 }

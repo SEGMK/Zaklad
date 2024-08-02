@@ -78,7 +78,7 @@
             <Entry Grid.Row="9" Grid.Column="2" TextColor="White" Text="{Binding EditableCarbohydrates}" Keyboard="Numeric"/>
             <Label Grid.Row="9" Grid.Column="3" TextColor="White" Text="g"/>
         </Grid>
-        <Button Grid.Row="5" Grid.Column="1" Pressed="Button_Pressed" Text="Dodaj produkt" FontSize="36" TextColor="Gray" FontAttributes="Bold"/>
+        <Button Grid.Row="5" Grid.Column="1" Pressed="Button_Pressed" Text="Akceptuj" FontSize="36" TextColor="Gray" FontAttributes="Bold"/>
     </Grid>
     <!--</ScrollView>-->
 

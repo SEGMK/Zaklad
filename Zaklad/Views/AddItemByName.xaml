@@ -23,9 +23,11 @@
         <ListView x:DataType="local:ViewModel.AddItemByNameViewModel" ItemsSource="{Binding Products}" Grid.Row="3">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:Models.Product">
-                    <ViewCell>
+                    <ViewCell> 
                         <local:ProductView Product="{Binding .}">
-
+                            <local:ProductView.GestureRecognizers>
+                                <TapGestureRecognizer CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type local:ViewModel.AddItemByNameViewModel}}, Path=OpenProductEditorCommand}"/>
+                            </local:ProductView.GestureRecognizers>
                         </local:ProductView>
                     </ViewCell>
                 </DataTemplate>

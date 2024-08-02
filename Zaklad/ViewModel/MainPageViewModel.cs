@@ -27,6 +27,7 @@ namespace Zaklad.ViewModel
         private void OnPropertyChange(string name) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         public ICommand ChangeDateOfWeekCommand => new Command<string>(GetProductsCollection);
         public ICommand ShowCalendarCommand => new Command(() => PopupService.ShowPopup(new CalendarPopup()));
+        public ICommand OpenProductEditorCommand => new Command<Product>( async (product) => await ServiceHelper.Current.GetService<IPopupService>().ShowPopupAsync(new ProductEditor(product)));
         public MainPageViewModel()
         {
             DateManager = new DateManager();
