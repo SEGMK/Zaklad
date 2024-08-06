@@ -19,7 +19,7 @@
         </Grid.ColumnDefinitions>
         <ListView x:DataType="local:ViewModel.MainPageViewModel" ItemsSource="{Binding Products}" Grid.Row="0">
             <ListView.ItemTemplate>
-                <DataTemplate x:DataType="local:Models.Product">
+                <DataTemplate x:DataType="local:Models.UserProduct">
                     <ViewCell>
                         <local:ProductView Product="{Binding .}">
                             <local:ProductView.GestureRecognizers>

@@ -18,7 +18,7 @@ namespace Zaklad.ViewModel
     internal class MainPageViewModel : IMainPageViewModel
     {
         public DateManager DateManager { get; private set; } = new DateManager();
-        public RangeObservableCollection<Product> Products { get; private set; } = new RangeObservableCollection<Product>();
+        public RangeObservableCollection<UserProduct> Products { get; private set; } = new RangeObservableCollection<UserProduct>();
         public string Proteins { get; private set; } = string.Empty;
         public string Fat { get; private set; } = string.Empty;
         public string Carbohydrates { get; private set; } = string.Empty;
@@ -27,7 +27,7 @@ namespace Zaklad.ViewModel
         private void OnPropertyChange(string name) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         public ICommand ChangeDateOfWeekCommand => new Command<string>(GetProductsCollection);
         public ICommand ShowCalendarCommand => new Command(() => PopupService.ShowPopup(new CalendarPopup()));
-        public ICommand OpenProductEditorCommand => new Command<Product>( async (product) => await ServiceHelper.Current.GetService<IPopupService>().ShowPopupAsync(new ProductEditor(product)));
+        public ICommand OpenProductEditorCommand => new Command<ProductDataTemplate>( async (product) => await ServiceHelper.Current.GetService<IPopupService>().ShowPopupAsync(new ProductEditor(product)));
         public MainPageViewModel()
         {
             DateManager = new DateManager();
@@ -39,12 +39,12 @@ namespace Zaklad.ViewModel
         private void GetProductsCollection(string date)
         {
             DateManager.ChangeCurrentDate(DateTime.ParseExact(date, DateManager.DateFormat, null));
-            List<Product> products = UserProductsData.GetProducts(DateManager.CurrentDate);
+            List<UserProduct> products = UserProductsData.GetProducts(DateManager.CurrentDate);
             Products.ReplaceRange(products);
         }
         private void GetProductsCollection()
         {
-            List<Product> products = UserProductsData.GetProducts(DateManager.CurrentDate);
+            List<UserProduct> products = UserProductsData.GetProducts(DateManager.CurrentDate);
             Products.ReplaceRange(products);
         }
         private void CalculateMakro()
@@ -54,9 +54,9 @@ namespace Zaklad.ViewModel
             decimal carbohydrates = 0;
             foreach (var i in Products)
             {
-                proteins += i.Proteins ?? 0;
-                fat += i.Fat ?? 0;
-                carbohydrates += i.Carbohydrates ?? 0;
+                proteins += i.Proteins;
+                fat += i.Fat;
+                carbohydrates += i.Carbohydrates;
             }
             Proteins = proteins.ToString() + "g";
             Fat = fat.ToString() + "g";

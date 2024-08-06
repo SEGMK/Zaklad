@@ -20,10 +20,12 @@ namespace Zaklad.Models
         public async Task<object?> ShowPopupAsync(Popup popup)
         {
             Page page = Application.Current?.MainPage ?? throw new NullReferenceException();
-            return await MainThread.InvokeOnMainThreadAsync( async() =>
+            object result = null;
+            await MainThread.InvokeOnMainThreadAsync( async() =>
             {
-                 return await page.ShowPopupAsync(popup, CancellationToken.None);
+                 result = await page.ShowPopupAsync(popup, CancellationToken.None);
             });
+            return result;
         }
     }
 }

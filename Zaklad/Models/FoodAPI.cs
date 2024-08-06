@@ -26,14 +26,14 @@ namespace Zaklad.Models
             BaseAddress = new Uri("https://world.openfoodfacts.org/cgi/")
         };
         private static int NumberOfProductsdInList = 20;
-        public static async Task<List<Product>> GetFoodDataByName(string productName)
+        public static async Task<List<ProductDataTemplate>> GetFoodDataByName(string productName)
         {
             productName = productName.ToLower().Replace(" ", "+");
             HttpResponseMessage response = await HttpClientWordSearchAPI.GetAsync($@"search.pl?action=process&search_terms=" + productName + @$"&sort_by=unique_scans_n&page_size={NumberOfProductsdInList}&json=1");
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
             dynamic obj = JsonConvert.DeserializeObject(responseBody);
-            List<Product> products = new List<Product>();
+            List<ProductDataTemplate> products = new List<ProductDataTemplate>();
             foreach (dynamic i in obj.products)
             {
                 ImageSource productImage = null;
@@ -43,11 +43,11 @@ namespace Zaklad.Models
                         productImage = ImageSource.FromUri(new Uri(i.image_front_small_url));
                 }
                 decimal energyKcal = i.nutriments.energy_value / 4.184m;//its returned from API in KJ...
-                products.Add(new Product(i.product_name, energyKcal, i.nutriments.carbohydrates, i.nutriments.fat, i.nutriments.proteins, productImage));
+                products.Add(new ProductDataTemplate(i.product_name, energyKcal, i.nutriments.carbohydrates, i.nutriments.fat, i.nutriments.proteins, productImage));
             }
             return products;
         }
-        public static async Task<Product> GetFoodDataBarcode(string barcode)
+        public static async Task<ProductDataTemplate> GetFoodDataBarcode(string barcode)
         {
             HttpResponseMessage response = await HttpClientBarcodeAPI.GetAsync(barcode + @"?fields=product_name,nutriscore_data,nutriments,nutrition_grades");
             response.EnsureSuccessStatusCode();
@@ -55,44 +55,36 @@ namespace Zaklad.Models
             dynamic jsonObj = JsonConvert.DeserializeObject(responseBody);
 
             //Clear this catch < if
-            decimal? energyKcal = 0;
-            decimal? carbohydrates = 0;
-            decimal? fat = 0;
-            decimal? proteins = 0;
+            decimal energyKcal = 0;
+            decimal carbohydrates = 0;
+            decimal fat = 0;
+            decimal proteins = 0;
             try
             {
                 energyKcal = jsonObj.product.nutriments.energy_value;
             }
             catch (RuntimeBinderException ex)
-            {
-                energyKcal = null;
-            }
+            { }
             try
             {
                 carbohydrates = jsonObj.product.nutriments.carbohydrates_100g;
             }
             catch (RuntimeBinderException ex)
-            {
-                carbohydrates = null;
-            }
+            { }
             try
             {
                 fat = jsonObj.product.nutriments.fat_100g;
             }
             catch (RuntimeBinderException ex)
-            {
-                fat = null;
-            }
+            { }
             try
             {
                 proteins = jsonObj.product.nutriments.proteins_100g;
             }
             catch (RuntimeBinderException ex)
-            {
-                proteins = null;
-            }
+            { }
 
-            return new Product(jsonObj.product.product_name, energyKcal, carbohydrates, fat, proteins);
+            return new ProductDataTemplate(jsonObj.product.product_name, energyKcal, carbohydrates, fat, proteins);
         }
         /// <summary>
         /// Try to retrieve property from dynamic, if property does not exist return null

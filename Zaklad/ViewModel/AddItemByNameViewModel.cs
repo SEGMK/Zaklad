@@ -26,9 +26,9 @@ namespace Zaklad.ViewModel
                 OnPropertyChange(nameof(UserInputProduct));
             }
         }
-        public RangeObservableCollection<Product> Products { get; private set; } = new RangeObservableCollection<Product>();
+        public RangeObservableCollection<ProductDataTemplate> Products { get; private set; } = new RangeObservableCollection<ProductDataTemplate>();
         public ICommand SearchCommand => new Command<string>(GetProducts);
-        public ICommand OpenProductEditorCommand => new Command<Product>(OpenProductEditor);
+        public ICommand OpenProductEditorCommand => new Command<ProductDataTemplate>(OpenProductEditor);
 
         public event PropertyChangedEventHandler? PropertyChanged;
         private void OnPropertyChange(string name) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
@@ -39,7 +39,7 @@ namespace Zaklad.ViewModel
                 return;
             try
             {
-                List<Product> products = await FoodAPI.GetFoodDataByName(productName);
+                List<ProductDataTemplate> products = await FoodAPI.GetFoodDataByName(productName);
                 Products.ReplaceRange(products);
             }
             catch (HttpRequestException ex)
@@ -47,10 +47,10 @@ namespace Zaklad.ViewModel
                 ServiceHelper.Current.GetService<IAlertService>().ShowAlert("Error", "Nie znaleziono produktu");
             }
         }
-        private async void OpenProductEditor(Product product)
+        private async void OpenProductEditor(ProductDataTemplate product)
         {
-            await ServiceHelper.Current.GetService<IPopupService>().ShowPopupAsync(new ProductEditor(product));
-            UserProductsData.SaveProduct(product, DateManager.CurrentDate);
+            UserProduct userProduct = (UserProduct)await ServiceHelper.Current.GetService<IPopupService>().ShowPopupAsync(new ProductEditor(product));
+            UserProductsData.SaveProduct(userProduct, DateManager.CurrentDate);
             //await Shell.Current.GoToAsync($"///{nameof(Zaklad.MainPage)}");
         }
     }

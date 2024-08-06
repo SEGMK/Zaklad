@@ -6,7 +6,7 @@ namespace Zaklad;
 
 public partial class ProductEditor : Popup
 {
-	public ProductEditor(Product product)
+	public ProductEditor(ProductDataTemplate product)
 	{
 		InitializeComponent();
 		BindingContext = new ProductEditorViewModel(product);
@@ -14,6 +14,6 @@ public partial class ProductEditor : Popup
 
     private void Button_Pressed(object sender, EventArgs e)
     {
-        Close();
+        Close(((ProductEditorViewModel)BindingContext).UserProduct);
     }
 }

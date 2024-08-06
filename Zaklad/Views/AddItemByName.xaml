@@ -22,9 +22,9 @@
         </FlexLayout>
         <ListView x:DataType="local:ViewModel.AddItemByNameViewModel" ItemsSource="{Binding Products}" Grid.Row="3">
             <ListView.ItemTemplate>
-                <DataTemplate x:DataType="local:Models.Product">
-                    <ViewCell> 
-                        <local:ProductView Product="{Binding .}">
+                <DataTemplate x:DataType="local:Models.UserProduct">
+                    <ViewCell>
+                        <local:ProductView ProductTemplate="{Binding .}">
                             <local:ProductView.GestureRecognizers>
                                 <TapGestureRecognizer CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type local:ViewModel.AddItemByNameViewModel}}, Path=OpenProductEditorCommand}"/>
                             </local:ProductView.GestureRecognizers>

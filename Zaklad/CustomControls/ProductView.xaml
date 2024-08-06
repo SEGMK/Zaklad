@@ -9,7 +9,7 @@
             </Image>
             <VerticalStackLayout>
                 <Label x:Name="labelProductName" FontSize="24" TextColor="Gray" Text="product_name"/>
-                <Label FontSize="18" TextColor="Gray" Text="wartości odżywcze na 100g:"/>
+                <Label x:Name="labelGramature" FontSize="18" TextColor="Gray" Text="wartości odżywcze na 100g:"/>
                 <Label x:Name="labelKcal" FontSize="16" TextColor="Gray" Text="Energia: 0 kcal"/>
                 <Label x:Name="labelProteins" FontSize="14" TextColor="LightSkyBlue" Text="Białko: 0g"/>
                 <Label x:Name="labelFat" FontSize="14" TextColor="Yellow" Text="Tłuszcze: 0g"/>

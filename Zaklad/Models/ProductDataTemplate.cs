@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Zaklad.Models
 {
-    public class Product
+    public class ProductDataTemplate
     {
-        public Product(string name, decimal? kcal, decimal? carbohydrates, decimal? fat, decimal? proteins, ImageSource productImage = null)
+        //class for displaying product's data for 100g 
+        public ProductDataTemplate(string name, decimal kcal, decimal carbohydrates, decimal fat, decimal proteins, ImageSource productImage = null)
         {
             ProductImage = productImage;
             Name = name;
@@ -19,9 +20,9 @@ namespace Zaklad.Models
         }
         public ImageSource ProductImage { get; set; }
         public string Name { get; set; }
-        public decimal? Kcal { get; set; }
-        public decimal? Carbohydrates { get; set; }
-        public decimal? Fat { get; set; }
-        public decimal? Proteins { get; set; }
+        public decimal Kcal { get; set; }
+        public decimal Carbohydrates { get; set; }
+        public decimal Fat { get; set; }
+        public decimal Proteins { get; set; }
     }
 }

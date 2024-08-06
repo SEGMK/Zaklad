@@ -13,9 +13,17 @@ namespace Zaklad.ViewModel
 {
     public class ProductEditorViewModel
     {
-        Product ChoosenProduct { get; set; }
+        ProductDataTemplate ChoosenProduct { get; set; }
+        private UserProduct _userProduct;
+        public UserProduct UserProduct => new UserProduct(Gramature, ChoosenProduct);
         public ImageSource ProductImage { get; private set; }
         private decimal _editableKcal;
+        private int _gramature;
+        public int Gramature
+        {
+            get => _gramature;
+            set => _gramature = value;
+        }
         public decimal EditableKcal
         {
             get
@@ -80,13 +88,14 @@ namespace Zaklad.ViewModel
                 ChoosenProduct.Name = value;
             }
         }
-        public ProductEditorViewModel(Product product)
+        public ProductEditorViewModel(ProductDataTemplate product)
         {
             ChoosenProduct = product;
-            _editableCarbohydrates = product.Carbohydrates ?? 0;
-            _editableFat = product.Fat ?? 0;
-            _editableKcal = product.Kcal ?? 0;
-            _editableProteins = product.Proteins ?? 0;
+            Gramature = 100;
+            _editableCarbohydrates = product.Carbohydrates;
+            _editableFat = product.Fat;
+            _editableKcal = product.Kcal;
+            _editableProteins = product.Proteins;
             _productName = string.IsNullOrWhiteSpace(product.Name) ? "product_name" : product.Name;
             ProductImage = product.ProductImage ?? "no_product.png";
         }
