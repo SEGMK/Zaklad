@@ -1,8 +1,8 @@
 ﻿using Microsoft.Maui.Controls.Compatibility;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using Zaklad.Interfaces;
 using Zaklad.Models;
-using Zaklad.ViewModel;
 
 namespace Zaklad
 {

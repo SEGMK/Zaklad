@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 using System.Globalization;
+using Zaklad.Interfaces;
 using Zaklad.Models;
 using Zaklad.ViewModel;
 using ZXing.Net.Maui.Controls;

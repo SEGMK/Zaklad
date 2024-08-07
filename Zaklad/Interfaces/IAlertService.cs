@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Zaklad.Models
+namespace Zaklad.Interfaces
 {
     internal interface IAlertService
     {

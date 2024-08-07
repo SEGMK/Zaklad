@@ -12,6 +12,7 @@ using CommunityToolkit.Maui.Views;
 using System.Reflection;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
+using Zaklad.Interfaces;
 
 namespace Zaklad.ViewModel
 {

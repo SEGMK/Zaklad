@@ -1,4 +1,5 @@
 ﻿using Microsoft.CSharp.RuntimeBinder;
+using Zaklad.Interfaces;
 using Zaklad.Models;
 
 namespace Zaklad.ViewModel
