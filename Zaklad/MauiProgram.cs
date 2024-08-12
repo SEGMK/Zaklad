@@ -26,6 +26,8 @@ namespace Zaklad
             builder.Services.AddSingleton<IMainPageViewModel, MainPageViewModel>();
             builder.Services.AddSingleton<IAlertService, AlertService>();
             builder.Services.AddSingleton<IAddItemByNameViewModel, AddItemByNameViewModel>();
+            builder.Services.AddTransient<IUserProduct, UserProduct>();
+            builder.Services.AddTransient<IProductDataTemplate, ProductDataTemplate>();
 #if DEBUG
             builder.Logging.AddDebug();
 #endif

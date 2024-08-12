@@ -1,7 +1,6 @@
 ﻿using Microsoft.CSharp.RuntimeBinder;
 using Microsoft.Extensions.Logging.Abstractions;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -11,6 +10,7 @@ using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Zaklad.Interfaces;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Zaklad.Models
@@ -26,14 +26,14 @@ namespace Zaklad.Models
             BaseAddress = new Uri("https://world.openfoodfacts.org/cgi/")
         };
         private static int NumberOfProductsdInList = 20;
-        public static async Task<List<ProductDataTemplate>> GetFoodDataByName(string productName)
+        public static async Task<List<IProductDataTemplate>> GetFoodDataByName(string productName)
         {
             productName = productName.ToLower().Replace(" ", "+");
             HttpResponseMessage response = await HttpClientWordSearchAPI.GetAsync($@"search.pl?action=process&search_terms=" + productName + @$"&sort_by=unique_scans_n&page_size={NumberOfProductsdInList}&json=1");
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
             dynamic obj = JsonConvert.DeserializeObject(responseBody);
-            List<ProductDataTemplate> products = new List<ProductDataTemplate>();
+            List<IProductDataTemplate> products = new List<IProductDataTemplate>();
             foreach (dynamic i in obj.products)
             {
                 ImageSource productImage = null;
@@ -47,7 +47,7 @@ namespace Zaklad.Models
             }
             return products;
         }
-        public static async Task<ProductDataTemplate> GetFoodDataBarcode(string barcode)
+        public static async Task<IProductDataTemplate> GetFoodDataBarcode(string barcode)
         {
             HttpResponseMessage response = await HttpClientBarcodeAPI.GetAsync(barcode + @"?fields=product_name,nutriscore_data,nutriments,nutrition_grades");
             response.EnsureSuccessStatusCode();

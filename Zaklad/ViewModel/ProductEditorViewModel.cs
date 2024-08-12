@@ -7,15 +7,16 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Zaklad.Interfaces;
 using Zaklad.Models;
 
 namespace Zaklad.ViewModel
 {
     public class ProductEditorViewModel
     {
-        ProductDataTemplate ChoosenProduct { get; set; }
-        private UserProduct _userProduct;
-        public UserProduct UserProduct => new UserProduct(Gramature, ChoosenProduct);
+        IProductDataTemplate ChoosenProduct { get; set; }
+        private IUserProduct _userProduct;
+        public IUserProduct UserProduct => new UserProduct(Gramature, ChoosenProduct);
         public ImageSource ProductImage { get; private set; }
         private decimal _editableKcal;
         private int _gramature;
@@ -88,7 +89,7 @@ namespace Zaklad.ViewModel
                 ChoosenProduct.Name = value;
             }
         }
-        public ProductEditorViewModel(ProductDataTemplate product)
+        public ProductEditorViewModel(IProductDataTemplate product)
         {
             ChoosenProduct = product;
             Gramature = 100;

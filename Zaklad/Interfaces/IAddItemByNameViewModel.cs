@@ -12,7 +12,7 @@ namespace Zaklad.Interfaces
 {
     public interface IAddItemByNameViewModel : INotifyPropertyChanged
     {
-        public RangeObservableCollection<ProductDataTemplate> Products { get; }
+        public RangeObservableCollection<IProductDataTemplate> Products { get; }
         public ICommand SearchCommand { get; }
     }
 }

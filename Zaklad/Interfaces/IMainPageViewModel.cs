@@ -19,6 +19,6 @@ namespace Zaklad.Interfaces
         string Carbohydrates { get; }
         ICommand ChangeDateOfWeekCommand { get; }
         ICommand ShowCalendarCommand { get; }
-        RangeObservableCollection<UserProduct> Products { get; }
+        RangeObservableCollection<IUserProduct> Products { get; }
     }
 }

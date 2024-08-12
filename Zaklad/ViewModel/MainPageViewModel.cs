@@ -19,7 +19,7 @@ namespace Zaklad.ViewModel
     internal class MainPageViewModel : IMainPageViewModel
     {
         public DateManager DateManager { get; private set; } = new DateManager();
-        public RangeObservableCollection<UserProduct> Products { get; private set; } = new RangeObservableCollection<UserProduct>();
+        public RangeObservableCollection<IUserProduct> Products { get; private set; } = new RangeObservableCollection<IUserProduct>();
         public string Proteins { get; private set; } = string.Empty;
         public string Fat { get; private set; } = string.Empty;
         public string Carbohydrates { get; private set; } = string.Empty;
@@ -28,7 +28,7 @@ namespace Zaklad.ViewModel
         private void OnPropertyChange(string name) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         public ICommand ChangeDateOfWeekCommand => new Command<string>(GetProductsCollection);
         public ICommand ShowCalendarCommand => new Command(() => PopupService.ShowPopup(new CalendarPopup()));
-        public ICommand OpenProductEditorCommand => new Command<ProductDataTemplate>( async (product) => await ServiceHelper.Current.GetService<IPopupService>().ShowPopupAsync(new ProductEditor(product)));
+        public ICommand OpenProductEditorCommand => new Command<IProductDataTemplate>( async (product) => await ServiceHelper.Current.GetService<IPopupService>().ShowPopupAsync(new ProductEditor(product)));
         public MainPageViewModel()
         {
             DateManager = new DateManager();
@@ -40,12 +40,12 @@ namespace Zaklad.ViewModel
         private void GetProductsCollection(string date)
         {
             DateManager.ChangeCurrentDate(DateTime.ParseExact(date, DateManager.DateFormat, null));
-            List<UserProduct> products = UserProductsData.GetProducts(DateManager.CurrentDate);
+            List<IUserProduct> products = UserProductsData.GetProducts(DateManager.CurrentDate);
             Products.ReplaceRange(products);
         }
         private void GetProductsCollection()
         {
-            List<UserProduct> products = UserProductsData.GetProducts(DateManager.CurrentDate);
+            List<IUserProduct> products = UserProductsData.GetProducts(DateManager.CurrentDate);
             Products.ReplaceRange(products);
         }
         private void CalculateMakro()

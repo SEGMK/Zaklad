@@ -1,14 +1,17 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Zaklad.Interfaces;
 
 namespace Zaklad.Models
 {
-    public class ProductDataTemplate
+    public class ProductDataTemplate : IProductDataTemplate
     {
         //class for displaying product's data for 100g 
+        public ProductDataTemplate() { } //used for deserialization
         public ProductDataTemplate(string name, decimal kcal, decimal carbohydrates, decimal fat, decimal proteins, ImageSource productImage = null)
         {
             ProductImage = productImage;

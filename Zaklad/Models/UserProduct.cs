@@ -4,19 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using Zaklad.Interfaces;
 
 namespace Zaklad.Models
 {
-    public class UserProduct
+    //class for displaying users added product with custom gramature
+    public class UserProduct : IUserProduct
     {
-        //class for displaying users added product with custom gramature
-        public UserProduct(int gramature, ProductDataTemplate productTemplate)
+        public UserProduct() { } //used for deserialization
+        public UserProduct(int gramature, IProductDataTemplate productTemplate)
         {
             ProductTemplate = productTemplate;
             Gramature = gramature;
         }
         public int Gramature { get; set; }
-        public ProductDataTemplate ProductTemplate { get; private set; }
+        public IProductDataTemplate ProductTemplate { get; set; }
         public ImageSource ProductImage => ProductTemplate.ProductImage;
         public string Name => ProductTemplate.Name;
         public decimal Kcal => ProductTemplate.Kcal * Gramature / 100;
