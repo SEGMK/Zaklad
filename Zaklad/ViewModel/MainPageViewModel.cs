@@ -20,9 +20,12 @@ namespace Zaklad.ViewModel
     {
         public DateManager DateManager { get; private set; } = new DateManager();
         public RangeObservableCollection<IUserProduct> Products { get; private set; } = new RangeObservableCollection<IUserProduct>();
-        public string Proteins { get; private set; } = string.Empty;
-        public string Fat { get; private set; } = string.Empty;
-        public string Carbohydrates { get; private set; } = string.Empty;
+        private string _proteins = string.Empty;
+        public string Proteins { get { return _proteins; } private set { _proteins = value; OnPropertyChange(nameof(Proteins)); } }
+        private string _fat = string.Empty;
+        public string Fat { get { return _fat; } private set { _fat = value; OnPropertyChange(nameof(Fat)); } }
+        private string _carbohydrates = string.Empty;
+        public string Carbohydrates { get { return _carbohydrates; } private set { _carbohydrates = value; OnPropertyChange(nameof(Carbohydrates)); } }
         public IPopupService PopupService { get; private set; } = ServiceHelper.Current.GetService<IPopupService>();
         public event PropertyChangedEventHandler? PropertyChanged;
         private void OnPropertyChange(string name) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
