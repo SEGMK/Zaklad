@@ -27,7 +27,7 @@ namespace Zaklad.ViewModel
                 OnPropertyChange(nameof(UserInputProduct));
             }
         }
-        public RangeObservableCollection<IProductDataTemplate> Products { get; private set; } = new RangeObservableCollection<IProductDataTemplate>();
+        public ObservableCollection<IProductDataTemplate> Products { get; private set; } = new ObservableCollection<IProductDataTemplate>();
         public ICommand SearchCommand => new Command<string>(GetProducts);
         public ICommand OpenProductEditorCommand => new Command<IProductDataTemplate>(OpenProductEditor);
 
@@ -40,8 +40,12 @@ namespace Zaklad.ViewModel
                 return;
             try
             {
+                Products.Clear();
                 List<IProductDataTemplate> products = await FoodAPI.GetFoodDataByName(productName);
-                Products.ReplaceRange(products);
+                foreach (var i in products)
+                { 
+                    Products.Add(i);
+                }
             }
             catch (HttpRequestException ex)
             {

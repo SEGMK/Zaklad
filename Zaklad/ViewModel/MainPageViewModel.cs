@@ -19,7 +19,7 @@ namespace Zaklad.ViewModel
     internal class MainPageViewModel : IMainPageViewModel
     {
         public DateManager DateManager { get; private set; } = new DateManager();
-        public RangeObservableCollection<IUserProduct> Products { get; private set; } = new RangeObservableCollection<IUserProduct>();
+        public ObservableCollection<IUserProduct> Products { get; private set; } = new ObservableCollection<IUserProduct>();
         private string _proteins = string.Empty;
         public string Proteins { get { return _proteins; } private set { _proteins = value; OnPropertyChange(nameof(Proteins)); } }
         private string _fat = string.Empty;
@@ -34,6 +34,7 @@ namespace Zaklad.ViewModel
         public ICommand OpenProductEditorCommand => new Command<IProductDataTemplate>( async (product) => await ServiceHelper.Current.GetService<IPopupService>().ShowPopupAsync(new ProductEditor(product)));
         public MainPageViewModel()
         {
+            Products.Clear();
             DateManager = new DateManager();
             CalendarPopupViewModel.DateChanged += (sender, date) => DateManager.ChangeCurrentDate(date);
             Products.CollectionChanged += new NotifyCollectionChangedEventHandler((sender, e) => CalculateMakro());
@@ -42,14 +43,21 @@ namespace Zaklad.ViewModel
         }
         private void GetProductsCollection(string date)
         {
+            Products.Clear();
             DateManager.ChangeCurrentDate(DateTime.ParseExact(date, DateManager.DateFormat, null));
             List<IUserProduct> products = UserProductsData.GetProducts(DateManager.CurrentDate);
-            Products.ReplaceRange(products);
+            foreach (var i in products)
+            { 
+                Products.Add(i);
+            }
         }
         private void GetProductsCollection()
         {
             List<IUserProduct> products = UserProductsData.GetProducts(DateManager.CurrentDate);
-            Products.ReplaceRange(products);
+            foreach (var i in products)
+            {
+                Products.Add(i);
+            }
         }
         private void CalculateMakro()
         {
