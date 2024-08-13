@@ -7,9 +7,16 @@
             <Image x:Name="imageProductImage" WidthRequest="150" HeightRequest="150" Aspect="AspectFit" Source="no_product.png">
 
             </Image>
-            <VerticalStackLayout>
+            <VerticalStackLayout VerticalOptions="End" Margin="10">
                 <Label x:Name="labelProductName" FontSize="24" TextColor="Gray" Text="product_name"/>
-                <Label x:Name="labelGramature" FontSize="18" TextColor="Gray" Text="wartości odżywcze na 100g:"/>
+                <Label x:Name="labelGramature_100g" FontSize="18" TextColor="Gray" Text="wartości odżywcze na 100g:"/>
+                <Label x:Name="labelKcal_100g" FontSize="16" TextColor="Gray" Text="Energia: 0 kcal"/>
+                <Label x:Name="labelProteins_100g" FontSize="14" TextColor="LightSkyBlue" Text="Białko: 0g"/>
+                <Label x:Name="labelFat_100g" FontSize="14" TextColor="Yellow" Text="Tłuszcze: 0g"/>
+                <Label x:Name="labelCarbohydrates_100g" FontSize="14" TextColor="White" Text="Cukry: 0g"/>
+            </VerticalStackLayout>
+            <VerticalStackLayout VerticalOptions="End" Margin="10">
+                <Label x:Name="labelGramature" FontSize="18" Text="Spożyta porcja produktu: 0g"/>
                 <Label x:Name="labelKcal" FontSize="16" TextColor="Gray" Text="Energia: 0 kcal"/>
                 <Label x:Name="labelProteins" FontSize="14" TextColor="LightSkyBlue" Text="Białko: 0g"/>
                 <Label x:Name="labelFat" FontSize="14" TextColor="Yellow" Text="Tłuszcze: 0g"/>

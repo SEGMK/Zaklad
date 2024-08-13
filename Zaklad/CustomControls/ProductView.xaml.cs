@@ -9,41 +9,47 @@ public partial class ProductView : ContentView
 {
     public static readonly BindableProperty ProductTemplateProperty = BindableProperty.Create(nameof(ProductTemplate), typeof(IProductDataTemplate), typeof(ProductView), null, propertyChanged: (bindable, oldValue, newValue) =>
     {
-        UpdateViewValues((IProductDataTemplate)newValue, bindable);
-    });
-    public static readonly BindableProperty ProductProperty = BindableProperty.Create(nameof(Product), typeof(IUserProduct), typeof(ProductView), null, propertyChanged: (bindable, oldValue, newValue) =>
-    {
-        UpdateViewValues((IUserProduct)newValue, bindable);
-    });
-    //make it generic
-    private static void UpdateViewValues(IProductDataTemplate product, object bindable)
-    {
         var control = (ProductView)bindable;
+        IProductDataTemplate product = (IProductDataTemplate)newValue;
         //ObservableList is raising events when data deleted. Cuz of that the ListView is passing a null objects to this control - not critical but would be great to fix that
         if (product == null)
             return;
+        SetProductTemplateData(control, product);
+        SetUserProductPartVisible(control, false);
+    });
+    public static readonly BindableProperty ProductProperty = BindableProperty.Create(nameof(Product), typeof(IUserProduct), typeof(ProductView), null, propertyChanged: (bindable, oldValue, newValue) =>
+    {
+        var control = (ProductView)bindable;
+        IUserProduct product = (IUserProduct)newValue;
+        //ObservableList is raising events when data deleted. Cuz of that the ListView is passing a null objects to this control - not critical but would be great to fix that
+        if (product == null)
+            return;
+        SetProductTemplateData(control, product.ProductTemplate);
+        SetUserProductPartVisible(control, true);
+        control.labelGramature.Text = $"Spożyta porcja produktu: {product.Gramature}g";
         control.labelKcal.Text = $"Energia: {((decimal)product.Kcal).ToString("F2")} Kcal";
         control.labelCarbohydrates.Text = $"Cukry: {product.Carbohydrates}g";
         control.labelFat.Text = $"Tłuszcze: {product.Fat}g";
         control.labelProteins.Text = $"Białka: {product.Proteins}g";
+    });
+
+    private static void SetProductTemplateData(ProductView control, IProductDataTemplate product)
+    {
+        control.labelKcal_100g.Text = $"Energia: {((decimal)product.Kcal).ToString("F2")} Kcal";
+        control.labelCarbohydrates_100g.Text = $"Cukry: {product.Carbohydrates}g";
+        control.labelFat_100g.Text = $"Tłuszcze: {product.Fat}g";
+        control.labelProteins_100g.Text = $"Białka: {product.Proteins}g";
         control.labelProductName.Text = product.Name;
         if (product.ProductImage != null)
             control.imageProductImage.Source = product.ProductImage;
     }
-    private static void UpdateViewValues(IUserProduct product, object bindable)
+    private static void SetUserProductPartVisible(ProductView control, bool turnVisible)
     {
-        var control = (ProductView)bindable;
-        //ObservableList is raising events when data deleted. Cuz of that the ListView is passing a null objects to this control - not critical but would be great to fix that
-        if (product == null)
-            return;
-        control.labelGramature.Text = $"wartości odżywcze na {product.Gramature}g:";
-        control.labelKcal.Text = $"Energia: {((decimal)product.Kcal).ToString("F2")} Kcal";
-        control.labelCarbohydrates.Text = $"Cukry: {product.Carbohydrates}g";
-        control.labelFat.Text = $"Tłuszcze: {product.Fat}g";
-        control.labelProteins.Text = $"Białka: {product.Proteins}g";
-        control.labelProductName.Text = product.Name;
-        if (product.ProductImage != null)
-            control.imageProductImage.Source = product.ProductImage;
+        control.labelFat.IsVisible = turnVisible;
+        control.labelCarbohydrates.IsVisible = turnVisible;
+        control.labelGramature.IsVisible = turnVisible;
+        control.labelProteins.IsVisible = turnVisible;
+        control.labelKcal.IsVisible = turnVisible;
     }
     public ProductView()
     {
