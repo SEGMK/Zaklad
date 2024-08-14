@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Zaklad.Views.ProductSelectionPopup"
+             xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+           Size="400, 200"
+           Color="Transparent">
+    <Grid>
+        <Border BackgroundColor="Blue">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="20"/>
+            </Border.StrokeShape>
+            <VerticalStackLayout VerticalOptions="Center" Spacing="10" Margin="30">
+                <Button Text="Wyszukaj produkt" VerticalOptions="Center" Pressed="NavigateToAddItemByName"/>
+                <Button Text="Zeskanuj kod kreskowy" VerticalOptions="Center" Pressed="NavigateToAddItemByBarcode"/>
+            </VerticalStackLayout>
+        </Border>
+    </Grid>
+</mct:Popup>

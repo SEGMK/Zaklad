@@ -5,7 +5,8 @@
         public AppShell()
         {
             InitializeComponent();
-            Routing.RegisterRoute(nameof(Zaklad.MainPage), typeof(Zaklad.MainPage));
+            Routing.RegisterRoute(@$"{nameof(MainPage)}/{nameof(AddItemByName)}", typeof(AddItemByName));
+            Routing.RegisterRoute(@$"{nameof(MainPage)}/{nameof(AddItemByBarcode)}", typeof(AddItemByBarcode));
         }
     }
 }

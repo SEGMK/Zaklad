@@ -76,6 +76,9 @@
 	  <Compile Update="Views\AddItemByName.xaml.cs">
 	    <DependentUpon>AddItemByName.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\ProductSelectionPopup.xaml.cs">
+	    <DependentUpon>ProductSelectionPopup.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\ProductEditor.xaml.cs">
 	    <DependentUpon>ProductEditor.xaml</DependentUpon>
 	  </Compile>
@@ -92,6 +95,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\AddItemByName.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ProductSelectionPopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ProductEditor.xaml">

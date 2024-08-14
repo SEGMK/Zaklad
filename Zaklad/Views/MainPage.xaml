@@ -173,5 +173,6 @@
                 </VerticalStackLayout>
             </Frame>
         </Grid>
+        <Button Text="+" FontSize="24" BackgroundColor="ForestGreen" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,10,10" ZIndex="1" WidthRequest="80" HeightRequest="80" CornerRadius="50" Command="{Binding ShowProductSelection}"/>
     </Grid>
 </ContentPage>

@@ -19,7 +19,7 @@ namespace Zaklad.ViewModel
                 ChoosenProduct = await FoodAPI.GetFoodDataBarcode(barcode);
                 IUserProduct userProduct =  (IUserProduct)await PopupService.ShowPopupAsync(new ProductEditor(ChoosenProduct));
                 UserProductsData.SaveProduct(userProduct, DateManager.CurrentDate);
-                await Shell.Current.GoToAsync($"///{nameof(Zaklad.MainPage)}");
+                await Shell.Current.GoToAsync(@$"..");
             }
             catch (HttpRequestException ex)
             {

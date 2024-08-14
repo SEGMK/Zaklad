@@ -17,4 +17,4 @@ public partial class ProductEditor : Popup
     {
         Close(((ProductEditorViewModel)BindingContext).UserProduct);
     }
-}
+} 

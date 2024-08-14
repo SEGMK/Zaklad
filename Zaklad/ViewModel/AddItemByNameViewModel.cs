@@ -56,7 +56,7 @@ namespace Zaklad.ViewModel
         {
             IUserProduct userProduct = (IUserProduct)await ServiceHelper.Current.GetService<IPopupService>().ShowPopupAsync(new ProductEditor(product));
             UserProductsData.SaveProduct(userProduct, DateManager.CurrentDate);
-            //await Shell.Current.GoToAsync($"///{nameof(Zaklad.MainPage)}");
+            await Shell.Current.GoToAsync(@$"..");
         }
     }
 }
