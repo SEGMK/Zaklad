@@ -17,7 +17,9 @@ namespace Zaklad.ViewModel
             try
             {
                 ChoosenProduct = await FoodAPI.GetFoodDataBarcode(barcode);
-                IUserProduct userProduct =  (IUserProduct)await PopupService.ShowPopupAsync(new ProductEditor(ChoosenProduct));
+                IUserProduct userProduct =  (IUserProduct)await PopupService.ShowPopupAsync(new ProductEditor(new ProductEditorViewModel_ProductTemplate(ChoosenProduct)));
+                if (userProduct == null)
+                    return;
                 UserProductsData.SaveProduct(userProduct, DateManager.CurrentDate);
                 await Shell.Current.GoToAsync(@$"..");
             }

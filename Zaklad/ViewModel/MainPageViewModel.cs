@@ -33,7 +33,7 @@ namespace Zaklad.ViewModel
         public ICommand ChangeDateOfWeekCommand => new Command<string>(GetProductsCollection);
         public ICommand ShowCalendarCommand => new Command(() => PopupService.ShowPopup(new CalendarPopup()));
         public ICommand ShowProductSelection => new Command(() => PopupService.ShowPopup(new ProductSelectionPopup()));
-        public ICommand OpenProductEditorCommand => new Command<IProductDataTemplate>( async (product) => await ServiceHelper.Current.GetService<IPopupService>().ShowPopupAsync(new ProductEditor(product)));
+        public ICommand OpenProductEditorCommand => new Command<IUserProduct>( async (product) => await ServiceHelper.Current.GetService<IPopupService>().ShowPopupAsync(new ProductEditor(new ProductEditorViewModel_UserProduct(product))));
         public MainPageViewModel()
         {
             Products.Clear();

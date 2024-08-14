@@ -13,7 +13,7 @@ using Zaklad.Models;
 
 namespace Zaklad.ViewModel
 {
-    public class ProductEditorViewModel : INotifyPropertyChanged
+    public class ProductEditorViewModel_ProductTemplate : IProductEditorViewModel
     {
         IProductDataTemplate ChoosenProduct { get; set; }
         private IUserProduct _userProduct;
@@ -100,7 +100,7 @@ namespace Zaklad.ViewModel
                 ChoosenProduct.Name = value;
             }
         }
-        public ProductEditorViewModel(IProductDataTemplate product)
+        public ProductEditorViewModel_ProductTemplate(IProductDataTemplate product)
         {
             ChoosenProduct = product;
             Gramature = 100;
