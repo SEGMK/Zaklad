@@ -7,6 +7,9 @@
              x:Name="ThisPopup"
              Color="#303030">
     <mct:Popup.Resources>
+        <ResourceDictionary>
+            <mct:MultiMathExpressionConverter x:Key="MultiMathExpressionConverter" />
+        </ResourceDictionary>
         <Style TargetType="{x:Type mct:Popup}">
             <Setter Property="Size" Value="500,800"/>
         </Style>
@@ -58,6 +61,8 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100"/>
                 <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="20"/>
                 <ColumnDefinition Width="100"/>
             </Grid.ColumnDefinitions>
             <Grid.Resources>
@@ -83,6 +88,40 @@
             <Label Grid.Row="9" Grid.Column="0" TextColor="White" Text="Cukry:"/>
             <Entry Grid.Row="9" Grid.Column="1" TextColor="White" Text="{Binding EditableCarbohydrates}" Keyboard="Numeric"/>
             <Label Grid.Row="9" Grid.Column="2" TextColor="White" Text="g"/>
+
+            <Label Grid.Row="1" Grid.Column="4" TextColor="Gray" Text="suma wartości odżywczych"/>
+            <Label Grid.Row="3" Grid.Column="4" TextColor="Gray">
+                <Label.Text>
+                    <MultiBinding Converter="{StaticResource MultiMathExpressionConverter}" ConverterParameter="x0 * x1 / 100">
+                        <Binding Path="EditableKcal"/>
+                        <Binding Path="Gramature"/>
+                    </MultiBinding>
+                </Label.Text>
+            </Label>
+            <Label Grid.Row="5" Grid.Column="4" TextColor="Blue">
+                <Label.Text>
+                    <MultiBinding Converter="{StaticResource MultiMathExpressionConverter}" ConverterParameter="x0 * x1 / 100">
+                        <Binding Path="EditableProteins"/>
+                        <Binding Path="Gramature"/>
+                    </MultiBinding>
+                </Label.Text>
+            </Label>
+            <Label Grid.Row="7" Grid.Column="4" TextColor="Yellow">
+                <Label.Text>
+                    <MultiBinding Converter="{StaticResource MultiMathExpressionConverter}" ConverterParameter="x0 * x1 / 100">
+                        <Binding Path="EditableFat"/>
+                        <Binding Path="Gramature"/>
+                    </MultiBinding>
+                </Label.Text>
+            </Label>
+            <Label Grid.Row="9" Grid.Column="4" TextColor="White">
+                <Label.Text>
+                    <MultiBinding Converter="{StaticResource MultiMathExpressionConverter}" ConverterParameter="x0 * x1 / 100">
+                        <Binding Path="EditableCarbohydrates"/>
+                        <Binding Path="Gramature"/>
+                    </MultiBinding>
+                </Label.Text>
+            </Label>
         </Grid>
         <Button Grid.Row="6" Grid.Column="1" Pressed="Button_Pressed" Text="Akceptuj" FontSize="24" TextColor="Gray" FontAttributes="Bold"/>
     </Grid>
