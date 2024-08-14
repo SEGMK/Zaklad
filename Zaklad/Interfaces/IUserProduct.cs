@@ -20,5 +20,6 @@ namespace Zaklad.Interfaces
         public decimal Fat { get; }
         public decimal Proteins { get; }
         public IProductDataTemplate ProductTemplate { get; set; }
+        public Guid Id { get; }
     }
 }

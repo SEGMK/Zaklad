@@ -25,5 +25,7 @@ namespace Zaklad.Models
         public decimal Carbohydrates => ProductTemplate.Carbohydrates * Gramature / 100;
         public decimal Fat => ProductTemplate.Fat * Gramature / 100;
         public decimal Proteins => ProductTemplate.Proteins * Gramature / 100;
+
+        public Guid Id => new Guid();
     }
 }
