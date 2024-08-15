@@ -11,10 +11,14 @@ public partial class ProductEditor : Popup
 	{
 		InitializeComponent();
         BindingContext = viewModel;
+        AddDecisionButtons();
     }
-
-    private void Button_Pressed(object sender, EventArgs e)
+    private void AddDecisionButtons()
     {
-        Close(((IProductEditorViewModel)BindingContext).UserProduct);
+        foreach (Button i in ((IProductEditorViewModel)BindingContext).DecisionButtonsCollection)
+        {
+            i.Clicked += (s, e) => Close();
+            DecisionButtons.Add(i);
+        }
     }
 } 

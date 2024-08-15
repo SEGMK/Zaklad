@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
@@ -15,6 +16,7 @@ namespace Zaklad.ViewModel
 {
     public class ProductEditorViewModel_ProductTemplate : IProductEditorViewModel
     {
+        public ObservableCollection<Button> DecisionButtonsCollection { get; private set; }
         IProductDataTemplate ChoosenProduct { get; set; }
         private IUserProduct _userProduct;
         public IUserProduct UserProduct => new UserProduct(Gramature, ChoosenProduct);
@@ -110,6 +112,13 @@ namespace Zaklad.ViewModel
             _editableProteins = product.Proteins;
             _productName = string.IsNullOrWhiteSpace(product.Name) ? "product_name" : product.Name;
             ProductImage = product.ProductImage ?? "no_product.png";
+            DecisionButtonsCollection = new ObservableCollection<Button>();
+            DecisionButtonsCollection.Add(new Button()
+            {
+                Text = "Dodaj",
+                BackgroundColor = Color.Parse("Green"),
+                Command = new Command(() => UserProductsData.SaveProduct(UserProduct, DateManager.CurrentDate))
+            });
         }
     }
 }

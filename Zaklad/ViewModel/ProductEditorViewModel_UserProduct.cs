@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Zaklad.Interfaces;
+using Zaklad.Models;
 
 namespace Zaklad.ViewModel
 {
     class ProductEditorViewModel_UserProduct : IProductEditorViewModel
     {
+        public ObservableCollection<Button> DecisionButtonsCollection { get; private set; }
         private IUserProduct _userProduct;
         public IUserProduct UserProduct 
         {
@@ -40,6 +43,19 @@ namespace Zaklad.ViewModel
         public ProductEditorViewModel_UserProduct(IUserProduct product)
         {
             UserProduct = product;
+            DecisionButtonsCollection = new ObservableCollection<Button>();
+            DecisionButtonsCollection.Add(new Button()
+            {
+                Text = "Edytuj",
+                BackgroundColor = Color.Parse("Yellow"),
+                Command = new Command(() => UserProductsData.EditProduct(UserProduct, DateManager.CurrentDate))
+            });
+            DecisionButtonsCollection.Add(new Button()
+            {
+                Text = "Usuń",
+                BackgroundColor = Color.Parse("Red"),
+                Command = new Command(() => UserProductsData.DeleteProduct(UserProduct.Id, DateManager.CurrentDate))
+            });
         }
     }
 }

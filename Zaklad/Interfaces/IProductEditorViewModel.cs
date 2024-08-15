@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,7 @@ namespace Zaklad.Interfaces
 {
     public interface IProductEditorViewModel : INotifyPropertyChanged
     {
+        public ObservableCollection<Button> DecisionButtonsCollection { get; }
         public IUserProduct UserProduct { get; }
         public int Gramature { get; set; }
         public decimal EditableKcal { get; set; }
