@@ -23,9 +23,14 @@ namespace Zaklad.Models
         }
         public ImageSource ProductImage { get; set; }
         public string Name { get; set; }
-        public decimal Kcal { get; set; }
-        public decimal Carbohydrates { get; set; }
-        public decimal Fat { get; set; }
-        public decimal Proteins { get; set; }
+        private decimal _kcal;
+        public decimal Kcal { get => _kcal; set => _kcal = Math.Round(value, 2); }
+        private decimal _carbohydrates;
+        public decimal Carbohydrates { get => _carbohydrates; set => _carbohydrates = Math.Round(value, 2); }
+        private decimal _fat;
+        public decimal Fat { get => _fat; set => _fat = Math.Round(value, 2); }
+        private decimal _proteins;
+        public decimal Proteins { get => _proteins; set => _proteins = Math.Round(value, 2); }
+
     }
 }

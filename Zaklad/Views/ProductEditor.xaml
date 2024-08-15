@@ -92,7 +92,7 @@
             <Label Grid.Row="1" Grid.Column="4" TextColor="Gray" Text="suma wartości odżywczych"/>
             <Label Grid.Row="3" Grid.Column="4" TextColor="Gray">
                 <Label.Text>
-                    <MultiBinding Converter="{StaticResource MultiMathExpressionConverter}" ConverterParameter="x0 * x1 / 100">
+                    <MultiBinding Converter="{StaticResource MultiMathExpressionConverter}" ConverterParameter="round(x0 * x1 / 100, 2)">
                         <Binding Path="EditableKcal"/>
                         <Binding Path="Gramature"/>
                     </MultiBinding>
@@ -100,7 +100,7 @@
             </Label>
             <Label Grid.Row="5" Grid.Column="4" TextColor="Blue">
                 <Label.Text>
-                    <MultiBinding Converter="{StaticResource MultiMathExpressionConverter}" ConverterParameter="x0 * x1 / 100">
+                    <MultiBinding Converter="{StaticResource MultiMathExpressionConverter}" ConverterParameter="round(x0 * x1 / 100, 2)">
                         <Binding Path="EditableProteins"/>
                         <Binding Path="Gramature"/>
                     </MultiBinding>
@@ -108,7 +108,7 @@
             </Label>
             <Label Grid.Row="7" Grid.Column="4" TextColor="Yellow">
                 <Label.Text>
-                    <MultiBinding Converter="{StaticResource MultiMathExpressionConverter}" ConverterParameter="x0 * x1 / 100">
+                    <MultiBinding Converter="{StaticResource MultiMathExpressionConverter}" ConverterParameter="round(x0 * x1 / 100, 2)">
                         <Binding Path="EditableFat"/>
                         <Binding Path="Gramature"/>
                     </MultiBinding>
@@ -116,7 +116,7 @@
             </Label>
             <Label Grid.Row="9" Grid.Column="4" TextColor="White">
                 <Label.Text>
-                    <MultiBinding Converter="{StaticResource MultiMathExpressionConverter}" ConverterParameter="x0 * x1 / 100">
+                    <MultiBinding Converter="{StaticResource MultiMathExpressionConverter}" ConverterParameter="round(x0 * x1 / 100, 2)">
                         <Binding Path="EditableCarbohydrates"/>
                         <Binding Path="Gramature"/>
                     </MultiBinding>
