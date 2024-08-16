@@ -37,13 +37,38 @@ namespace Zaklad.Models
             foreach (dynamic i in obj.products)
             {
                 ImageSource productImage = null;
-                using (WebClient client = new WebClient())
+                decimal energyKcal = -1;
+                decimal carbohydrates = -1;
+                decimal fat = -1;
+                decimal proteins = -1;
+                if (i.image_front_small_url != null)
+                    productImage = ImageSource.FromUri(new Uri(i.image_front_small_url));
+                //Clear this catch < if
+                try
                 {
-                    if (i.image_front_small_url != null)
-                        productImage = ImageSource.FromUri(new Uri(i.image_front_small_url));
+                    energyKcal = i.nutriments.energy_value / 4.184m;//its returned from API in KJ...
                 }
-                decimal energyKcal = i.nutriments.energy_value / 4.184m;//its returned from API in KJ...
-                products.Add(new ProductDataTemplate(i.product_name, energyKcal, i.nutriments.carbohydrates, i.nutriments.fat, i.nutriments.proteins, productImage));
+                catch (RuntimeBinderException ex)
+                { }
+                try
+                {
+                    carbohydrates = i.nutriments.carbohydrates;
+                }
+                catch (RuntimeBinderException ex)
+                { }
+                try
+                {
+                    fat = i.nutriments.fat;
+                }
+                catch (RuntimeBinderException ex)
+                { }
+                try
+                {
+                    proteins = i.nutriments.proteins;
+                }
+                catch (RuntimeBinderException ex)
+                { }
+                products.Add(new ProductDataTemplate(i.product_name, energyKcal, carbohydrates, fat, proteins, productImage));
             }
             return products;
         }
@@ -55,10 +80,11 @@ namespace Zaklad.Models
             dynamic jsonObj = JsonConvert.DeserializeObject(responseBody);
 
             //Clear this catch < if
-            decimal energyKcal = 0;
-            decimal carbohydrates = 0;
-            decimal fat = 0;
-            decimal proteins = 0;
+            decimal energyKcal = -1;
+            decimal carbohydrates = -1;
+            decimal fat = -1;
+            decimal proteins = -1;
+            string name = string.Empty;
             try
             {
                 energyKcal = jsonObj.product.nutriments.energy_value;
@@ -83,36 +109,7 @@ namespace Zaklad.Models
             }
             catch (RuntimeBinderException ex)
             { }
-
             return new ProductDataTemplate(jsonObj.product.product_name, energyKcal, carbohydrates, fat, proteins);
-        }
-        /// <summary>
-        /// Try to retrieve property from dynamic, if property does not exist return null
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <param name="property">property path. For example: "MyProperty", "MyObject.MySecondObject.MyProperty"</param>
-        /// <returns></returns>
-        private static object TryGetValueFromProperty(dynamic dynamicObj, string property)
-        {
-            try
-            {
-                object obj = (object)dynamicObj;
-                string[] members = property.Split('.');
-                MemberInfo member = obj.GetType().GetMember(members[0], BindingFlags.Default)[0];
-                for (int i = 1; i < members.Length - 1; i++)
-                {
-                    member = member.GetType().GetProperty(members[i]);
-                }
-                PropertyInfo prop = member.GetType().GetProperty(members[members.Length - 1]);
-                if (prop != null)
-                    return prop.GetValue(dynamicObj);
-                else
-                    return null;
-            }
-            catch (RuntimeBinderException ex)
-            {
-                return null;
-            }
         }
     }
 }
