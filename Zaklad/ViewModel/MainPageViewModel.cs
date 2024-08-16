@@ -33,7 +33,11 @@ namespace Zaklad.ViewModel
         public ICommand ChangeDateOfWeekCommand => new Command<string>(GetProductsCollection);
         public ICommand ShowCalendarCommand => new Command(() => PopupService.ShowPopup(new CalendarPopup()));
         public ICommand ShowProductSelection => new Command(() => PopupService.ShowPopup(new ProductSelectionPopup()));
-        public ICommand OpenProductEditorCommand => new Command<IUserProduct>( async (product) => await ServiceHelper.Current.GetService<IPopupService>().ShowPopupAsync(new ProductEditor(new ProductEditorViewModel_UserProduct(product))));
+        public ICommand OpenProductEditorCommand => new Command<IUserProduct>(async (product) =>
+        {
+            await ServiceHelper.Current.GetService<IPopupService>().ShowPopupAsync(new ProductEditor(new ProductEditorViewModel_UserProduct(product)));
+            GetProductsCollection();
+        });
         public MainPageViewModel()
         {
             Products.Clear();
@@ -53,8 +57,9 @@ namespace Zaklad.ViewModel
                 Products.Add(i);
             }
         }
-        private void GetProductsCollection()
+        public void GetProductsCollection()
         {
+            Products.Clear();
             List<IUserProduct> products = UserProductsData.GetProducts(DateManager.CurrentDate);
             foreach (var i in products)
             {

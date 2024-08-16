@@ -20,5 +20,6 @@ namespace Zaklad.Interfaces
         ICommand ChangeDateOfWeekCommand { get; }
         ICommand ShowCalendarCommand { get; }
         ObservableCollection<IUserProduct> Products { get; }
+        public void GetProductsCollection();
     }
 }

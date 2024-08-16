@@ -30,6 +30,11 @@ namespace Zaklad
             }
             clickedElement.BackgroundColor = Color.FromHex("#121212");
         }
+        protected override void OnAppearing()
+        {
+            NavigatedTo += (s, e) => ((IMainPageViewModel)BindingContext).GetProductsCollection();
+            base.OnAppearing();   
+        }
     }
 
 }
