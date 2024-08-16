@@ -37,10 +37,10 @@ namespace Zaklad.Models
             foreach (dynamic i in obj.products)
             {
                 ImageSource productImage = null;
-                decimal energyKcal = 0;
-                decimal carbohydrates = 0;
-                decimal fat = 0;
-                decimal proteins = 0;
+                decimal energyKcal = -1;
+                decimal carbohydrates = -1;
+                decimal fat = -1;
+                decimal proteins = -1;
                 if (i.image_front_small_url != null)
                     productImage = ImageSource.FromUri(new Uri(i.image_front_small_url));
                 //Clear this catch < if
@@ -80,10 +80,10 @@ namespace Zaklad.Models
             dynamic jsonObj = JsonConvert.DeserializeObject(responseBody);
 
             //Clear this catch < if
-            decimal energyKcal = 0;
-            decimal carbohydrates = 0;
-            decimal fat = 0;
-            decimal proteins = 0;
+            decimal energyKcal = -1;
+            decimal carbohydrates = -1;
+            decimal fat = -1;
+            decimal proteins = -1;
             string name = string.Empty;
             try
             {

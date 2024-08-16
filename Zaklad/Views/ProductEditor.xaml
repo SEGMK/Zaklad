@@ -84,16 +84,16 @@
                     </Grid.Resources>
                     <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" TextColor="Gray" FontSize="12" Text="Wartości odżywcze na: 100g"/>
                     <Label Grid.Row="3" Grid.Column="0" TextColor="Gray" Text="Kcal:"/>
-                    <Entry Grid.Row="3" Grid.Column="1" TextColor="Gray" Text="{Binding EditableKcal}" Keyboard="Numeric" HeightRequest="10" WidthRequest="100"/>
+                    <Entry Grid.Row="3" Grid.Column="1" ClassId="labelEditableKcal" TextChanged="ValueCheckEntry" TextColor="Gray" Text="{Binding EditableKcal}" Keyboard="Numeric" HeightRequest="10" WidthRequest="100"/>
                     <Label Grid.Row="3" Grid.Column="2" TextColor="Gray" Text="g"/>
                     <Label Grid.Row="5" Grid.Column="0" TextColor="Blue" Text="Białka:"/>
-                    <Entry Grid.Row="5" Grid.Column="1" TextColor="Blue" Text="{Binding EditableProteins}" Keyboard="Numeric"/>
+                    <Entry Grid.Row="5" Grid.Column="1" ClassId="labelEditableProteins" TextChanged="ValueCheckEntry" TextColor="Blue" Text="{Binding EditableProteins}" Keyboard="Numeric"/>
                     <Label Grid.Row="5" Grid.Column="2" TextColor="Blue" Text="g"/>
                     <Label Grid.Row="7" Grid.Column="0" TextColor="Yellow" Text="Tłuszcze:"/>
-                    <Entry Grid.Row="7" Grid.Column="1" TextColor="Yellow" Text="{Binding EditableFat}" Keyboard="Numeric"/>
+                    <Entry Grid.Row="7" Grid.Column="1" ClassId="labelEditableFat" TextChanged="ValueCheckEntry" TextColor="Yellow" Text="{Binding EditableFat}" Keyboard="Numeric"/>
                     <Label Grid.Row="7" Grid.Column="2" TextColor="Yellow" Text="g"/>
                     <Label Grid.Row="9" Grid.Column="0" TextColor="White" Text="Cukry:"/>
-                    <Entry Grid.Row="9" Grid.Column="1" TextColor="White" Text="{Binding EditableCarbohydrates}" Keyboard="Numeric"/>
+                    <Entry Grid.Row="9" Grid.Column="1" ClassId="labelEditableCarbohydrates" TextChanged="ValueCheckEntry" TextColor="White" Text="{Binding EditableCarbohydrates}" Keyboard="Numeric"/>
                     <Label Grid.Row="9" Grid.Column="2" TextColor="White" Text="g"/>
 
                     <Label Grid.Row="1" Grid.Column="4" TextColor="Gray" Text="suma wartości odżywczych"/>

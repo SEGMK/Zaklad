@@ -31,6 +31,14 @@ public partial class ProductView : ContentView
         control.labelCarbohydrates.Text = $"Cukry: {product.Carbohydrates}g";
         control.labelFat.Text = $"Tłuszcze: {product.Fat}g";
         control.labelProteins.Text = $"Białka: {product.Proteins}g";
+        if (product.Kcal < 0)
+            control.labelKcal.TextColor = Color.Parse("Red");
+        if (product.Carbohydrates < 0)
+            control.labelCarbohydrates.TextColor = Color.Parse("Red");
+        if (product.Proteins < 0)
+            control.labelProteins.TextColor = Color.Parse("Red");
+        if (product.Fat < 0)
+            control.labelFat.TextColor = Color.Parse("Red");
     });
 
     private static void SetProductTemplateData(ProductView control, IProductDataTemplate product)
@@ -40,6 +48,14 @@ public partial class ProductView : ContentView
         control.labelFat_100g.Text = $"Tłuszcze: {product.Fat}g";
         control.labelProteins_100g.Text = $"Białka: {product.Proteins}g";
         control.labelProductName.Text = product.Name;
+        if (product.Kcal < 0)
+            control.labelKcal_100g.TextColor = Color.Parse("Red");
+        if (product.Carbohydrates < 0)
+            control.labelCarbohydrates_100g.TextColor = Color.Parse("Red");
+        if (product.Proteins < 0)
+            control.labelProteins_100g.TextColor = Color.Parse("Red");
+        if (product.Fat < 0)
+            control.labelFat_100g.TextColor = Color.Parse("Red");
         if (product.ProductImage != null)
             control.imageProductImage.Source = product.ProductImage;
     }
