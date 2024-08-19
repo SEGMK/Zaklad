@@ -32,8 +32,8 @@ namespace Zaklad
         }
         protected override void OnAppearing()
         {
-            NavigatedTo += (s, e) => ((IMainPageViewModel)BindingContext).GetProductsCollection();
-            base.OnAppearing();   
+            ((IMainPageViewModel)BindingContext).GetProductsCollection();
+            base.OnAppearing();
         }
     }
 

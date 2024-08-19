@@ -14,6 +14,7 @@ using System.ComponentModel;
 using System.Runtime.InteropServices;
 using Zaklad.Interfaces;
 using Zaklad.Views;
+using System.Linq.Expressions;
 
 namespace Zaklad.ViewModel
 {
@@ -53,7 +54,7 @@ namespace Zaklad.ViewModel
             DateManager.ChangeCurrentDate(DateTime.ParseExact(date, DateManager.DateFormat, null));
             List<IUserProduct> products = UserProductsData.GetProducts(DateManager.CurrentDate);
             foreach (var i in products)
-            { 
+            {
                 Products.Add(i);
             }
         }
