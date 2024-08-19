@@ -28,6 +28,8 @@ namespace Zaklad.ViewModel
         public string Fat { get { return _fat; } private set { _fat = value; OnPropertyChange(nameof(Fat)); } }
         private string _carbohydrates = string.Empty;
         public string Carbohydrates { get { return _carbohydrates; } private set { _carbohydrates = value; OnPropertyChange(nameof(Carbohydrates)); } }
+        private string _kcal = string.Empty;
+        public string Kcal { get { return _kcal; } private set { _kcal = value; OnPropertyChange(nameof(Kcal)); } }
         public IPopupService PopupService { get; private set; } = ServiceHelper.Current.GetService<IPopupService>();
         public event PropertyChangedEventHandler? PropertyChanged;
         private void OnPropertyChange(string name) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
@@ -72,15 +74,18 @@ namespace Zaklad.ViewModel
             decimal proteins = 0;
             decimal fat = 0;
             decimal carbohydrates = 0;
+            decimal kcal = 0;
             foreach (var i in Products)
             {
                 proteins += i.Proteins;
                 fat += i.Fat;
                 carbohydrates += i.Carbohydrates;
+                kcal += i.Kcal;
             }
             Proteins = proteins.ToString() + "g";
             Fat = fat.ToString() + "g";
             Carbohydrates = carbohydrates.ToString() + "g";
+            Kcal = kcal.ToString() + "g";
         }
     }
 }

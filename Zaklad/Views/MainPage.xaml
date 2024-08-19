@@ -30,33 +30,34 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Grid Grid.Row="1" BackgroundColor="#212121" x:DataType="local:ViewModel.MainPageViewModel">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="80"/>
-                <ColumnDefinition Width="50"/>
-                <ColumnDefinition Width="20"/>
-                <ColumnDefinition Width="80"/>
-                <ColumnDefinition Width="50"/>
-                <ColumnDefinition Width="20"/>
-                <ColumnDefinition Width="80"/>
-                <ColumnDefinition Width="50"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.Resources>
+        <FlexLayout Direction="Row"  JustifyContent="SpaceEvenly" HorizontalOptions="Fill" Grid.Row="1" BackgroundColor="#212121" x:DataType="local:ViewModel.MainPageViewModel">
+            <FlexLayout.Resources>
                 <Style TargetType="{x:Type Label}">
                     <Setter Property="FontSize" Value="16"/>
                     <Setter Property="FontAttributes" Value="Bold"/>
                     <Setter Property="VerticalOptions" Value="Center"/>
                 </Style>
-            </Grid.Resources>
-            <Label Grid.Column="1" TextColor="#4287f5">Bialko:</Label>
-            <Label Grid.Column="2" TextColor="#4287f5" Text="{Binding Proteins}"></Label>
-            <Label Grid.Column="4" TextColor="#ecff3d">Tluszcze:</Label>
-            <Label Grid.Column="5" TextColor="#ecff3d" Text="{Binding Fat}"></Label>
-            <Label Grid.Column="7" TextColor="White">Cukry:</Label>
-            <Label Grid.Column="8" TextColor="White" Text="{Binding Carbohydrates}"></Label>
-        </Grid>
+                <Style TargetType="{x:Type HorizontalStackLayout}">
+                    <Setter Property="Spacing" Value="10"/>
+                </Style>
+            </FlexLayout.Resources>
+            <HorizontalStackLayout>
+                <Label Grid.Column="1" TextColor="White">Kcal:</Label>
+                <Label Grid.Column="2" TextColor="White" Text="{Binding Kcal}"></Label>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout>
+                <Label Grid.Column="4" TextColor="#4287f5">Bialko:</Label>
+                <Label Grid.Column="5" TextColor="#4287f5" Text="{Binding Proteins}"></Label>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout>
+                <Label Grid.Column="7" TextColor="#ecff3d">Tluszcze:</Label>
+                <Label Grid.Column="8" TextColor="#ecff3d" Text="{Binding Fat}"></Label>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout>
+                <Label Grid.Column="10" TextColor="White">Cukry:</Label>
+                <Label Grid.Column="11" TextColor="White" Text="{Binding Carbohydrates}"></Label>
+            </HorizontalStackLayout>
+        </FlexLayout>
         <Grid Grid.Row="3" BackgroundColor="#212121" x:Name="DatesGrid">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
