@@ -56,8 +56,6 @@ public partial class ProductView : ContentView
             control.labelProteins_100g.TextColor = Color.Parse("Red");
         if (product.Fat < 0)
             control.labelFat_100g.TextColor = Color.Parse("Red");
-        if (product.ProductImage != null)
-            control.imageProductImage.Source = product.ProductImage;
     }
     private static void SetUserProductPartVisible(ProductView control, bool turnVisible)
     {

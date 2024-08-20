@@ -20,7 +20,7 @@
             </Entry>
             <Button Text="Szukaj" WidthRequest="100" VerticalOptions="Center" Command="{Binding SearchCommand}" CommandParameter="{Binding UserInputProduct}" BackgroundColor="#512BD4"/>
         </FlexLayout>
-        <ListView x:DataType="local:ViewModel.AddItemByNameViewModel" ItemsSource="{Binding Products}" Grid.Row="3">
+        <ListView x:DataType="local:ViewModel.AddItemByNameViewModel" ItemsSource="{Binding Products}" Grid.Row="3" RowHeight="150">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:Models.UserProduct">
                     <ViewCell>

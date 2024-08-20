@@ -6,18 +6,19 @@
              xmlns:local="clr-namespace:Zaklad"
              Shell.NavBarIsVisible="False"
              BackgroundColor="#303030">
+    <!--ratio: 20:10-->
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="75"/>
-            <RowDefinition Height="10"/>
-            <RowDefinition Height="100"/>
-            <RowDefinition Height="10"/>
+            <RowDefinition Height="16*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <ListView x:DataType="local:ViewModel.MainPageViewModel" ItemsSource="{Binding Products}" Grid.Row="0">
+        <ListView x:DataType="local:ViewModel.MainPageViewModel" ItemsSource="{Binding Products}" Grid.Row="0" RowHeight="150">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:Models.UserProduct">
                     <ViewCell>
@@ -27,13 +28,13 @@
                             </local:ProductView.GestureRecognizers>
                         </local:ProductView>
                     </ViewCell>
-                </DataTemplate>
+                </DataTemplate> 
             </ListView.ItemTemplate>
         </ListView>
         <FlexLayout Direction="Row"  JustifyContent="SpaceEvenly" HorizontalOptions="Fill" Grid.Row="1" BackgroundColor="#212121" x:DataType="local:ViewModel.MainPageViewModel">
             <FlexLayout.Resources>
                 <Style TargetType="{x:Type Label}">
-                    <Setter Property="FontSize" Value="16"/>
+                    <Setter Property="FontSize" Value="12"/>
                     <Setter Property="FontAttributes" Value="Bold"/>
                     <Setter Property="VerticalOptions" Value="Center"/>
                 </Style>
@@ -61,38 +62,38 @@
         <Grid Grid.Row="3" BackgroundColor="#212121" x:Name="DatesGrid">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="45"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="45"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="45"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="45"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="45"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="45"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="45"/>
                 <ColumnDefinition Width="10"/>
-                <ColumnDefinition Width="70"/>
-                <ColumnDefinition Width="10"/>
-                <ColumnDefinition Width="70"/>
-                <ColumnDefinition Width="10"/>
-                <ColumnDefinition Width="70"/>
-                <ColumnDefinition Width="10"/>
-                <ColumnDefinition Width="70"/>
-                <ColumnDefinition Width="10"/>
-                <ColumnDefinition Width="70"/>
-                <ColumnDefinition Width="10"/>
-                <ColumnDefinition Width="70"/>
-                <ColumnDefinition Width="40"/>
-                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="45"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.Resources>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="BackgroundColor" Value="Transparent"/>
                     <Setter Property="BorderColor" Value="Transparent"/>
-                    <Setter Property="FontSize" Value="16"/>
+                    <Setter Property="FontSize" Value="12"/>
                     <Setter Property="WidthRequest" Value="60"/>
                     <Setter Property="FontAttributes" Value="Bold"/>
                 </Style>
                 <Style TargetType="{x:Type Label}">
-                    <Setter Property="FontSize" Value="14"/>
+                    <Setter Property="FontSize" Value="8"/>
                     <Setter Property="TextColor" Value="Gray"/>
                     <Setter Property="FontAttributes" Value="Italic"/>
                 </Style>
                 <Style TargetType="{x:Type Frame}">
-                    <Setter Property="HeightRequest" Value="70"/>
+                    <Setter Property="HeightRequest" Value="50"/>
                 </Style>
             </Grid.Resources>
             <Frame x:Name="MondayTapFrameBackground" VerticalOptions="Center" x:DataType="local:ViewModel.MainPageViewModel" CornerRadius="10" Grid.Column="1" BackgroundColor="#1c1c1c" BorderColor="Transparent" Margin="0" Padding="0">

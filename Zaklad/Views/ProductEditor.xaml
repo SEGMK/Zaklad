@@ -5,65 +5,45 @@
              xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              CanBeDismissedByTappingOutsideOfPopup="True"
              x:Name="ThisPopup"
-             Color="#303030">
+             Color="#303030"
+             Size="400, 600">
     <mct:Popup.Resources>
         <ResourceDictionary>
             <mct:MultiMathExpressionConverter x:Key="MultiMathExpressionConverter" />
         </ResourceDictionary>
-        <Style TargetType="{x:Type mct:Popup}">
-            <Setter Property="Size" Value="500,800"/>
-        </Style>
-        <Style TargetType="{x:Type Entry}">
-            <Setter Property="BackgroundColor" Value="#C1C1C1"/>
-        </Style>
     </mct:Popup.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="800"/>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="500"/>
-        </Grid.ColumnDefinitions>
-            <ScrollView Grid.Row="0" Grid.Column="0">
-            <Grid HorizontalOptions="Center">
+        <ScrollView Grid.Row="0" Grid.Column="0" BackgroundColor="Violet">
+            <Grid RowSpacing="10">
+                <Grid.Background>
+                    <LinearGradientBrush EndPoint="0,1">
+                        <GradientStop Color="#1a1a1a" Offset="0.1"/>
+                        <GradientStop Color="#303030" Offset="1.0"/>
+                    </LinearGradientBrush>
+                </Grid.Background>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="10"/>
-                    <RowDefinition Height="220"/>
-                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="100"/>
                     <RowDefinition Height="100"/>
                     <RowDefinition Height="230"/>
-                    <RowDefinition Height="10"/>
-                    <RowDefinition Height="200"/>
-                    <RowDefinition Height="10"/>
                 </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="10"/>
-                    <ColumnDefinition Width="400"/>
-                    <ColumnDefinition Width="10"/>
-                </Grid.ColumnDefinitions>
-                <VerticalStackLayout Grid.Row="1" Grid.Column="1" Spacing="10">
-                    <Image Source="{Binding ProductImage}" Aspect="AspectFit" HeightRequest="150" WidthRequest="150"/>
-                    <Entry Text="{Binding ProductName}" VerticalOptions="Center" FontSize="24" TextColor="Red" FontAttributes="Bold" HorizontalTextAlignment="Center" Margin="30,0,30,0"/>
-                </VerticalStackLayout>
-                <HorizontalStackLayout Grid.Row="3" Grid.Column="1" Spacing="10">
+                <Entry Grid.Row="0" Text="{Binding ProductName}" VerticalOptions="Center" HorizontalOptions="Center" FontSize="24" TextColor="Red" FontAttributes="Bold" HorizontalTextAlignment="Center" Margin="10"/>
+                <HorizontalStackLayout Grid.Row="1" Spacing="10">
                     <Label Text="Ile gram produktu:" TextColor="Gray" FontSize="16" VerticalOptions="Center" FontAttributes="Bold"/>
                     <Entry Keyboard="Numeric" WidthRequest="100" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="Start" Text="{Binding Gramature}"/>
                     <Label Text="g" TextColor="Gray" FontSize="16" VerticalOptions="Center" FontAttributes="Bold"/>
                 </HorizontalStackLayout>
-                <Grid Grid.Row="4" Grid.Column="1">
+                <Grid Grid.Row="2" Grid.Column="1" Margin="5" RowSpacing="5">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="5"/>
                         <RowDefinition Height="40"/>
-                        <RowDefinition Height="5"/>
                         <RowDefinition Height="40"/>
-                        <RowDefinition Height="5"/>
                         <RowDefinition Height="40"/>
-                        <RowDefinition Height="5"/>
                         <RowDefinition Height="40"/>
-                        <RowDefinition Height="5"/>
                         <RowDefinition Height="40"/>
-                        <RowDefinition Height="5"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="100"/>
@@ -82,22 +62,22 @@
                             <Setter Property="VerticalOptions" Value="Center"/>
                         </Style>
                     </Grid.Resources>
-                    <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" TextColor="Gray" FontSize="12" Text="Wartości odżywcze na: 100g"/>
-                    <Label Grid.Row="3" Grid.Column="0" TextColor="Gray" Text="Kcal:"/>
-                    <Entry Grid.Row="3" Grid.Column="1" ClassId="labelEditableKcal" TextChanged="ValueCheckEntry" TextColor="Gray" Text="{Binding EditableKcal}" Keyboard="Numeric" HeightRequest="10" WidthRequest="100"/>
-                    <Label Grid.Row="3" Grid.Column="2" TextColor="Gray" Text="g"/>
-                    <Label Grid.Row="5" Grid.Column="0" TextColor="Blue" Text="Białka:"/>
-                    <Entry Grid.Row="5" Grid.Column="1" ClassId="labelEditableProteins" TextChanged="ValueCheckEntry" TextColor="Blue" Text="{Binding EditableProteins}" Keyboard="Numeric"/>
-                    <Label Grid.Row="5" Grid.Column="2" TextColor="Blue" Text="g"/>
-                    <Label Grid.Row="7" Grid.Column="0" TextColor="Yellow" Text="Tłuszcze:"/>
-                    <Entry Grid.Row="7" Grid.Column="1" ClassId="labelEditableFat" TextChanged="ValueCheckEntry" TextColor="Yellow" Text="{Binding EditableFat}" Keyboard="Numeric"/>
-                    <Label Grid.Row="7" Grid.Column="2" TextColor="Yellow" Text="g"/>
-                    <Label Grid.Row="9" Grid.Column="0" TextColor="White" Text="Cukry:"/>
-                    <Entry Grid.Row="9" Grid.Column="1" ClassId="labelEditableCarbohydrates" TextChanged="ValueCheckEntry" TextColor="White" Text="{Binding EditableCarbohydrates}" Keyboard="Numeric"/>
-                    <Label Grid.Row="9" Grid.Column="2" TextColor="White" Text="g"/>
+                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" TextColor="Gray" FontSize="12" Text="Wartości odżywcze na: 100g"/>
+                    <Label Grid.Row="1" Grid.Column="0" TextColor="Gray" Text="Kcal:"/>
+                    <Entry Grid.Row="1" Grid.Column="1" ClassId="labelEditableKcal" TextChanged="ValueCheckEntry" TextColor="Gray" Text="{Binding EditableKcal}" Keyboard="Numeric"/>
+                    <Label Grid.Row="1" Grid.Column="2" TextColor="Gray" Text="g"/>
+                    <Label Grid.Row="2" Grid.Column="0" TextColor="Blue" Text="Białka:"/>
+                    <Entry Grid.Row="2" Grid.Column="1" ClassId="labelEditableProteins" TextChanged="ValueCheckEntry" TextColor="Blue" Text="{Binding EditableProteins}" Keyboard="Numeric"/>
+                    <Label Grid.Row="2" Grid.Column="2" TextColor="Blue" Text="g"/>
+                    <Label Grid.Row="3" Grid.Column="0" TextColor="Yellow" Text="Tłuszcze:"/>
+                    <Entry Grid.Row="3" Grid.Column="1" ClassId="labelEditableFat" TextChanged="ValueCheckEntry" TextColor="Yellow" Text="{Binding EditableFat}" Keyboard="Numeric"/>
+                    <Label Grid.Row="3" Grid.Column="2" TextColor="Yellow" Text="g"/>
+                    <Label Grid.Row="4" Grid.Column="0" TextColor="White" Text="Cukry:"/>
+                    <Entry Grid.Row="4" Grid.Column="1" ClassId="labelEditableCarbohydrates" TextChanged="ValueCheckEntry" TextColor="White" Text="{Binding EditableCarbohydrates}" Keyboard="Numeric"/>
+                    <Label Grid.Row="4" Grid.Column="2" TextColor="White" Text="g"/>
 
-                    <Label Grid.Row="1" Grid.Column="4" TextColor="Gray" Text="suma wartości odżywczych"/>
-                    <Label Grid.Row="3" Grid.Column="4" TextColor="Gray">
+                    <Label Grid.Row="0" Grid.Column="4" TextColor="Gray" Text="suma wartości odżywczych"/>
+                    <Label Grid.Row="1" Grid.Column="4" TextColor="Gray">
                         <Label.Text>
                             <MultiBinding Converter="{StaticResource MultiMathExpressionConverter}" ConverterParameter="round(x0 * x1 / 100, 2)">
                                 <Binding Path="EditableKcal"/>
@@ -105,7 +85,7 @@
                             </MultiBinding>
                         </Label.Text>
                     </Label>
-                    <Label Grid.Row="5" Grid.Column="4" TextColor="Blue">
+                    <Label Grid.Row="2" Grid.Column="4" TextColor="Blue">
                         <Label.Text>
                             <MultiBinding Converter="{StaticResource MultiMathExpressionConverter}" ConverterParameter="round(x0 * x1 / 100, 2)">
                                 <Binding Path="EditableProteins"/>
@@ -113,7 +93,7 @@
                             </MultiBinding>
                         </Label.Text>
                     </Label>
-                    <Label Grid.Row="7" Grid.Column="4" TextColor="Yellow">
+                    <Label Grid.Row="3" Grid.Column="4" TextColor="Yellow">
                         <Label.Text>
                             <MultiBinding Converter="{StaticResource MultiMathExpressionConverter}" ConverterParameter="round(x0 * x1 / 100, 2)">
                                 <Binding Path="EditableFat"/>
@@ -121,7 +101,7 @@
                             </MultiBinding>
                         </Label.Text>
                     </Label>
-                    <Label Grid.Row="9" Grid.Column="4" TextColor="White">
+                    <Label Grid.Row="4" Grid.Column="4" TextColor="White">
                         <Label.Text>
                             <MultiBinding Converter="{StaticResource MultiMathExpressionConverter}" ConverterParameter="round(x0 * x1 / 100, 2)">
                                 <Binding Path="EditableCarbohydrates"/>
@@ -130,18 +110,18 @@
                         </Label.Text>
                     </Label>
                 </Grid>
-                <VerticalStackLayout x:Name="DecisionButtons" Grid.Row="6" Grid.Column="1" Spacing="10" VerticalOptions="Center">
-                    <VerticalStackLayout.Resources>
-                        <Style TargetType="{x:Type Button}">
-                            <Setter Property="FontSize" Value="24"/>
-                            <Setter Property="TextColor" Value="Gray"/>
-                            <Setter Property="FontAttributes" Value="Bold"/>
-                            
-                        </Style>
-                    </VerticalStackLayout.Resources>
-                </VerticalStackLayout>
             </Grid>
         </ScrollView>
+        <VerticalStackLayout x:Name="DecisionButtons" Grid.Row="1" Grid.Column="0" Spacing="10" Margin="10" VerticalOptions="Center">
+            <VerticalStackLayout.Resources>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="FontSize" Value="24"/>
+                    <Setter Property="TextColor" Value="Gray"/>
+                    <Setter Property="FontAttributes" Value="Bold"/>
+
+                </Style>
+            </VerticalStackLayout.Resources>
+        </VerticalStackLayout>
     </Grid>
 
 </mct:Popup>

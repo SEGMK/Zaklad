@@ -2,26 +2,25 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="Zaklad.ProductView">
-    <Border>
-        <HorizontalStackLayout>
-            <Image x:Name="imageProductImage" WidthRequest="150" HeightRequest="150" Aspect="AspectFit" Source="no_product.png">
-
-            </Image>
-            <VerticalStackLayout VerticalOptions="End" Margin="10">
-                <Label x:Name="labelProductName" FontSize="24" TextColor="Gray" Text="product_name"/>
-                <Label x:Name="labelGramature_100g" FontSize="18" TextColor="Gray" Text="wartości odżywcze na 100g:"/>
-                <Label x:Name="labelKcal_100g" FontSize="16" TextColor="Gray" Text="Energia: 0 kcal"/>
-                <Label x:Name="labelProteins_100g" FontSize="14" TextColor="LightSkyBlue" Text="Białko: 0g"/>
-                <Label x:Name="labelFat_100g" FontSize="14" TextColor="Yellow" Text="Tłuszcze: 0g"/>
-                <Label x:Name="labelCarbohydrates_100g" FontSize="14" TextColor="White" Text="Cukry: 0g"/>
-            </VerticalStackLayout>
-            <VerticalStackLayout VerticalOptions="End" Margin="10">
-                <Label x:Name="labelGramature" FontSize="18" Text="Spożyta porcja produktu: 0g"/>
-                <Label x:Name="labelKcal" FontSize="16" TextColor="Gray" Text="Energia: 0 kcal"/>
-                <Label x:Name="labelProteins" FontSize="14" TextColor="LightSkyBlue" Text="Białko: 0g"/>
-                <Label x:Name="labelFat" FontSize="14" TextColor="Yellow" Text="Tłuszcze: 0g"/>
-                <Label x:Name="labelCarbohydrates" FontSize="14" TextColor="White" Text="Cukry: 0g"/>
-            </VerticalStackLayout>
-        </HorizontalStackLayout>
+    <Border StrokeThickness="0">
+        <VerticalStackLayout Margin="10" Spacing="10">
+            <Label x:Name="labelProductName" FontSize="24" TextColor="Gray" Text="product_name"/>
+            <HorizontalStackLayout Spacing="10">
+                <VerticalStackLayout VerticalOptions="End">
+                    <Label x:Name="labelGramature_100g" FontSize="14" TextColor="Gray" Text="wartości odżywcze na 100g:"/>
+                    <Label x:Name="labelKcal_100g" FontSize="12" TextColor="Gray" Text="Energia: 0 kcal"/>
+                    <Label x:Name="labelProteins_100g" FontSize="10" TextColor="LightSkyBlue" Text="Białko: 0g"/>
+                    <Label x:Name="labelFat_100g" FontSize="10" TextColor="Yellow" Text="Tłuszcze: 0g"/>
+                    <Label x:Name="labelCarbohydrates_100g" FontSize="10" TextColor="White" Text="Cukry: 0g"/>
+                </VerticalStackLayout>
+                <VerticalStackLayout VerticalOptions="End">
+                    <Label x:Name="labelGramature" FontSize="14" Text="Spożyta porcja produktu: 0g"/>
+                    <Label x:Name="labelKcal" FontSize="12" TextColor="Gray" Text="Energia: 0 kcal"/>
+                    <Label x:Name="labelProteins" FontSize="10" TextColor="LightSkyBlue" Text="Białko: 0g"/>
+                    <Label x:Name="labelFat" FontSize="10" TextColor="Yellow" Text="Tłuszcze: 0g"/>
+                    <Label x:Name="labelCarbohydrates" FontSize="10" TextColor="White" Text="Cukry: 0g"/>
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
     </Border>
 </ContentView>
