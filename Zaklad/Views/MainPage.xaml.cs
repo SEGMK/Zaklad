@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using Zaklad.Interfaces;
 using Zaklad.Models;
+using Zaklad.ViewModel;
 
 namespace Zaklad
 {
@@ -12,13 +13,18 @@ namespace Zaklad
         {
             InitializeComponent();
             BindingContext = ServiceHelper.Current.GetService<IMainPageViewModel>();
-            ChooseButtonDayFromDay(DateTime.Now.DayOfWeek);
+            ChangeDaysButtonsBackgroundOnDateChanged(null, DateTime.Now);
+            CalendarPopupViewModel.DateChanged += ChangeDaysButtonsBackgroundOnDateChanged;
         }
-        private void ChooseButtonDayFromDay(DayOfWeek day)
+        private void ChangeDaysButtonsBackgroundOnDateChanged(object sender, DateTime date)
         {
-            VisualElement grid = FindByName("DatesGrid") as VisualElement;
-            VisualElement element = grid.FindByName(day.ToString() + "TapFrameBackground") as VisualElement;
-            element.BackgroundColor = Color.FromHex("#121212");
+            VisualElement button = FindByName(date.DayOfWeek.ToString() + "TapFrameBackground") as VisualElement;
+            Microsoft.Maui.Controls.Grid grid = button.Parent as Microsoft.Maui.Controls.Grid;
+            foreach (VisualElement i in grid.Children)
+            {
+                i.BackgroundColor = Color.FromHex("#1c1c1c");
+            }
+            button.BackgroundColor = Color.FromHex("#121212");
         }
         private void ChangeDaysButtonsBackgroundOnPress(object sender, EventArgs e)
         {
