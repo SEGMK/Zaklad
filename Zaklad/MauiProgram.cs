@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 using System.Globalization;
+using System.Reflection;
 using Zaklad.Interfaces;
 using Zaklad.Models;
 using Zaklad.ViewModel;
@@ -12,7 +13,6 @@ namespace Zaklad
     {
         public static MauiApp CreateMauiApp()
         {
-            CultureInfo.CurrentCulture = new CultureInfo("en-US");
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
