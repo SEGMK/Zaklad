@@ -16,6 +16,7 @@ namespace Zaklad.Models
         {
             ProductTemplate = productTemplate;
             Gramature = gramature;
+
         }
         public int Gramature { get; set; }
         public IProductDataTemplate ProductTemplate { get; set; }
@@ -25,7 +26,7 @@ namespace Zaklad.Models
         public decimal Carbohydrates => Math.Round(ProductTemplate.Carbohydrates * Gramature / 100, 2);
         public decimal Fat => Math.Round(ProductTemplate.Fat * Gramature / 100, 2);
         public decimal Proteins => Math.Round(ProductTemplate.Proteins * Gramature / 100, 2);
-        private Guid? _id;
+        private Guid? _id = null;
         public Guid Id 
         { 
             get 
@@ -33,7 +34,7 @@ namespace Zaklad.Models
                 if (_id != null)
                     return (Guid)_id;
                 else
-                    return new Guid();
+                    return Guid.NewGuid();
             } 
             set 
             {
