@@ -12,7 +12,7 @@ namespace Zaklad.Models
     {
         //class for displaying product's data for 100g 
         public ProductDataTemplate() { } //used for deserialization
-        public ProductDataTemplate(string name, decimal kcal, decimal carbohydrates, decimal fat, decimal proteins, ImageSource productImage = null)
+        public ProductDataTemplate(string name, int kcal, int carbohydrates, int fat, int proteins, ImageSource productImage = null)
         {
             ProductImage = productImage;
             Name = name;
@@ -23,29 +23,29 @@ namespace Zaklad.Models
         }
         public ImageSource ProductImage { get; set; }
         public string Name { get; set; }
-        private decimal _kcal;
-        public decimal Kcal 
+        private int _kcal;
+        public int Kcal 
         { 
             get => _kcal; 
-            set => _kcal = Math.Round(value, 2); 
+            set => _kcal = value; 
         }
-        private decimal _carbohydrates;
-        public decimal Carbohydrates 
+        private int _carbohydrates;
+        public int Carbohydrates 
         { 
             get => _carbohydrates; 
-            set => _carbohydrates = Math.Round(value, 2); 
+            set => _carbohydrates = value; 
         }
-        private decimal _fat;
-        public decimal Fat
+        private int _fat;
+        public int Fat
         { 
             get => _fat; 
-            set => _fat = Math.Round(value, 2); 
+            set => _fat = value; 
         }
-        private decimal _proteins;
-        public decimal Proteins 
+        private int _proteins;
+        public int Proteins 
         { 
             get => _proteins; 
-            set => _proteins = Math.Round(value, 2); 
+            set => _proteins = value; 
         }
 
     }

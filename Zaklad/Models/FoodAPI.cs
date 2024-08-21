@@ -37,34 +37,34 @@ namespace Zaklad.Models
             foreach (dynamic i in obj.products)
             {
                 ImageSource productImage = null;
-                decimal energyKcal = -1;
-                decimal carbohydrates = -1;
-                decimal fat = -1;
-                decimal proteins = -1;
+                int energyKcal = -1;
+                int carbohydrates = -1;
+                int fat = -1;
+                int proteins = -1;
                 if (i.image_front_small_url != null)
                     productImage = ImageSource.FromUri(new Uri(i.image_front_small_url));
                 //Clear this catch < if
                 try
                 {
-                    energyKcal = i.nutriments.energy_value / 4.184m;//its returned from API in KJ...
+                    energyKcal = (int)(i.nutriments.energy_value / 4.184m);//its returned from API in KJ...
                 }
                 catch (RuntimeBinderException ex)
                 { }
                 try
                 {
-                    carbohydrates = i.nutriments.carbohydrates;
+                    carbohydrates = (int)i.nutriments.carbohydrates;
                 }
                 catch (RuntimeBinderException ex)
                 { }
                 try
                 {
-                    fat = i.nutriments.fat;
+                    fat = (int)i.nutriments.fat;
                 }
                 catch (RuntimeBinderException ex)
                 { }
                 try
                 {
-                    proteins = i.nutriments.proteins;
+                    proteins = (int)i.nutriments.proteins;
                 }
                 catch (RuntimeBinderException ex)
                 { }
@@ -80,32 +80,32 @@ namespace Zaklad.Models
             dynamic jsonObj = JsonConvert.DeserializeObject(responseBody);
 
             //Clear this catch < if
-            decimal energyKcal = -1;
-            decimal carbohydrates = -1;
-            decimal fat = -1;
-            decimal proteins = -1;
+            int energyKcal = -1;
+            int carbohydrates = -1;
+            int fat = -1;
+            int proteins = -1;
             string name = string.Empty;
             try
             {
-                energyKcal = jsonObj.product.nutriments.energy_value;
+                energyKcal = (int)jsonObj.product.nutriments.energy_value;
             }
             catch (RuntimeBinderException ex)
             { }
             try
             {
-                carbohydrates = jsonObj.product.nutriments.carbohydrates_100g;
+                carbohydrates = (int)jsonObj.product.nutriments.carbohydrates_100g;
             }
             catch (RuntimeBinderException ex)
             { }
             try
             {
-                fat = jsonObj.product.nutriments.fat_100g;
+                fat = (int)jsonObj.product.nutriments.fat_100g;
             }
             catch (RuntimeBinderException ex)
             { }
             try
             {
-                proteins = jsonObj.product.nutriments.proteins_100g;
+                proteins = (int)jsonObj.product.nutriments.proteins_100g;
             }
             catch (RuntimeBinderException ex)
             { }

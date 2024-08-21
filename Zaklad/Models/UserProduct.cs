@@ -22,10 +22,10 @@ namespace Zaklad.Models
         public IProductDataTemplate ProductTemplate { get; set; }
         public ImageSource ProductImage => ProductTemplate.ProductImage;
         public string Name => ProductTemplate.Name;
-        public decimal Kcal => Math.Round(ProductTemplate.Kcal * Gramature / 100, 2);
-        public decimal Carbohydrates => Math.Round(ProductTemplate.Carbohydrates * Gramature / 100, 2);
-        public decimal Fat => Math.Round(ProductTemplate.Fat * Gramature / 100, 2);
-        public decimal Proteins => Math.Round(ProductTemplate.Proteins * Gramature / 100, 2);
+        public int Kcal => ProductTemplate.Kcal * Gramature / 100;
+        public int Carbohydrates => ProductTemplate.Carbohydrates * Gramature / 100;
+        public int Fat => ProductTemplate.Fat * Gramature / 100;
+        public int Proteins => ProductTemplate.Proteins * Gramature / 100;
         private Guid? _id = null;
         public Guid Id 
         { 

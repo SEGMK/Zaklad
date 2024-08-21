@@ -38,38 +38,39 @@ namespace Zaklad.ViewModel
                 OnPropertyChange(nameof(Gramature)); 
             } 
         }
-        public decimal EditableKcal 
+        public int EditableKcal 
         { 
-            get => UserProduct.Kcal; 
+            get => UserProduct.ProductTemplate.Kcal; 
             set 
             { 
-                UserProduct.ProductTemplate.Kcal = GetProductTemplateValue(value); 
+                UserProduct.ProductTemplate.Kcal = value; 
                 OnPropertyChange(nameof(EditableKcal)); 
             } 
         }
-        public decimal EditableProteins 
+        public int EditableProteins 
         { 
-            get => UserProduct.Proteins; 
+            get => UserProduct.ProductTemplate.Proteins; 
             set 
             { 
-                UserProduct.ProductTemplate.Proteins = GetProductTemplateValue(value); 
+                UserProduct.ProductTemplate.Proteins = value; 
                 OnPropertyChange(nameof(EditableProteins)); 
             } 
         }
-        public decimal EditableFat 
+        public int EditableFat 
         { 
-            get => UserProduct.Fat; 
+            get => UserProduct.ProductTemplate.Fat; 
             set 
-            { UserProduct.ProductTemplate.Fat = GetProductTemplateValue(value); 
+            {
+                UserProduct.ProductTemplate.Fat = value; 
                 OnPropertyChange(nameof(EditableFat)); 
             } 
         }
-        public decimal EditableCarbohydrates
+        public int EditableCarbohydrates
         {
-            get => UserProduct.Carbohydrates;
+            get => UserProduct.ProductTemplate.Carbohydrates;
             set
             {
-                UserProduct.ProductTemplate.Carbohydrates = GetProductTemplateValue(value);
+                UserProduct.ProductTemplate.Carbohydrates = value;
                 OnPropertyChange(nameof(EditableCarbohydrates));
             }
         }
@@ -87,7 +88,6 @@ namespace Zaklad.ViewModel
 
         public event PropertyChangedEventHandler? PropertyChanged;
         private void OnPropertyChange(string name) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        private decimal GetProductTemplateValue(decimal value) => value / ((decimal)Gramature / 100);
         public ProductEditorViewModel_UserProduct(IUserProduct product)
         {
             UserProduct = product;

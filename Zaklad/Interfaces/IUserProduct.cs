@@ -15,10 +15,10 @@ namespace Zaklad.Interfaces
         public int Gramature { get; set; }
         public ImageSource ProductImage { get; }
         public string Name { get; }
-        public decimal Kcal { get; }
-        public decimal Carbohydrates { get; }
-        public decimal Fat { get; }
-        public decimal Proteins { get; }
+        public int Kcal { get; }
+        public int Carbohydrates { get; }
+        public int Fat { get; }
+        public int Proteins { get; }
         public IProductDataTemplate ProductTemplate { get; set; }
         public Guid Id { get; }
     }

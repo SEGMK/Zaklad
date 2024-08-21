@@ -13,10 +13,10 @@ namespace Zaklad.Interfaces
         public ObservableCollection<Button> DecisionButtonsCollection { get; }
         public IUserProduct UserProduct { get; }
         public int Gramature { get; set; }
-        public decimal EditableKcal { get; set; }
-        public decimal EditableProteins { get; set; }
-        public decimal EditableFat { get; set; }
-        public decimal EditableCarbohydrates { get; set; }
+        public int EditableKcal { get; set; }
+        public int EditableProteins { get; set; }
+        public int EditableFat { get; set; }
+        public int EditableCarbohydrates { get; set; }
         public string ProductName { get; set; }
         public ImageSource ProductImage { get; }
     }

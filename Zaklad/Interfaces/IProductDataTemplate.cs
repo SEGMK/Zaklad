@@ -14,9 +14,9 @@ namespace Zaklad.Interfaces
     {
         public ImageSource ProductImage { get; set;}
         public string Name { get; set; }
-        public decimal Kcal { get; set; }
-        public decimal Carbohydrates { get; set; }
-        public decimal Fat { get; set; }
-        public decimal Proteins { get; set; }
+        public int Kcal { get; set; }
+        public int Carbohydrates { get; set; }
+        public int Fat { get; set; }
+        public int Proteins { get; set; }
     }
 }

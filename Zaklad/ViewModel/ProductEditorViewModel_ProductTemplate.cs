@@ -23,7 +23,6 @@ namespace Zaklad.ViewModel
         public event PropertyChangedEventHandler? PropertyChanged;
         private void OnPropertyChange(string name) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         public ImageSource ProductImage { get; private set; }
-        private decimal _editableKcal;
         private int _gramature;
         public int Gramature
         {
@@ -34,7 +33,8 @@ namespace Zaklad.ViewModel
                 OnPropertyChange(nameof(Gramature));
             }
         }
-        public decimal EditableKcal
+        private int _editableKcal;
+        public int EditableKcal
         {
             get
             {
@@ -47,8 +47,8 @@ namespace Zaklad.ViewModel
                 OnPropertyChange(nameof(EditableKcal));
             }
         }
-        private decimal _editableProteins;
-        public decimal EditableProteins
+        private int _editableProteins;
+        public int EditableProteins
         {
             get
             {
@@ -61,8 +61,8 @@ namespace Zaklad.ViewModel
                 OnPropertyChange(nameof(EditableProteins));
             }
         }
-        private decimal _editableFat;
-        public decimal EditableFat
+        private int _editableFat;
+        public int EditableFat
         {
             get
             {
@@ -75,8 +75,8 @@ namespace Zaklad.ViewModel
                 OnPropertyChange(nameof(EditableFat));
             }
         }
-        private decimal _editableCarbohydrates;
-        public decimal EditableCarbohydrates
+        private int _editableCarbohydrates;
+        public int EditableCarbohydrates
         {
             get
             {
