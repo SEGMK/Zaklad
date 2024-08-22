@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Zaklad.Interfaces
+namespace Zaklad.Interfaces.IViewModels
 {
     public interface IProductEditorViewModel : INotifyPropertyChanged
     {

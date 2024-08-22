@@ -1,6 +1,6 @@
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using Zaklad.Interfaces;
+using Zaklad.Interfaces.IViewModels;
 using Zaklad.Models;
 
 namespace Zaklad;

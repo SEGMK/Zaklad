@@ -15,6 +15,7 @@ using System.Runtime.InteropServices;
 using Zaklad.Interfaces;
 using Zaklad.Views;
 using System.Linq.Expressions;
+using Zaklad.Interfaces.IViewModels;
 
 namespace Zaklad.ViewModel
 {

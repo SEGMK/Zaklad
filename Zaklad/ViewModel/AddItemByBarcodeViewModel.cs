@@ -1,15 +1,16 @@
 ﻿using Microsoft.CSharp.RuntimeBinder;
 using Zaklad.Interfaces;
+using Zaklad.Interfaces.IViewModels;
 using Zaklad.Models;
 
 namespace Zaklad.ViewModel
 {
-    internal class AddItemByBarcodeViewModel
+    internal class AddItemByBarcodeViewModel : IAddItemByBarcodeViewModel
     {
-        IPopupService PopupService { get; set; }
-        public AddItemByBarcodeViewModel(IPopupService popupService)
+        public IPopupService PopupService { get; set; }
+        public AddItemByBarcodeViewModel()
         {
-            PopupService = popupService;
+            PopupService = ServiceHelper.Current.GetService<IPopupService>();
         }
         public async Task AddItemByBarcode(string barcode)
         {

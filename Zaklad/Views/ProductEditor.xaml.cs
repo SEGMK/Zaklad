@@ -1,5 +1,5 @@
 using CommunityToolkit.Maui.Views;
-using Zaklad.Interfaces;
+using Zaklad.Interfaces.IViewModels;
 using Zaklad.Models;
 using Zaklad.ViewModel;
 

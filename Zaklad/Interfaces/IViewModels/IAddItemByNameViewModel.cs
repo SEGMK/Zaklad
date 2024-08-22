@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Zaklad.Models;
 
-namespace Zaklad.Interfaces
+namespace Zaklad.Interfaces.IViewModels
 {
     public interface IAddItemByNameViewModel : INotifyPropertyChanged
     {

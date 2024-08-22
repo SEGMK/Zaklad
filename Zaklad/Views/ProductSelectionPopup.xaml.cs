@@ -1,4 +1,6 @@
 using CommunityToolkit.Maui.Views;
+using Zaklad.Interfaces.IViewModels;
+using Zaklad.Models;
 using Zaklad.ViewModel;
 
 namespace Zaklad.Views;
@@ -8,7 +10,7 @@ public partial class ProductSelectionPopup : Popup
 	public ProductSelectionPopup()
 	{
 		InitializeComponent();
-		BindingContext = new ProductSelectionPopupViewModel();
+        BindingContext = ServiceHelper.Current.GetService<IProductSelectionPopupViewModel>();
     }
 
     private void NavigateToAddItemByName(object sender, EventArgs e)

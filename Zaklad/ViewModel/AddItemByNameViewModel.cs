@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Zaklad.Interfaces;
+using Zaklad.Interfaces.IViewModels;
 using Zaklad.Models;
 using ZXing.QrCode.Internal;
 

@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Zaklad.Interfaces;
+using Zaklad.Interfaces.IViewModels;
 using Zaklad.Models;
 
 namespace Zaklad.ViewModel
