@@ -35,7 +35,6 @@ namespace Zaklad.Models
             Saturday = date.Date.AddDays(i - day).ToString(DateFormat);
             i++;
             Sunday = date.Date.AddDays(i - day).ToString(DateFormat);
-
         }
         private string _monday;
         public string Monday { get { return _monday; } set { _monday = value; OnPropertyChange(nameof(Monday)); } }

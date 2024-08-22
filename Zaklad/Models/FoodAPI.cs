@@ -78,7 +78,6 @@ namespace Zaklad.Models
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
             dynamic jsonObj = JsonConvert.DeserializeObject(responseBody);
-
             //Clear this catch < if
             int energyKcal = -1;
             int carbohydrates = -1;

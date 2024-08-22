@@ -1,4 +1,5 @@
 using CommunityToolkit.Maui.Views;
+using Zaklad.Interfaces;
 using Zaklad.Models;
 using Zaklad.ViewModel;
 using ZXing;
@@ -13,7 +14,7 @@ namespace Zaklad
         public AddItemByBarcode()
 		{
 			InitializeComponent();
-            Context = new AddItemByBarcodeViewModel();
+            Context = new AddItemByBarcodeViewModel(ServiceHelper.Current.GetService<IPopupService>());
 		}
 
         private async void BarcodeReader_BarcodesDetected(object sender, ZXing.Net.Maui.BarcodeDetectionEventArgs e)

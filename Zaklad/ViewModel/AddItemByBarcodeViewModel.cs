@@ -7,17 +7,16 @@ namespace Zaklad.ViewModel
     internal class AddItemByBarcodeViewModel
     {
         IPopupService PopupService { get; set; }
-        private IProductDataTemplate ChoosenProduct { get; set; }
-        public AddItemByBarcodeViewModel()
+        public AddItemByBarcodeViewModel(IPopupService popupService)
         {
-            PopupService = ServiceHelper.Current.GetService<IPopupService>();
+            PopupService = popupService;
         }
         public async Task AddItemByBarcode(string barcode)
         {
             try
             {
-                ChoosenProduct = await FoodAPI.GetFoodDataBarcode(barcode);
-                IUserProduct userProduct =  (IUserProduct)await PopupService.ShowPopupAsync(new ProductEditor(new ProductEditorViewModel_ProductTemplate(ChoosenProduct)));
+                IProductDataTemplate choosenProduct = await FoodAPI.GetFoodDataBarcode(barcode);
+                IUserProduct userProduct =  (IUserProduct)await PopupService.ShowPopupAsync(new ProductEditor(new ProductEditorViewModel_ProductTemplate(choosenProduct)));
                 if (userProduct == null)
                     return;
                 UserProductsData.SaveProduct(userProduct, DateManager.CurrentDate);

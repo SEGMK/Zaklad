@@ -12,9 +12,5 @@ namespace Zaklad.ViewModel
     {
         public ICommand NavigateToAddItemByName => new Command(() => Shell.Current.GoToAsync(@$"{nameof(AddItemByName)}"));
         public ICommand NavigateToAddItemByBarcode => new Command(() => Shell.Current.GoToAsync(nameof(AddItemByBarcode)));
-        private void Test()
-        {
-            Shell.Current.GoToAsync(@$"{nameof(AddItemByName)}");
-        }
     }
 }

@@ -16,7 +16,6 @@ namespace Zaklad.Models
         {
             ProductTemplate = productTemplate;
             Gramature = gramature;
-
         }
         public int Gramature { get; set; }
         public IProductDataTemplate ProductTemplate { get; set; }
