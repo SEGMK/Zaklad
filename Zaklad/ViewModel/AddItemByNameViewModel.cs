@@ -15,6 +15,21 @@ namespace Zaklad.ViewModel
 {
     internal class AddItemByNameViewModel : IAddItemByNameViewModel
     {
+        private FoodAPI.SearchMode _searchMode = FoodAPI.SearchMode.Name;
+        public string SearchMode
+        { 
+            get 
+            {
+                return _searchMode.ToString(); 
+            } 
+            set 
+            {
+                FoodAPI.SearchMode searchMode = (FoodAPI.SearchMode)Enum.Parse(typeof(FoodAPI.SearchMode), value);
+                _searchMode = searchMode; 
+                OnPropertyChange(nameof(SearchMode)); 
+            }
+        }
+        public ObservableCollection<string> SearchMods { get; private set; } = new ObservableCollection<string>();
         private string _userInputProduct;
         public string UserInputProduct
         {
@@ -26,6 +41,13 @@ namespace Zaklad.ViewModel
             {
                 _userInputProduct = value;
                 OnPropertyChange(nameof(UserInputProduct));
+            }
+        }
+        public AddItemByNameViewModel()
+        {
+            foreach (FoodAPI.SearchMode i in Enum.GetValues(typeof(FoodAPI.SearchMode)))
+            { 
+                SearchMods.Add(i.ToString());
             }
         }
         public ObservableCollection<IProductDataTemplate> Products { get; private set; } = new ObservableCollection<IProductDataTemplate>();
@@ -42,7 +64,7 @@ namespace Zaklad.ViewModel
             try
             {
                 Products.Clear();
-                List<IProductDataTemplate> products = await FoodAPI.GetFoodDataByName(productName);
+                List<IProductDataTemplate> products = await FoodAPI.GetFoodByMode(productName, _searchMode);
                 foreach (var i in products)
                 { 
                     Products.Add(i);

@@ -26,6 +26,26 @@ namespace Zaklad.Models
             BaseAddress = new Uri("https://world.openfoodfacts.org/cgi/")
         };
         private static int NumberOfProductsdInList = 20;
+        //KISS
+        public enum SearchMode
+        { 
+            Name = 0,
+            Barcode = 1
+        }
+        public static async Task<List<IProductDataTemplate>> GetFoodByMode(string data, SearchMode mode)
+        {
+            switch (mode)
+            {
+                default:
+                case SearchMode.Name:
+                    return await GetFoodDataByName(data);
+                    break;
+                case SearchMode.Barcode:
+                    var product = await GetFoodDataBarcode(data);
+                    return new List<IProductDataTemplate>() { product };
+                    break;
+            }
+        }
         public static async Task<List<IProductDataTemplate>> GetFoodDataByName(string productName)
         {
             productName = productName.ToLower().Replace(" ", "+");

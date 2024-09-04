@@ -14,12 +14,17 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
-        <FlexLayout x:DataType="local:ViewModel.AddItemByNameViewModel" Direction="Row"  JustifyContent="Center"  HorizontalOptions="Fill" VerticalOptions="Center" Grid.Row="1" BackgroundColor="#212121">
-            <Entry Placeholder="Produkt" Text="{Binding UserInputProduct}" WidthRequest="300" BackgroundColor="#1c1c1c" VerticalOptions="Center" TextColor="White">
+        <Border Grid.Row="1" BackgroundColor="#212121">
+            <VerticalStackLayout>
+                <Picker HorizontalOptions="Center" ItemsSource="{Binding SearchMods}" SelectedItem="{Binding SearchMode}" TextColor="White" WidthRequest="400" HorizontalTextAlignment="Center" BackgroundColor="#1c1c1c"></Picker>
+                <FlexLayout x:DataType="local:ViewModel.AddItemByNameViewModel" Direction="Row"  JustifyContent="Center"  HorizontalOptions="Fill" VerticalOptions="Center" Grid.Row="1">
+                    <Entry Placeholder="Produkt" Text="{Binding UserInputProduct}" WidthRequest="300" BackgroundColor="#1c1c1c" VerticalOptions="Center" TextColor="White">
 
-            </Entry>
-            <Button Text="Szukaj" WidthRequest="100" VerticalOptions="Center" Command="{Binding SearchCommand}" CommandParameter="{Binding UserInputProduct}" BackgroundColor="#512BD4"/>
-        </FlexLayout>
+                    </Entry>
+                    <Button Text="Szukaj" WidthRequest="100" VerticalOptions="Center" Command="{Binding SearchCommand}" CommandParameter="{Binding UserInputProduct}" BackgroundColor="#512BD4"/>
+                </FlexLayout>
+            </VerticalStackLayout>
+        </Border>
         <ListView x:DataType="local:ViewModel.AddItemByNameViewModel" ItemsSource="{Binding Products}" Grid.Row="3" RowHeight="150">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:Models.UserProduct">
