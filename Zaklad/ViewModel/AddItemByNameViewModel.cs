@@ -77,7 +77,7 @@ namespace Zaklad.ViewModel
         }
         private async void OpenProductEditor(IProductDataTemplate product)
         {
-            IUserProduct userProduct = (IUserProduct)await ServiceHelper.Current.GetService<IPopupService>().ShowPopupAsync(new ProductEditor(new ProductEditorViewModel_ProductTemplate(product)));
+            IUserProduct userProduct = (IUserProduct)await ServiceHelper.Current.GetService<IPopupService>().ShowPopupAsync(new ProductEditor(new ProductEditorViewModel_CreateProdFromProductTemplate(product)));
             await Shell.Current.GoToAsync(@$"..");
         }
     }

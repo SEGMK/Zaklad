@@ -11,7 +11,7 @@ using Zaklad.Models;
 
 namespace Zaklad.ViewModel
 {
-    class ProductEditorViewModel_UserProduct : IProductEditorViewModel
+    class ProductEditorViewModel_CreateProdFromUserProduct : IProductEditorViewModel
     {
         public ObservableCollection<Button> DecisionButtonsCollection { get; private set; }
         private IUserProduct _userProduct;
@@ -87,9 +87,11 @@ namespace Zaklad.ViewModel
 
         public ImageSource ProductImage => UserProduct.ProductImage;
 
+        public bool IsGramatureReadOnly => false;
+
         public event PropertyChangedEventHandler? PropertyChanged;
         private void OnPropertyChange(string name) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        public ProductEditorViewModel_UserProduct(IUserProduct product)
+        public ProductEditorViewModel_CreateProdFromUserProduct(IUserProduct product)
         {
             UserProduct = product;
             DecisionButtonsCollection = new ObservableCollection<Button>();

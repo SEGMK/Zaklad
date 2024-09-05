@@ -34,7 +34,7 @@
                 <Entry Grid.Row="0" Text="{Binding ProductName}" VerticalOptions="Center" HorizontalOptions="Center" FontSize="24" TextColor="Red" FontAttributes="Bold" HorizontalTextAlignment="Center" Margin="10"/>
                 <HorizontalStackLayout Grid.Row="1" Spacing="10">
                     <Label Text="Ile gram produktu:" TextColor="Gray" FontSize="16" VerticalOptions="Center" FontAttributes="Bold"/>
-                    <Entry Keyboard="Numeric" WidthRequest="100" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="Start" Text="{Binding Gramature}"/>
+                    <Entry Keyboard="Numeric" WidthRequest="100" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="Start" Text="{Binding Gramature}" IsReadOnly="{Binding IsGramatureReadOnly}"/>
                     <Label Text="g" TextColor="Gray" FontSize="16" VerticalOptions="Center" FontAttributes="Bold"/>
                 </HorizontalStackLayout>
                 <Grid Grid.Row="2" Grid.Column="1" Margin="5" RowSpacing="5">

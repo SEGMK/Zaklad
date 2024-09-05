@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Zaklad.Views.CreateCustomProduct"
+             Title="CreateCustomProduct"
+             Shell.NavBarIsVisible="False"
+             xmlns:local="clr-namespace:Zaklad"
+             BackgroundColor="#303030">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="1">
+            <FlexLayout Direction="Row"  JustifyContent="Center"  HorizontalOptions="Fill" VerticalOptions="Center">
+                <Entry Placeholder="Produkt" Text="{Binding UserInputProductCommand}" WidthRequest="300" BackgroundColor="#1c1c1c" VerticalOptions="Center" TextColor="White"/>
+                <Button Text="Szukaj" WidthRequest="100" VerticalOptions="Center" Command="{Binding SearchCommand}" BackgroundColor="#512BD4"/>
+            </FlexLayout>
+        </Border>
+        <ListView x:DataType="local:ViewModel.CreateCustomProductViewModel" ItemsSource="{Binding Products}" Grid.Row="2" RowHeight="150">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="local:Models.UserProduct">
+                    <ViewCell>
+                        <local:ProductView ProductTemplate="{Binding .}">
+                            <local:ProductView.GestureRecognizers>
+                                <TapGestureRecognizer CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type local:ViewModel.AddItemByNameViewModel}}, Path=OpenProductEditorCommand}"/>
+                            </local:ProductView.GestureRecognizers>
+                        </local:ProductView>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button Grid.Row="2" Text="+" FontSize="24" BackgroundColor="ForestGreen" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,10,10" ZIndex="1" WidthRequest="80"
+                HeightRequest="80" CornerRadius="50" Command="{Binding AddNewProductTemplateCommand}"/>
+    </Grid>
+</ContentPage>

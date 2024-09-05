@@ -15,14 +15,12 @@ using Zaklad.Models;
 
 namespace Zaklad.ViewModel
 {
-    public class ProductEditorViewModel_ProductTemplate : IProductEditorViewModel
+    public class ProductEditorViewModel_CreateProdFromProductTemplate : IProductEditorViewModel
     {
         public ObservableCollection<Button> DecisionButtonsCollection { get; private set; }
         IProductDataTemplate ChoosenProduct { get; set; }
         private IUserProduct _userProduct;
         public IUserProduct UserProduct => new UserProduct(Gramature, ChoosenProduct);
-        public event PropertyChangedEventHandler? PropertyChanged;
-        private void OnPropertyChange(string name) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         public ImageSource ProductImage { get; private set; }
         private int _gramature;
         public int Gramature
@@ -103,7 +101,12 @@ namespace Zaklad.ViewModel
                 ChoosenProduct.Name = value;
             }
         }
-        public ProductEditorViewModel_ProductTemplate(IProductDataTemplate product)
+
+        public bool IsGramatureReadOnly => false;
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+        private void OnPropertyChange(string name) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        public ProductEditorViewModel_CreateProdFromProductTemplate(IProductDataTemplate product)
         {
             ChoosenProduct = product;
             Gramature = 100;

@@ -15,12 +15,17 @@ public partial class ProductSelectionPopup : Popup
 
     private void NavigateToAddItemByName(object sender, EventArgs e)
     {
-        ((ProductSelectionPopupViewModel)BindingContext).NavigateToAddItemByName.Execute(null);
+        ((IProductSelectionPopupViewModel)BindingContext).NavigateToAddItemByName.Execute(null);
         Close();
     }
     private void NavigateToAddItemByBarcode(object sender, EventArgs e)
     {
-        ((ProductSelectionPopupViewModel)BindingContext).NavigateToAddItemByBarcode.Execute(null);
+        ((IProductSelectionPopupViewModel)BindingContext).NavigateToAddItemByBarcode.Execute(null);
+        Close();
+    }
+    private void NavigateToCreateCustomProduct(object sender, EventArgs e)
+    {
+        ((IProductSelectionPopupViewModel)BindingContext).NavigateToCreateCustomProduct.Execute(null);
         Close();
     }
 }

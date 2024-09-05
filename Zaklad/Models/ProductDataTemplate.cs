@@ -47,6 +47,23 @@ namespace Zaklad.Models
             get => _proteins; 
             set => _proteins = value; 
         }
-
+        private Guid? _id = null;
+        public Guid Id
+        {
+            get
+            {
+                if (_id != null)
+                    return (Guid)_id;
+                else
+                    return Guid.NewGuid();
+            }
+            set
+            {
+                if (_id == null)
+                    _id = value;
+                else
+                    throw new Exception("Value is allready assigned");
+            }
+        }
     }
 }

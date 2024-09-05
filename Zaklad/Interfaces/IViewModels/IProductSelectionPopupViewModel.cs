@@ -11,5 +11,6 @@ namespace Zaklad.Interfaces.IViewModels
     {
         public ICommand NavigateToAddItemByName { get; }
         public ICommand NavigateToAddItemByBarcode { get; }
+        public ICommand NavigateToCreateCustomProduct { get; }
     }
 }

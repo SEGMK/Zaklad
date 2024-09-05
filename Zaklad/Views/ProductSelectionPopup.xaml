@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Zaklad.Views.ProductSelectionPopup"
              xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-           Size="400, 200"
+           Size="400, 300"
            Color="Transparent">
     <Grid>
         <Border BackgroundColor="Blue">
@@ -13,6 +13,7 @@
             <VerticalStackLayout VerticalOptions="Center" Spacing="10" Margin="30">
                 <Button Text="Wyszukaj produkt" VerticalOptions="Center" Pressed="NavigateToAddItemByName"/>
                 <Button Text="Zeskanuj kod kreskowy" VerticalOptions="Center" Pressed="NavigateToAddItemByBarcode"/>
+                <Button Text="Stwórz własny produkt" VerticalOptions="Center" Pressed="NavigateToCreateCustomProduct"/>
             </VerticalStackLayout>
         </Border>
     </Grid>
