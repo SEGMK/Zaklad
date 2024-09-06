@@ -18,5 +18,6 @@ namespace Zaklad.Interfaces
         public int Carbohydrates { get; set; }
         public int Fat { get; set; }
         public int Proteins { get; set; }
+        public Guid Id { get; set; }
     }
 }
