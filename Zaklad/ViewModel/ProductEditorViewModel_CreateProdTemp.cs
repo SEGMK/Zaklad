@@ -14,20 +14,39 @@ namespace Zaklad.ViewModel
     internal class ProductEditorViewModel_CreateProdTemp : IProductEditorViewModel
     {
         public ObservableCollection<Button> DecisionButtonsCollection { get; private set; }
-        public ProductEditorViewModel_CreateProdTemp(IProductDataTemplate productDataTemplate)
+        public ProductEditorViewModel_CreateProdTemp(IProductDataTemplate productDataTemplate, bool editExisting = false)
         {
             ProductDataTemplate = productDataTemplate;
-            ProductDataTemplate.Name = string.IsNullOrWhiteSpace(ProductDataTemplate.Name) ? "product_name" : ProductDataTemplate.Name;
-            ProductDataTemplate.ProductImage = ProductDataTemplate.ProductImage ?? "no_product.png";
-            DecisionButtonsCollection = new ObservableCollection<Button>()
+            if (editExisting)
             {
-                new Button()
+                DecisionButtonsCollection = new ObservableCollection<Button>()
                 {
-                    Text = "Dodaj",
-                    BackgroundColor = Color.Parse("Green"),
-                    Command = new Command(() => UserCustomProductTemplates.SaveCustomTemplate(ProductDataTemplate))
-                }
-            };
+                    new Button()
+                    {
+                        Text = "Edytuj",
+                        BackgroundColor = Color.Parse("Yellow"),
+                        Command = new Command(() => UserCustomProductTemplates.UpdateCustomTemplate(ProductDataTemplate))
+                    },
+                    new Button()
+                    {
+                        Text = "Usuń",
+                        BackgroundColor = Color.Parse("Red"),
+                        Command = new Command(() => UserCustomProductTemplates.DeleteCustomTemplate(productDataTemplate.Id))
+                    }
+                };
+            }
+            else
+            {
+                DecisionButtonsCollection = new ObservableCollection<Button>()
+                {
+                    new Button()
+                    {
+                        Text = "Dodaj",
+                        BackgroundColor = Color.Parse("Green"),
+                        Command = new Command(() => UserCustomProductTemplates.SaveCustomTemplate(ProductDataTemplate))
+                    }
+                };
+            }
         }
         IProductDataTemplate ProductDataTemplate;
         public int Gramature => 100;
@@ -35,7 +54,7 @@ namespace Zaklad.ViewModel
         {
             get => ProductDataTemplate.Kcal;
             set
-            { 
+            {
                 ProductDataTemplate.Kcal = value;
                 OnPropertyChange(nameof(EditableKcal));
             }

@@ -25,7 +25,7 @@
                     <ViewCell>
                         <local:ProductView ProductTemplate="{Binding .}">
                             <local:ProductView.GestureRecognizers>
-                                <TapGestureRecognizer CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type local:ViewModel.AddItemByNameViewModel}}, Path=OpenProductEditorCommand}"/>
+                                <TapGestureRecognizer CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type local:ViewModel.CreateCustomProductViewModel}}, Path=OpenProductEditorCommand}"/>
                             </local:ProductView.GestureRecognizers>
                         </local:ProductView>
                     </ViewCell>

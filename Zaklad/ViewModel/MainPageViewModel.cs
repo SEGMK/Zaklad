@@ -39,7 +39,7 @@ namespace Zaklad.ViewModel
         public ICommand ShowProductSelection => new Command(() => PopupService.ShowPopup(new ProductSelectionPopup()));
         public ICommand OpenProductEditorCommand => new Command<IUserProduct>(async (product) =>
         {
-            await ServiceHelper.Current.GetService<IPopupService>().ShowPopupAsync(new ProductEditor(new ProductEditorViewModel_CreateProdFromUserProduct(product)));
+            await ServiceHelper.Current.GetService<IPopupService>().ShowPopupAsync(new ProductEditor(new ProductEditorViewModel_CreateProd(product)));
             GetProductsCollection();
         });
         public MainPageViewModel()

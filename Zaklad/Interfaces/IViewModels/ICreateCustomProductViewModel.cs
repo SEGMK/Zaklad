@@ -15,5 +15,6 @@ namespace Zaklad.Interfaces.IViewModels
         public string UserInputProduct { get; set; }
         public ICommand SearchCommand { get; }
         public ICommand AddNewProductTemplateCommand { get; }
+        public ICommand OpenProductEditorCommand { get; }
     }
 }

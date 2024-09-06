@@ -56,7 +56,7 @@ namespace Zaklad.Models
             List<IProductDataTemplate> products = new List<IProductDataTemplate>();
             foreach (dynamic i in obj.products)
             {
-                ImageSource productImage = null;
+                ImageSource productImage = "no_product.png";
                 int energyKcal = -1;
                 int carbohydrates = -1;
                 int fat = -1;
@@ -103,7 +103,7 @@ namespace Zaklad.Models
             int carbohydrates = -1;
             int fat = -1;
             int proteins = -1;
-            string name = string.Empty;
+            string name = "product_name";
             try
             {
                 energyKcal = (int)jsonObj.product.nutriments.energy_value;

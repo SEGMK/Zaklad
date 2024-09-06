@@ -19,12 +19,23 @@ namespace Zaklad.ViewModel
         {
             UserCustomProductTemplates.GetCustomTemplates().ForEach(x => Products.Add(x));
         }
-        public ICommand SearchCommand => new Command(() => UserCustomProductTemplates.GetCustomTemplates(UserInputProduct).ForEach(x => Products.Add(x)));
+        public ICommand SearchCommand => new Command(UpdateProductsList);
         public ICommand AddNewProductTemplateCommand => new Command(async () =>
         {
             await ServiceHelper.Current.GetService<IPopupService>().ShowPopupAsync(new ProductEditor(new ProductEditorViewModel_CreateProdTemp(ServiceHelper.Current.GetService<IProductDataTemplate>())));
+            UpdateProductsList();
+        });
+        public ICommand OpenProductEditorCommand => new Command<IProductDataTemplate>(async (productTemplate) =>
+        {
+            await ServiceHelper.Current.GetService<IPopupService>().ShowPopupAsync(new ProductEditor(new ProductEditorViewModel_CreateProdTemp(productTemplate, true)));
+            UpdateProductsList();
         });
         private string _userInputProduct;
         public string UserInputProduct { get => _userInputProduct; set => _userInputProduct = value; }
+        private void UpdateProductsList()
+        {
+            Products.Clear();
+            UserCustomProductTemplates.GetCustomTemplates(UserInputProduct).ForEach(x => Products.Add(x));
+        }
     }
 }

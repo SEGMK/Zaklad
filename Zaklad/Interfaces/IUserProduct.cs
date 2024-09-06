@@ -13,12 +13,12 @@ namespace Zaklad.Interfaces
     public interface IUserProduct
     {
         public int Gramature { get; set; }
-        public ImageSource ProductImage { get; }
-        public string Name { get; }
-        public int Kcal { get; }
-        public int Carbohydrates { get; }
-        public int Fat { get; }
-        public int Proteins { get; }
+        public ImageSource ProductImage => ProductTemplate.ProductImage;
+        public string Name => ProductTemplate.Name;
+        public int Kcal => ProductTemplate.Kcal;
+        public int Carbohydrates => ProductTemplate.Carbohydrates;
+        public int Fat => ProductTemplate.Fat;
+        public int Proteins => ProductTemplate.Proteins;
         public IProductDataTemplate ProductTemplate { get; set; }
         public Guid Id { get; }
     }

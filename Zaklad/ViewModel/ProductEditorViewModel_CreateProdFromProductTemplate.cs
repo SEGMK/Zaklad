@@ -15,13 +15,58 @@ using Zaklad.Models;
 
 namespace Zaklad.ViewModel
 {
-    public class ProductEditorViewModel_CreateProdFromProductTemplate : IProductEditorViewModel
+    public class ProductEditorViewModel_CreateProd : IProductEditorViewModel
     {
         public ObservableCollection<Button> DecisionButtonsCollection { get; private set; }
-        IProductDataTemplate ChoosenProduct { get; set; }
-        private IUserProduct _userProduct;
-        public IUserProduct UserProduct => new UserProduct(Gramature, ChoosenProduct);
-        public ImageSource ProductImage { get; private set; }
+        public ProductEditorViewModel_CreateProd(IProductDataTemplate productTemplate)
+        {
+            ProductTemplate = productTemplate;
+            Gramature = 100;
+            DecisionButtonsCollection = new ObservableCollection<Button>()
+            {
+                new Button()
+                {
+                    Text = "Dodaj",
+                    BackgroundColor = Color.Parse("Green"),
+                    Command = new Command(() =>
+                    {
+                        IUserProduct product = ServiceHelper.Current.GetService<IUserProduct>();
+                        product.ProductTemplate = ProductTemplate;
+                        product.Gramature = Gramature;
+                        UserProductsData.SaveProduct(product, DateManager.CurrentDate);
+                    })
+                }
+            };
+        }
+        public ProductEditorViewModel_CreateProd(IUserProduct userProduct)
+        {
+            ProductTemplate = userProduct.ProductTemplate;
+            Gramature = 100;
+            DecisionButtonsCollection = new ObservableCollection<Button>()
+            {
+                new Button()
+                {
+                    Text = "Edytuj",
+                    BackgroundColor = Color.Parse("Yellow"),
+                    Command = new Command(() =>
+                    {
+                        userProduct.Gramature = Gramature;
+                        UserProductsData.EditProduct(userProduct, DateManager.CurrentDate);
+                    })
+                },
+                new Button()
+                {
+                    Text = "Usuń",
+                    BackgroundColor = Color.Parse("Red"),
+                    Command = new Command(() =>
+                    {
+                        UserProductsData.DeleteProduct(userProduct.Id, DateManager.CurrentDate);
+                    })
+                }
+            };
+        }
+        IProductDataTemplate ProductTemplate { get; set; }
+        public ImageSource ProductImage => throw new NotImplementedException();
         private int _gramature;
         public int Gramature
         {
@@ -32,73 +77,49 @@ namespace Zaklad.ViewModel
                 OnPropertyChange(nameof(Gramature));
             }
         }
-        private int _editableKcal;
         public int EditableKcal
         {
-            get
-            {
-                return _editableKcal;
-            }
+            get => ProductTemplate.Kcal;
             set
             {
-                _editableKcal = value;
-                ChoosenProduct.Kcal = value;
+                ProductTemplate.Kcal = value;
                 OnPropertyChange(nameof(EditableKcal));
             }
         }
-        private int _editableProteins;
         public int EditableProteins
         {
-            get
-            {
-                return _editableProteins;
-            }
+            get => ProductTemplate.Proteins;
             set
             {
-                _editableProteins = value;
-                ChoosenProduct.Proteins = value;
+                ProductTemplate.Proteins = value;
                 OnPropertyChange(nameof(EditableProteins));
             }
         }
-        private int _editableFat;
         public int EditableFat
         {
-            get
-            {
-                return _editableFat;
-            }
+            get => ProductTemplate.Fat;
             set
             {
-                _editableFat = value;
-                ChoosenProduct.Fat = value;
+                ProductTemplate.Fat = value;
                 OnPropertyChange(nameof(EditableFat));
             }
         }
-        private int _editableCarbohydrates;
         public int EditableCarbohydrates
         {
-            get
-            {
-                return _editableCarbohydrates;
-            }
+            get => ProductTemplate.Carbohydrates;
             set
             {
-                _editableCarbohydrates = value;
-                ChoosenProduct.Carbohydrates = value;
+                ProductTemplate.Carbohydrates = value;
                 OnPropertyChange(nameof(EditableCarbohydrates));
             }
         }
-        private string _productName;
         public string ProductName
         {
-            get
-            {
-                return _productName;
-            }
+            get => ProductTemplate.Name;
             set
             {
-                _productName = value;
-                ChoosenProduct.Name = value;
+                ProductTemplate.Name = value;
+                OnPropertyChange(nameof(ProductName));
             }
         }
 
@@ -106,23 +127,5 @@ namespace Zaklad.ViewModel
 
         public event PropertyChangedEventHandler? PropertyChanged;
         private void OnPropertyChange(string name) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        public ProductEditorViewModel_CreateProdFromProductTemplate(IProductDataTemplate product)
-        {
-            ChoosenProduct = product;
-            Gramature = 100;
-            _editableCarbohydrates = product.Carbohydrates;
-            _editableFat = product.Fat;
-            _editableKcal = product.Kcal;
-            _editableProteins = product.Proteins;
-            _productName = string.IsNullOrWhiteSpace(product.Name) ? "product_name" : product.Name;
-            ProductImage = product.ProductImage ?? "no_product.png";
-            DecisionButtonsCollection = new ObservableCollection<Button>();
-            DecisionButtonsCollection.Add(new Button()
-            {
-                Text = "Dodaj",
-                BackgroundColor = Color.Parse("Green"),
-                Command = new Command(() => UserProductsData.SaveProduct(UserProduct, DateManager.CurrentDate))
-            });
-        }
     }
 }

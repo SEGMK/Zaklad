@@ -58,7 +58,7 @@ namespace Zaklad.Models
         }
         public static void DeleteCustomTemplate(Guid id)
         {
-            List<IUserProduct> products = System.Text.Json.JsonSerializer.Deserialize<List<IUserProduct>>(File.ReadAllText(FilePath), options: ProductConverter);
+            List<IProductDataTemplate> products = System.Text.Json.JsonSerializer.Deserialize<List<IProductDataTemplate>>(File.ReadAllText(FilePath), options: ProductConverter);
             for (int i = 0; i < products.Count; i++)
             {
                 if (products[i].Id == id)
