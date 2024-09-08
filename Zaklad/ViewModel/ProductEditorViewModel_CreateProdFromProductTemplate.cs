@@ -66,7 +66,7 @@ namespace Zaklad.ViewModel
             };
         }
         IProductDataTemplate ProductTemplate { get; set; }
-        public ImageSource ProductImage => throw new NotImplementedException();
+        public ImageSource ProductImage => ProductTemplate.ProductImage;
         private int _gramature;
         public int Gramature
         {

@@ -96,7 +96,7 @@ namespace Zaklad.ViewModel
             }
         }
 
-        public ImageSource ProductImage => throw new NotImplementedException();//will be used for displaying product image
+        public ImageSource ProductImage => ProductDataTemplate.ProductImage;
 
         public bool IsGramatureReadOnly => true;
 

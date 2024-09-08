@@ -12,9 +12,6 @@ public partial class ProductEditor : Popup
 		InitializeComponent();
         BindingContext = viewModel;
         AddDecisionButtons();
-        #if DEBUG
-        this.CanBeDismissedByTappingOutsideOfPopup = false;
-        #endif
     }
     Dictionary<string, Color> EditableTextColors = new Dictionary<string, Color>()
     {
