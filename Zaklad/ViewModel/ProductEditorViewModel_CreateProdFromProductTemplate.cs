@@ -41,7 +41,7 @@ namespace Zaklad.ViewModel
         public ProductEditorViewModel_CreateProd(IUserProduct userProduct)
         {
             ProductTemplate = userProduct.ProductTemplate;
-            Gramature = 100;
+            Gramature = userProduct.Gramature;
             DecisionButtonsCollection = new ObservableCollection<Button>()
             {
                 new Button()
