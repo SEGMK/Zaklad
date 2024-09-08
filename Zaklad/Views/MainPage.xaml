@@ -18,20 +18,20 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <ListView x:DataType="local:ViewModel.MainPageViewModel" ItemsSource="{Binding Products}" Grid.Row="0" RowHeight="150">
+        <ListView ItemsSource="{Binding Products}" Grid.Row="0" RowHeight="150">
             <ListView.ItemTemplate>
-                <DataTemplate x:DataType="local:Models.UserProduct">
+                <DataTemplate>
                     <ViewCell>
                         <local:ProductView Product="{Binding .}">
                             <local:ProductView.GestureRecognizers>
-                                <TapGestureRecognizer CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type local:ViewModel.MainPageViewModel}}, Path=OpenProductEditorCommand}"/>
+                                <TapGestureRecognizer CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type local:Interfaces.IViewModels.IMainPageViewModel}}, Path=OpenProductEditorCommand}"/>
                             </local:ProductView.GestureRecognizers>
                         </local:ProductView>
                     </ViewCell>
                 </DataTemplate> 
             </ListView.ItemTemplate>
         </ListView>
-        <FlexLayout Direction="Row"  JustifyContent="SpaceEvenly" HorizontalOptions="Fill" Grid.Row="1" BackgroundColor="#212121" x:DataType="local:ViewModel.MainPageViewModel">
+        <FlexLayout Direction="Row"  JustifyContent="SpaceEvenly" HorizontalOptions="Fill" Grid.Row="1" BackgroundColor="#212121">
             <FlexLayout.Resources>
                 <Style TargetType="{x:Type Label}">
                     <Setter Property="FontSize" Value="12"/>
@@ -96,77 +96,77 @@
                     <Setter Property="HeightRequest" Value="50"/>
                 </Style>
             </Grid.Resources>
-            <Frame x:Name="MondayTapFrameBackground" VerticalOptions="Center" x:DataType="local:ViewModel.MainPageViewModel" CornerRadius="10" Grid.Column="1" BackgroundColor="#1c1c1c" BorderColor="Transparent" Margin="0" Padding="0">
+            <Frame x:Name="MondayTapFrameBackground" VerticalOptions="Center"  CornerRadius="10" Grid.Column="1" BackgroundColor="#1c1c1c" BorderColor="Transparent" Margin="0" Padding="0">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding ChangeDateOfWeekCommand}" CommandParameter="{Binding Text, Source={x:Reference MondayDate}}"/>
                     <TapGestureRecognizer Tapped="ChangeDaysButtonsBackgroundOnPress"/>
                 </Frame.GestureRecognizers>
                 <VerticalStackLayout VerticalOptions="Center">
-                    <Label x:Name="MondayDate" HorizontalOptions="Center" x:DataType="local:ViewModel.MainPageViewModel" Text="{Binding DateManager.Monday}"></Label>
+                    <Label x:Name="MondayDate" HorizontalOptions="Center"  Text="{Binding DateManager.Monday}"></Label>
                     <Label x:Name="Monday" TextColor="White" HorizontalOptions="Center" FontSize="16" FontAttributes="Bold" Text="Pon"/>
                 </VerticalStackLayout>
             </Frame>
-            <Frame x:Name="TuesdayTapFrameBackground" VerticalOptions="Center" x:DataType="local:ViewModel.MainPageViewModel" CornerRadius="10" Grid.Column="3" BackgroundColor="#1c1c1c" BorderColor="Transparent" Margin="0" Padding="0">
+            <Frame x:Name="TuesdayTapFrameBackground" VerticalOptions="Center"  CornerRadius="10" Grid.Column="3" BackgroundColor="#1c1c1c" BorderColor="Transparent" Margin="0" Padding="0">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding ChangeDateOfWeekCommand}" CommandParameter="{Binding Text, Source={x:Reference TuesdayDate}}"/>
                     <TapGestureRecognizer Tapped="ChangeDaysButtonsBackgroundOnPress"/>
                 </Frame.GestureRecognizers>
                 <VerticalStackLayout VerticalOptions="Center">
-                    <Label x:Name="TuesdayDate" HorizontalOptions="Center" x:DataType="local:ViewModel.MainPageViewModel" Text="{Binding DateManager.Tuesday}"></Label>
+                    <Label x:Name="TuesdayDate" HorizontalOptions="Center"  Text="{Binding DateManager.Tuesday}"></Label>
                     <Label x:Name="Tuesday" TextColor="White" HorizontalOptions="Center" FontSize="16" FontAttributes="Bold" Text="Wt"/>
                 </VerticalStackLayout>
             </Frame>
-            <Frame x:Name="WednesdayTapFrameBackground" VerticalOptions="Center" x:DataType="local:ViewModel.MainPageViewModel" CornerRadius="10" Grid.Column="5" BackgroundColor="#1c1c1c" BorderColor="Transparent" Margin="0" Padding="0">
+            <Frame x:Name="WednesdayTapFrameBackground" VerticalOptions="Center"  CornerRadius="10" Grid.Column="5" BackgroundColor="#1c1c1c" BorderColor="Transparent" Margin="0" Padding="0">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding ChangeDateOfWeekCommand}" CommandParameter="{Binding Text, Source={x:Reference WednesdayDate}}"/>
                     <TapGestureRecognizer Tapped="ChangeDaysButtonsBackgroundOnPress"/>
                 </Frame.GestureRecognizers>
                 <VerticalStackLayout VerticalOptions="Center">
-                    <Label x:Name="WednesdayDate" HorizontalOptions="Center" x:DataType="local:ViewModel.MainPageViewModel" Text="{Binding DateManager.Wednesday}"></Label>
+                    <Label x:Name="WednesdayDate" HorizontalOptions="Center"  Text="{Binding DateManager.Wednesday}"></Label>
                     <Label x:Name="Wednesday" TextColor="White" HorizontalOptions="Center" FontSize="16" FontAttributes="Bold" Text="Sr"/>
                 </VerticalStackLayout>
             </Frame>
-            <Frame x:Name="ThursdayTapFrameBackground" VerticalOptions="Center" x:DataType="local:ViewModel.MainPageViewModel" CornerRadius="10" Grid.Column="7" BackgroundColor="#1c1c1c" BorderColor="Transparent" Margin="0" Padding="0">
+            <Frame x:Name="ThursdayTapFrameBackground" VerticalOptions="Center"  CornerRadius="10" Grid.Column="7" BackgroundColor="#1c1c1c" BorderColor="Transparent" Margin="0" Padding="0">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding ChangeDateOfWeekCommand}" CommandParameter="{Binding Text, Source={x:Reference ThursdayDate}}"/>
                     <TapGestureRecognizer Tapped="ChangeDaysButtonsBackgroundOnPress"/>
                 </Frame.GestureRecognizers>
                 <VerticalStackLayout VerticalOptions="Center">
-                    <Label x:Name="ThursdayDate" HorizontalOptions="Center" x:DataType="local:ViewModel.MainPageViewModel" Text="{Binding DateManager.Thursday}"></Label>
+                    <Label x:Name="ThursdayDate" HorizontalOptions="Center"  Text="{Binding DateManager.Thursday}"></Label>
                     <Label x:Name="Thursday" TextColor="White" HorizontalOptions="Center" FontSize="16" FontAttributes="Bold" Text="Czw"/>
                 </VerticalStackLayout>
             </Frame>
-            <Frame x:Name="FridayTapFrameBackground" VerticalOptions="Center" x:DataType="local:ViewModel.MainPageViewModel" CornerRadius="10" Grid.Column="9" BackgroundColor="#1c1c1c" BorderColor="Transparent" Margin="0" Padding="0">
+            <Frame x:Name="FridayTapFrameBackground" VerticalOptions="Center"  CornerRadius="10" Grid.Column="9" BackgroundColor="#1c1c1c" BorderColor="Transparent" Margin="0" Padding="0">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding ChangeDateOfWeekCommand}" CommandParameter="{Binding Text, Source={x:Reference FridayDate}}"/>
                     <TapGestureRecognizer Tapped="ChangeDaysButtonsBackgroundOnPress"/>
                 </Frame.GestureRecognizers>
                 <VerticalStackLayout VerticalOptions="Center">
-                    <Label x:Name="FridayDate" HorizontalOptions="Center" x:DataType="local:ViewModel.MainPageViewModel" Text="{Binding DateManager.Friday}"></Label>
+                    <Label x:Name="FridayDate" HorizontalOptions="Center"  Text="{Binding DateManager.Friday}"></Label>
                     <Label x:Name="Friday" TextColor="White" HorizontalOptions="Center" FontSize="16" FontAttributes="Bold" Text="Pt"/>
                 </VerticalStackLayout>
             </Frame>
-            <Frame x:Name="SaturdayTapFrameBackground" VerticalOptions="Center" x:DataType="local:ViewModel.MainPageViewModel" CornerRadius="10" Grid.Column="11" BackgroundColor="#1c1c1c" BorderColor="Transparent" Margin="0" Padding="0">
+            <Frame x:Name="SaturdayTapFrameBackground" VerticalOptions="Center"  CornerRadius="10" Grid.Column="11" BackgroundColor="#1c1c1c" BorderColor="Transparent" Margin="0" Padding="0">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding ChangeDateOfWeekCommand}" CommandParameter="{Binding Text, Source={x:Reference SaturdayDate}}"/>
                     <TapGestureRecognizer Tapped="ChangeDaysButtonsBackgroundOnPress"/>
                 </Frame.GestureRecognizers>
                 <VerticalStackLayout VerticalOptions="Center">
-                    <Label x:Name="SaturdayDate" HorizontalOptions="Center" x:DataType="local:ViewModel.MainPageViewModel" Text="{Binding DateManager.Saturday}"></Label>
+                    <Label x:Name="SaturdayDate" HorizontalOptions="Center"  Text="{Binding DateManager.Saturday}"></Label>
                     <Label x:Name="Saturday" TextColor="Red" HorizontalOptions="Center" FontSize="16" FontAttributes="Bold" Text="Sob"/>
                 </VerticalStackLayout>
             </Frame>
-            <Frame x:Name="SundayTapFrameBackground" VerticalOptions="Center" x:DataType="local:ViewModel.MainPageViewModel" CornerRadius="10" Grid.Column="13" BackgroundColor="#1c1c1c" BorderColor="Transparent" Margin="0" Padding="0">
+            <Frame x:Name="SundayTapFrameBackground" VerticalOptions="Center"  CornerRadius="10" Grid.Column="13" BackgroundColor="#1c1c1c" BorderColor="Transparent" Margin="0" Padding="0">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding ChangeDateOfWeekCommand}" CommandParameter="{Binding Text, Source={x:Reference SundayDate}}"/>
                     <TapGestureRecognizer Tapped="ChangeDaysButtonsBackgroundOnPress"/>
                 </Frame.GestureRecognizers>
                 <VerticalStackLayout VerticalOptions="Center">
-                    <Label x:Name="SundayDate" HorizontalOptions="Center" x:DataType="local:ViewModel.MainPageViewModel" Text="{Binding DateManager.Sunday}"></Label>
+                    <Label x:Name="SundayDate" HorizontalOptions="Center"  Text="{Binding DateManager.Sunday}"></Label>
                     <Label x:Name="Sunday" TextColor="Red" HorizontalOptions="Center" FontSize="16" FontAttributes="Bold" Text="Nd"/>
                 </VerticalStackLayout>
             </Frame>
-            <Frame VerticalOptions="Center" CornerRadius="10" Grid.Column="15" BackgroundColor="#1c1c1c" BorderColor="Transparent" Margin="0" Padding="0" x:DataType="local:ViewModel.MainPageViewModel">
+            <Frame VerticalOptions="Center" CornerRadius="10" Grid.Column="15" BackgroundColor="#1c1c1c" BorderColor="Transparent" Margin="0" Padding="0" >
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding ShowCalendarCommand}"/>
                 </Frame.GestureRecognizers>

@@ -19,6 +19,7 @@ namespace Zaklad.Interfaces.IViewModels
         string Carbohydrates { get; }
         ICommand ChangeDateOfWeekCommand { get; }
         ICommand ShowCalendarCommand { get; }
+        ICommand OpenProductEditorCommand { get; }
         ObservableCollection<IUserProduct> Products { get; }
         public void GetProductsCollection();
     }

@@ -19,9 +19,9 @@
                 <Button Text="Szukaj" WidthRequest="100" VerticalOptions="Center" Command="{Binding SearchCommand}" BackgroundColor="#512BD4"/>
             </FlexLayout>
         </Border>
-        <ListView x:DataType="local:ViewModel.CreateCustomProductViewModel" ItemsSource="{Binding Products}" Grid.Row="2" RowHeight="150">
+        <ListView ItemsSource="{Binding Products}" Grid.Row="2" RowHeight="150">
             <ListView.ItemTemplate>
-                <DataTemplate x:DataType="local:Models.UserProduct">
+                <DataTemplate>
                     <ViewCell>
                         <local:ProductView ProductTemplate="{Binding .}">
                             <local:ProductView.GestureRecognizers>
