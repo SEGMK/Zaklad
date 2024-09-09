@@ -33,8 +33,8 @@ namespace Zaklad.Models
             try
             {
                 List<IProductDataTemplate> result = JsonSerializer.Deserialize<List<IProductDataTemplate>>(File.ReadAllText(FilePath), options: ProductConverter);
-                if(name != "")
-                    result.Select(x => x.Name.ToLower().Contains(name.ToLower()));
+                if (name != "")
+                    result = result.Where(x => x.Name.ToLower().Contains(name.ToLower())).ToList();
                 return result;
             }
             catch (Exception e)

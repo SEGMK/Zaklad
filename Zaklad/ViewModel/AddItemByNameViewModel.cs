@@ -65,6 +65,7 @@ namespace Zaklad.ViewModel
             {
                 Products.Clear();
                 List<IProductDataTemplate> products = await FoodAPI.GetFoodByMode(productName, _searchMode);
+                products.AddRange(UserCustomProductTemplates.GetCustomTemplates(productName));
                 foreach (var i in products)
                 { 
                     Products.Add(i);

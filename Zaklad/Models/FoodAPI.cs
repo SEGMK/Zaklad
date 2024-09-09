@@ -26,6 +26,10 @@ namespace Zaklad.Models
             BaseAddress = new Uri("https://world.openfoodfacts.org/cgi/")
         };
         private static int NumberOfProductsdInList = 20;
+        private static NumberFormatInfo NumberFormatProvider = new NumberFormatInfo()
+        {
+            NumberDecimalSeparator = "."
+        };
         //KISS
         public enum SearchMode
         { 
@@ -66,25 +70,25 @@ namespace Zaklad.Models
                 //Clear this catch < if
                 try
                 {
-                    energyKcal = (int)(i.nutriments.energy_value / 4.184m);//its returned from API in KJ...
+                    energyKcal = (int)(Convert.ToDecimal(i.nutriments.energy_value, NumberFormatProvider) / 4.184m);//its returned from API in KJ...
                 }
                 catch (RuntimeBinderException ex)
                 { }
                 try
                 {
-                    carbohydrates = (int)i.nutriments.carbohydrates;
+                    carbohydrates = (int)Convert.ToDecimal(i.nutriments.carbohydrates, NumberFormatProvider);
                 }
                 catch (RuntimeBinderException ex)
                 { }
                 try
                 {
-                    fat = (int)i.nutriments.fat;
+                    fat = (int)Convert.ToDecimal(i.nutriments.fat, NumberFormatProvider);
                 }
                 catch (RuntimeBinderException ex)
                 { }
                 try
                 {
-                    proteins = (int)i.nutriments.proteins;
+                    proteins = (int)Convert.ToDecimal(i.nutriments.proteins, NumberFormatProvider);
                 }
                 catch (RuntimeBinderException ex)
                 { }
@@ -106,25 +110,25 @@ namespace Zaklad.Models
             string name = "product_name";
             try
             {
-                energyKcal = (int)jsonObj.product.nutriments.energy_value;
+                energyKcal = (int)Convert.ToDecimal(jsonObj.product.nutriments.energy_value, NumberFormatProvider);
             }
             catch (RuntimeBinderException ex)
             { }
             try
             {
-                carbohydrates = (int)jsonObj.product.nutriments.carbohydrates_100g;
+                carbohydrates = (int)Convert.ToDecimal(jsonObj.product.nutriments.carbohydrates_100g, NumberFormatProvider);
             }
             catch (RuntimeBinderException ex)
             { }
             try
             {
-                fat = (int)jsonObj.product.nutriments.fat_100g;
+                fat = (int)Convert.ToDecimal(jsonObj.product.nutriments.fat_100g, NumberFormatProvider);
             }
             catch (RuntimeBinderException ex)
             { }
             try
             {
-                proteins = (int)jsonObj.product.nutriments.proteins_100g;
+                proteins = (int)Convert.ToDecimal(jsonObj.product.nutriments.proteins_100g, NumberFormatProvider);
             }
             catch (RuntimeBinderException ex)
             { }
