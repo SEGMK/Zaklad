@@ -9,6 +9,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Zaklad.CustomControls;
 using Zaklad.Interfaces;
 using Zaklad.Interfaces.IViewModels;
 using Zaklad.Models;
@@ -17,15 +18,16 @@ namespace Zaklad.ViewModel
 {
     public class ProductEditorViewModel_CreateProd : IProductEditorViewModel
     {
-        public ObservableCollection<Button> DecisionButtonsCollection { get; private set; }
+        public ObservableCollection<ButtonWithDecision> DecisionButtonsCollection { get; private set; }
         public ProductEditorViewModel_CreateProd(IProductDataTemplate productTemplate)
         {
             ProductTemplate = productTemplate;
             Gramature = 100;
-            DecisionButtonsCollection = new ObservableCollection<Button>()
+            DecisionButtonsCollection = new ObservableCollection<ButtonWithDecision>()
             {
-                new Button()
+                new ButtonWithDecision()
                 {
+                    RedirectToEarlierPage = true,
                     Text = "Dodaj",
                     BackgroundColor = Color.Parse("Green"),
                     Command = new Command(() =>
@@ -42,9 +44,9 @@ namespace Zaklad.ViewModel
         {
             ProductTemplate = userProduct.ProductTemplate;
             Gramature = 100;
-            DecisionButtonsCollection = new ObservableCollection<Button>()
+            DecisionButtonsCollection = new ObservableCollection<ButtonWithDecision>()
             {
-                new Button()
+                new ButtonWithDecision()
                 {
                     Text = "Edytuj",
                     BackgroundColor = Color.Parse("Yellow"),
@@ -54,7 +56,7 @@ namespace Zaklad.ViewModel
                         UserProductsData.EditProduct(userProduct, DateManager.CurrentDate);
                     })
                 },
-                new Button()
+                new ButtonWithDecision()
                 {
                     Text = "Usuń",
                     BackgroundColor = Color.Parse("Red"),

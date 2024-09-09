@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Zaklad.CustomControls;
 using Zaklad.Interfaces;
 using Zaklad.Interfaces.IViewModels;
 using Zaklad.Models;
@@ -13,21 +14,21 @@ namespace Zaklad.ViewModel
 {
     internal class ProductEditorViewModel_CreateProdTemp : IProductEditorViewModel
     {
-        public ObservableCollection<Button> DecisionButtonsCollection { get; private set; }
+        public ObservableCollection<ButtonWithDecision> DecisionButtonsCollection { get; private set; }
         public ProductEditorViewModel_CreateProdTemp(IProductDataTemplate productDataTemplate, bool editExisting = false)
         {
             ProductDataTemplate = productDataTemplate;
             if (editExisting)
             {
-                DecisionButtonsCollection = new ObservableCollection<Button>()
+                DecisionButtonsCollection = new ObservableCollection<ButtonWithDecision>()
                 {
-                    new Button()
+                    new ButtonWithDecision()
                     {
                         Text = "Edytuj",
                         BackgroundColor = Color.Parse("Yellow"),
                         Command = new Command(() => UserCustomProductTemplates.UpdateCustomTemplate(ProductDataTemplate))
                     },
-                    new Button()
+                    new ButtonWithDecision()
                     {
                         Text = "Usuń",
                         BackgroundColor = Color.Parse("Red"),
@@ -37,10 +38,11 @@ namespace Zaklad.ViewModel
             }
             else
             {
-                DecisionButtonsCollection = new ObservableCollection<Button>()
+                DecisionButtonsCollection = new ObservableCollection<ButtonWithDecision>()
                 {
-                    new Button()
+                    new ButtonWithDecision()
                     {
+                        RedirectToEarlierPage = true,
                         Text = "Dodaj",
                         BackgroundColor = Color.Parse("Green"),
                         Command = new Command(() => UserCustomProductTemplates.SaveCustomTemplate(ProductDataTemplate))

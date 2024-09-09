@@ -1,4 +1,5 @@
 using CommunityToolkit.Maui.Views;
+using Zaklad.CustomControls;
 using Zaklad.Interfaces.IViewModels;
 using Zaklad.Models;
 using Zaklad.ViewModel;
@@ -7,7 +8,7 @@ namespace Zaklad;
 
 public partial class ProductEditor : Popup
 {
-	public ProductEditor(IProductEditorViewModel viewModel)
+    public ProductEditor(IProductEditorViewModel viewModel)
 	{
 		InitializeComponent();
         BindingContext = viewModel;
@@ -22,9 +23,9 @@ public partial class ProductEditor : Popup
     };
     private void AddDecisionButtons()
     {
-        foreach (Button i in ((IProductEditorViewModel)BindingContext).DecisionButtonsCollection)
+        foreach (ButtonWithDecision i in ((IProductEditorViewModel)BindingContext).DecisionButtonsCollection)
         {
-            i.Clicked += (s, e) => Close();
+            i.Clicked += (s, e) => Close(i.RedirectToEarlierPage);
             DecisionButtons.Add(i);
         }
     }

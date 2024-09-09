@@ -5,12 +5,13 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Zaklad.CustomControls;
 
 namespace Zaklad.Interfaces.IViewModels
 {
     public interface IProductEditorViewModel : INotifyPropertyChanged
     {
-        public ObservableCollection<Button> DecisionButtonsCollection { get; }
+        public ObservableCollection<ButtonWithDecision> DecisionButtonsCollection { get; }
         public bool IsGramatureReadOnly { get; }
         public int Gramature { get; }
         public int EditableKcal { get; set; }
