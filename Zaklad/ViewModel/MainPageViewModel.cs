@@ -39,8 +39,10 @@ namespace Zaklad.ViewModel
         public ICommand ShowProductSelection => new Command(() => PopupService.ShowPopup(new ProductSelectionPopup()));
         public ICommand OpenProductEditorCommand => new Command<IUserProduct>(async (product) =>
         {
-            await ServiceHelper.Current.GetService<IPopupService>().ShowPopupAsync(new ProductEditor(new ProductEditorViewModel_CreateProd(product)));
-            GetProductsCollection();
+            bool? redirectToEarlierPage = (bool?)await ServiceHelper.Current.GetService<IPopupService>().ShowPopupAsync(new ProductEditor(new ProductEditorViewModel_CreateProd(product)));
+            //check if popup was closed by button or by DissmisedByTappingOutsideOfPopup
+            if (redirectToEarlierPage != null)
+                GetProductsCollection();
         });
         public MainPageViewModel()
         {
