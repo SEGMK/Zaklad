@@ -22,13 +22,15 @@ namespace Zaklad.ViewModel
         public ICommand SearchCommand => new Command(UpdateProductsList);
         public ICommand AddNewProductTemplateCommand => new Command(async () =>
         {
-            await ServiceHelper.Current.GetService<IPopupService>().ShowPopupAsync(new ProductEditor(new ProductEditorViewModel_CreateProdTemp(ServiceHelper.Current.GetService<IProductDataTemplate>())));
-            UpdateProductsList();
+            bool? redirectToEarlierPage = (bool?)await ServiceHelper.Current.GetService<IPopupService>().ShowPopupAsync(new ProductEditor(new ProductEditorViewModel_CreateProdTemp(ServiceHelper.Current.GetService<IProductDataTemplate>())));
+            if (redirectToEarlierPage != null)
+                UpdateProductsList();
         });
         public ICommand OpenProductEditorCommand => new Command<IProductDataTemplate>(async (productTemplate) =>
         {
-            await ServiceHelper.Current.GetService<IPopupService>().ShowPopupAsync(new ProductEditor(new ProductEditorViewModel_CreateProdTemp(productTemplate, true)));
-            UpdateProductsList();
+            bool? redirectToEarlierPage = (bool?)await ServiceHelper.Current.GetService<IPopupService>().ShowPopupAsync(new ProductEditor(new ProductEditorViewModel_CreateProdTemp(productTemplate, true)));
+            if (redirectToEarlierPage != null)
+                UpdateProductsList();
         });
         private string _userInputProduct;
         public string UserInputProduct { get => _userInputProduct; set => _userInputProduct = value; }

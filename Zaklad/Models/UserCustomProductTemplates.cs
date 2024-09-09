@@ -33,7 +33,7 @@ namespace Zaklad.Models
             try
             {
                 List<IProductDataTemplate> result = JsonSerializer.Deserialize<List<IProductDataTemplate>>(File.ReadAllText(FilePath), options: ProductConverter);
-                if (name != "")
+                if (!string.IsNullOrEmpty(name))
                     result = result.Where(x => x.Name.ToLower().Contains(name.ToLower())).ToList();
                 return result;
             }
