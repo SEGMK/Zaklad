@@ -60,7 +60,7 @@ namespace Zaklad.Models
             List<IProductDataTemplate> products = new List<IProductDataTemplate>();
             foreach (dynamic i in obj.products)
             {
-                ImageSource productImage = "no_product.png";
+                ImageSource productImage = null;
                 int energyKcal = -1;
                 int carbohydrates = -1;
                 int fat = -1;
@@ -107,7 +107,7 @@ namespace Zaklad.Models
             int carbohydrates = -1;
             int fat = -1;
             int proteins = -1;
-            string name = "product_name";
+            string name = "";
             try
             {
                 energyKcal = (int)Convert.ToDecimal(jsonObj.product.nutriments.energy_value, NumberFormatProvider);

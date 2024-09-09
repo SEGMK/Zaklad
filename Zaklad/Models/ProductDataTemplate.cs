@@ -14,8 +14,14 @@ namespace Zaklad.Models
         public ProductDataTemplate() { } //used for deserialization
         public ProductDataTemplate(string name, int kcal, int carbohydrates, int fat, int proteins, ImageSource productImage = null)
         {
-            ProductImage = productImage;
-            Name = name;
+            if (productImage == null)
+                ProductImage = "no_product.png";
+            else
+                ProductImage = productImage;
+            if (String.IsNullOrEmpty(name))
+                Name = "product_name";
+            else
+                Name = name;
             Kcal = kcal;
             Carbohydrates = carbohydrates;
             Fat = fat;

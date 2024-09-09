@@ -4,7 +4,7 @@
              x:Class="Zaklad.ProductView">
     <Border StrokeThickness="0">
         <VerticalStackLayout Margin="10" Spacing="10">
-            <Label x:Name="labelProductName" FontSize="24" TextColor="Gray" Text="product_name"/>
+            <Label x:Name="labelProductName" FontSize="24" TextColor="Gray"/>
             <HorizontalStackLayout Spacing="10">
                 <VerticalStackLayout VerticalOptions="End">
                     <Label x:Name="labelGramature_100g" FontSize="14" TextColor="Gray" Text="wartości odżywcze na 100g:"/>
