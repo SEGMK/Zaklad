@@ -8,10 +8,16 @@ using Zaklad.Interfaces;
 
 namespace Zaklad.Models
 {
+    //class for displaying product's data for 100g 
     public class ProductDataTemplate : IProductDataTemplate
     {
-        //class for displaying product's data for 100g 
-        public ProductDataTemplate() { } //used for deserialization
+        //used for services
+        public ProductDataTemplate() 
+        {
+            ProductImage = "no_product.png";
+            Name = "product_name";
+        } 
+        [JsonConstructor]
         public ProductDataTemplate(string name, int kcal, int carbohydrates, int fat, int proteins, ImageSource productImage = null)
         {
             if (productImage == null)

@@ -11,7 +11,13 @@ namespace Zaklad.Models
     //class for displaying users added product with custom gramature
     public class UserProduct : IUserProduct
     {
-        public UserProduct() { } //used for deserialization
+        //user for services
+        public UserProduct() 
+        {
+            ProductTemplate = ServiceHelper.Current.GetService<IProductDataTemplate>();
+            Gramature = 100;
+        }
+        [JsonConstructor]
         public UserProduct(int gramature, IProductDataTemplate productTemplate)
         {
             ProductTemplate = productTemplate;
