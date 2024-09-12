@@ -9,6 +9,7 @@ using System.Windows.Input;
 using Zaklad.Interfaces;
 using Zaklad.Interfaces.IViewModels;
 using Zaklad.Models;
+using Zaklad.Views;
 using ZXing.QrCode.Internal;
 
 namespace Zaklad.ViewModel
@@ -51,29 +52,36 @@ namespace Zaklad.ViewModel
             }
         }
         public ObservableCollection<IProductDataTemplate> Products { get; private set; } = new ObservableCollection<IProductDataTemplate>();
+        public IPopupService PopupService { get; private set; } = ServiceHelper.Current.GetService<IPopupService>();
         public ICommand SearchCommand => new Command<string>(GetProducts);
         public ICommand OpenProductEditorCommand => new Command<IProductDataTemplate>(OpenProductEditor);
 
         public event PropertyChangedEventHandler? PropertyChanged;
         private void OnPropertyChange(string name) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-
+        public ICommand ShowCalendarCommand => new Command(() => PopupService.ShowPopup(new CalendarPopup()));
         private async void GetProducts(string productName)
         {
             if(String.IsNullOrWhiteSpace(productName))
                 return;
+            var loadingIndicatorPopup = new LoadingIndicatorPopup();
             try
             {
+                PopupService.ShowPopup(loadingIndicatorPopup);
                 Products.Clear();
                 List<IProductDataTemplate> products = await FoodAPI.GetFoodByMode(productName, _searchMode);
                 products.AddRange(UserCustomProductTemplates.GetCustomTemplates(productName));
                 foreach (var i in products)
-                { 
+                {
                     Products.Add(i);
                 }
             }
             catch (HttpRequestException ex)
             {
                 ServiceHelper.Current.GetService<IAlertService>().ShowAlert("Error", "Nie znaleziono produktu");
+            }
+            finally
+            {
+                loadingIndicatorPopup.Close();
             }
         }
         private async void OpenProductEditor(IProductDataTemplate product)

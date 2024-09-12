@@ -79,6 +79,9 @@
 	  <Compile Update="Views\CreateCustomProduct.xaml.cs">
 	    <DependentUpon>CreateCustomProduct.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\LoadingIndicatorPopup.xaml.cs">
+	    <DependentUpon>LoadingIndicatorPopup.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\ProductSelectionPopup.xaml.cs">
 	    <DependentUpon>ProductSelectionPopup.xaml</DependentUpon>
 	  </Compile>
@@ -101,6 +104,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\CreateCustomProduct.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\LoadingIndicatorPopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ProductSelectionPopup.xaml">
