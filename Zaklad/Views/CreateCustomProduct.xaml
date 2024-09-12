@@ -15,7 +15,7 @@
         </Grid.RowDefinitions>
         <Border Grid.Row="1">
             <FlexLayout Direction="Row"  JustifyContent="Center"  HorizontalOptions="Fill" VerticalOptions="Center">
-                <Entry Placeholder="Produkt" Text="{Binding UserInputProductCommand}" WidthRequest="300" BackgroundColor="#1c1c1c" VerticalOptions="Center" TextColor="White"/>
+                <Entry Placeholder="Produkt" Text="{Binding UserInputProduct}" WidthRequest="300" BackgroundColor="#1c1c1c" VerticalOptions="Center" TextColor="White"/>
                 <Button Text="Szukaj" WidthRequest="100" VerticalOptions="Center" Command="{Binding SearchCommand}" BackgroundColor="#512BD4"/>
             </FlexLayout>
         </Border>
