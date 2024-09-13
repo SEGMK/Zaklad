@@ -12,16 +12,17 @@ namespace Zaklad.ViewModel
         {
             PopupService = ServiceHelper.Current.GetService<IPopupService>();
         }
-        public async Task AddItemByBarcode(string barcode)
+        public async Task<bool> AddItemByBarcode(string barcode)
         {
             try
             {
                 IProductDataTemplate choosenProduct = await FoodAPI.GetFoodDataBarcode(barcode);
-                IUserProduct userProduct =  (IUserProduct)await PopupService.ShowPopupAsync(new ProductEditor(new ProductEditorViewModel_CreateProd(choosenProduct)));
-                if (userProduct == null)
-                    return;
-                UserProductsData.SaveProduct(userProduct, DateManager.CurrentDate);
-                await Shell.Current.GoToAsync(@$"..");
+                bool? redirectToEarlierPage = (bool?)await PopupService.ShowPopupAsync(new ProductEditor(new ProductEditorViewModel_CreateProd(choosenProduct)));
+                if (redirectToEarlierPage == true)
+                {
+                    Shell.Current.GoToAsync(@$"..");
+                    return false;
+                }
             }
             catch (HttpRequestException ex)
             {
@@ -31,10 +32,7 @@ namespace Zaklad.ViewModel
             {
                 ServiceHelper.Current.GetService<IAlertService>().ShowAlert("Brak produktu", "podany produkt nie istnieje w bazie");
             }
-            catch (Exception ex)
-            {
-                ServiceHelper.Current.GetService<IAlertService>().ShowAlert("Wystąpił nieoczekiwany błąd", ex.Message);
-            }
+            return true;
         }
     }
 }

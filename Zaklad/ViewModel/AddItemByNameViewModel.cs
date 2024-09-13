@@ -10,7 +10,6 @@ using Zaklad.Interfaces;
 using Zaklad.Interfaces.IViewModels;
 using Zaklad.Models;
 using Zaklad.Views;
-using ZXing.QrCode.Internal;
 
 namespace Zaklad.ViewModel
 {

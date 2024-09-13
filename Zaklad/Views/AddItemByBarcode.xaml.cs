@@ -3,9 +3,7 @@ using Zaklad.Interfaces;
 using Zaklad.Interfaces.IViewModels;
 using Zaklad.Models;
 using Zaklad.ViewModel;
-using ZXing;
-using ZXing.Net.Maui.Controls;
-using static Microsoft.Maui.ApplicationModel.Permissions;
+using ZXing.Net.Maui;
 
 namespace Zaklad
 {
@@ -14,19 +12,28 @@ namespace Zaklad
         AddItemByBarcodeViewModel Context;
         public AddItemByBarcode()
 		{
-			InitializeComponent();
-            Context = ServiceHelper.Current.GetService<AddItemByBarcodeViewModel>();
-		}
+            InitializeComponent();
+            BarcodeReaderOptions barcodeReaderOptions = new BarcodeReaderOptions()
+            {
+                AutoRotate = false,
+                TryHarder = true,
+                TryInverted = false,
+                Formats = BarcodeFormat.Ean13,
+                Multiple = false
+            };
+            this.cameraView.Options = barcodeReaderOptions;
+            BindingContext = ServiceHelper.Current.GetService<IAddItemByBarcodeViewModel>();
+        }
 
-        private async void BarcodeReader_BarcodesDetected(object sender, ZXing.Net.Maui.BarcodeDetectionEventArgs e)
+        private async void CameraBarcodeReaderView_BarcodesDetected(object sender, ZXing.Net.Maui.BarcodeDetectionEventArgs e)
         {
-            CameraBarcodeReaderView cameraBarcodeReader = sender as CameraBarcodeReaderView;
-            var first = e.Results?.FirstOrDefault();
+            var first = e.Results.First();
             if (first == null)
                 return;
-            cameraBarcodeReader.IsDetecting = false;
-            await Context.AddItemByBarcode(first.Value);
-            cameraBarcodeReader.IsDetecting = true;
+            this.cameraView.IsDetecting = false;
+            await ((IAddItemByBarcodeViewModel)BindingContext).AddItemByBarcode(first.Value);
+            Thread.Sleep(3000); //its cuz await GoToAsync() has a bug and returns before pages are chenged
+            this.cameraView.IsDetecting = true;
         }
     }
 }

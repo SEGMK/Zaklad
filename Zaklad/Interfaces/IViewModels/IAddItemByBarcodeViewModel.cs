@@ -8,7 +8,7 @@ namespace Zaklad.Interfaces.IViewModels
 {
     internal interface IAddItemByBarcodeViewModel
     {
-        public Task AddItemByBarcode(string barcode);
+        public Task<bool> AddItemByBarcode(string barcode);
         public IPopupService PopupService { get; set; }
     }
 }

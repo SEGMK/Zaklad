@@ -22,7 +22,8 @@ namespace Zaklad
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                }).UseBarcodeReader();
+                });
+            builder.UseBarcodeReader();
             //ViewModels
             builder.Services.AddSingleton<IMainPageViewModel, MainPageViewModel>();
             builder.Services.AddSingleton<IAddItemByNameViewModel, AddItemByNameViewModel>();
