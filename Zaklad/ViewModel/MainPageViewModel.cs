@@ -88,7 +88,7 @@ namespace Zaklad.ViewModel
             Proteins = proteins.ToString() + "g";
             Fat = fat.ToString() + "g";
             Carbohydrates = carbohydrates.ToString() + "g";
-            Kcal = kcal.ToString() + "g";
+            Kcal = kcal.ToString();
         }
     }
 }

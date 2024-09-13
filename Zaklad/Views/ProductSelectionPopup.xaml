@@ -6,10 +6,7 @@
            Size="400, 300"
            Color="Transparent">
     <Grid>
-        <Border BackgroundColor="Blue">
-            <Border.StrokeShape>
-                <RoundRectangle CornerRadius="20"/>
-            </Border.StrokeShape>
+        <Border Style="{StaticResource PopupBorder}">
             <VerticalStackLayout VerticalOptions="Center" Spacing="10" Margin="30">
                 <Button Text="Wyszukaj produkt" VerticalOptions="Center" Pressed="NavigateToAddItemByName"/>
                 <Button Text="Zeskanuj kod kreskowy" VerticalOptions="Center" Pressed="NavigateToAddItemByBarcode"/>

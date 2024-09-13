@@ -15,21 +15,32 @@ namespace Zaklad.ViewModel
 {
     internal class AddItemByNameViewModel : IAddItemByNameViewModel
     {
-        private FoodAPI.SearchMode _searchMode = FoodAPI.SearchMode.Name;
+        private static Dictionary<int, string> SearchModsMatrix = new Dictionary<int, string>()
+        {
+            { 0, "Nazwa"},
+            { 1, "Barcode"}
+        };
+        public ObservableCollection<string> SearchMods { get; private set; } = new ObservableCollection<string>();
+        private string _searchMode = SearchModsMatrix[0];
         public string SearchMode
         { 
             get 
             {
-                return _searchMode.ToString(); 
+                return _searchMode;
             } 
             set 
             {
-                FoodAPI.SearchMode searchMode = (FoodAPI.SearchMode)Enum.Parse(typeof(FoodAPI.SearchMode), value);
-                _searchMode = searchMode; 
+                _searchMode = value;
                 OnPropertyChange(nameof(SearchMode)); 
             }
         }
-        public ObservableCollection<string> SearchMods { get; private set; } = new ObservableCollection<string>();
+        public AddItemByNameViewModel()
+        {
+            foreach (FoodAPI.SearchMode i in Enum.GetValues(typeof(FoodAPI.SearchMode)))
+            {
+                SearchMods.Add(SearchModsMatrix[(int)i]);
+            }
+        }
         private string _userInputProduct;
         public string UserInputProduct
         {
@@ -41,13 +52,6 @@ namespace Zaklad.ViewModel
             {
                 _userInputProduct = value;
                 OnPropertyChange(nameof(UserInputProduct));
-            }
-        }
-        public AddItemByNameViewModel()
-        {
-            foreach (FoodAPI.SearchMode i in Enum.GetValues(typeof(FoodAPI.SearchMode)))
-            { 
-                SearchMods.Add(i.ToString());
             }
         }
         public ObservableCollection<IProductDataTemplate> Products { get; private set; } = new ObservableCollection<IProductDataTemplate>();
@@ -67,7 +71,7 @@ namespace Zaklad.ViewModel
             {
                 PopupService.ShowPopup(loadingIndicatorPopup);
                 Products.Clear();
-                List<IProductDataTemplate> products = await FoodAPI.GetFoodByMode(productName, _searchMode);
+                List<IProductDataTemplate> products = await FoodAPI.GetFoodByMode(productName, (FoodAPI.SearchMode)SearchModsMatrix.FirstOrDefault(x => x.Value == SearchMode).Key);
                 products.AddRange(UserCustomProductTemplates.GetCustomTemplates(productName));
                 foreach (var i in products)
                 {

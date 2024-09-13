@@ -9,13 +9,13 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="10"/>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="120"/>
             <RowDefinition Height="10"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
         <Border Grid.Row="1" BackgroundColor="#212121">
-            <VerticalStackLayout>
+            <VerticalStackLayout VerticalOptions="Center">
                 <Picker HorizontalOptions="Center" ItemsSource="{Binding SearchMods}" SelectedItem="{Binding SearchMode}" TextColor="White" WidthRequest="400" HorizontalTextAlignment="Center" BackgroundColor="#1c1c1c"></Picker>
                 <FlexLayout Direction="Row"  JustifyContent="Center"  HorizontalOptions="Fill" VerticalOptions="Center" Grid.Row="1">
                     <Entry Placeholder="Produkt" Text="{Binding UserInputProduct}" WidthRequest="300" BackgroundColor="#1c1c1c" VerticalOptions="Center" TextColor="White">

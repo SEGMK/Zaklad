@@ -5,14 +5,16 @@
              x:Class="Zaklad.Views.LoadingIndicatorPopup"
              CanBeDismissedByTappingOutsideOfPopup="False"
            Size="300, 300"
-           Color="#212121">
-    <Grid BackgroundColor="#212121">
+           Color="Transparent">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="300"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300"/>
         </Grid.ColumnDefinitions>
-    <ActivityIndicator Grid.Row="0" Grid.Column="0" Color="Gray" Scale="5" IsRunning="True" BackgroundColor="Transparent"/>
+        <Border Grid.Row="0" Grid.Column="0" Style="{StaticResource PopupBorder}">
+            <ActivityIndicator Color="Gray" Scale="5" IsRunning="True" BackgroundColor="Transparent"/>
+        </Border>
     </Grid>
 </mct:Popup>
