@@ -5,7 +5,7 @@
              x:Class="Zaklad.MainPage"
              xmlns:local="clr-namespace:Zaklad"
              Shell.NavBarIsVisible="False"
-             BackgroundColor="#303030">
+             BackgroundColor="{StaticResource StandardBackground_Shade_1}">
     <!--ratio: 20:10-->
     <Grid>
         <Grid.RowDefinitions>
@@ -31,7 +31,7 @@
                 </DataTemplate> 
             </ListView.ItemTemplate>
         </ListView>
-        <FlexLayout Direction="Row"  JustifyContent="SpaceEvenly" HorizontalOptions="Fill" Grid.Row="1" BackgroundColor="#212121">
+        <FlexLayout Direction="Row"  JustifyContent="SpaceEvenly" HorizontalOptions="Fill" Grid.Row="1" BackgroundColor="{StaticResource StandardBackground_Shade_2}">
             <FlexLayout.Resources>
                 <Style TargetType="{x:Type Label}">
                     <Setter Property="FontSize" Value="12"/>
@@ -43,23 +43,23 @@
                 </Style>
             </FlexLayout.Resources>
             <HorizontalStackLayout>
-                <Label Grid.Column="1" TextColor="White">Kcal:</Label>
-                <Label Grid.Column="2" TextColor="White" Text="{Binding Kcal}"></Label>
+                <Label TextColor="{StaticResource KcalColor}">Kcal:</Label>
+                <Label TextColor="{StaticResource KcalColor}" Text="{Binding Kcal}"></Label>
             </HorizontalStackLayout>
             <HorizontalStackLayout>
-                <Label Grid.Column="4" TextColor="#4287f5">Bialko:</Label>
-                <Label Grid.Column="5" TextColor="#4287f5" Text="{Binding Proteins}"></Label>
+                <Label TextColor="{StaticResource ProteinsColor}">Bialko:</Label>
+                <Label TextColor="{StaticResource ProteinsColor}" Text="{Binding Proteins}"></Label>
             </HorizontalStackLayout>
             <HorizontalStackLayout>
-                <Label Grid.Column="7" TextColor="#ecff3d">Tluszcze:</Label>
-                <Label Grid.Column="8" TextColor="#ecff3d" Text="{Binding Fat}"></Label>
+                <Label TextColor="{StaticResource FatColor}">Tluszcze:</Label>
+                <Label TextColor="{StaticResource FatColor}" Text="{Binding Fat}"></Label>
             </HorizontalStackLayout>
             <HorizontalStackLayout>
-                <Label Grid.Column="10" TextColor="White">Cukry:</Label>
-                <Label Grid.Column="11" TextColor="White" Text="{Binding Carbohydrates}"></Label>
+                <Label TextColor="{StaticResource SugarColor}">Cukry:</Label>
+                <Label TextColor="{StaticResource SugarColor}" Text="{Binding Carbohydrates}"></Label>
             </HorizontalStackLayout>
         </FlexLayout>
-        <Grid Grid.Row="3" BackgroundColor="#212121" x:Name="DatesGrid">
+        <Grid Grid.Row="3" BackgroundColor="{StaticResource StandardBackground_Shade_2}" x:Name="DatesGrid">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="45"/>
@@ -96,7 +96,7 @@
                     <Setter Property="HeightRequest" Value="50"/>
                 </Style>
             </Grid.Resources>
-            <Frame x:Name="MondayTapFrameBackground" VerticalOptions="Center"  CornerRadius="10" Grid.Column="1" BackgroundColor="#1c1c1c" BorderColor="Transparent" Margin="0" Padding="0">
+            <Frame x:Name="MondayTapFrameBackground" VerticalOptions="Center"  CornerRadius="10" Grid.Column="1" BackgroundColor="{StaticResource StandardBackground_Shade_3}" BorderColor="Transparent" Margin="0" Padding="0">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding ChangeDateOfWeekCommand}" CommandParameter="{Binding Text, Source={x:Reference MondayDate}}"/>
                     <TapGestureRecognizer Tapped="ChangeDaysButtonsBackgroundOnPress"/>
@@ -106,7 +106,7 @@
                     <Label x:Name="Monday" TextColor="White" HorizontalOptions="Center" FontSize="16" FontAttributes="Bold" Text="Pon"/>
                 </VerticalStackLayout>
             </Frame>
-            <Frame x:Name="TuesdayTapFrameBackground" VerticalOptions="Center"  CornerRadius="10" Grid.Column="3" BackgroundColor="#1c1c1c" BorderColor="Transparent" Margin="0" Padding="0">
+            <Frame x:Name="TuesdayTapFrameBackground" VerticalOptions="Center"  CornerRadius="10" Grid.Column="3" BackgroundColor="{StaticResource StandardBackground_Shade_3}" BorderColor="Transparent" Margin="0" Padding="0">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding ChangeDateOfWeekCommand}" CommandParameter="{Binding Text, Source={x:Reference TuesdayDate}}"/>
                     <TapGestureRecognizer Tapped="ChangeDaysButtonsBackgroundOnPress"/>
@@ -116,7 +116,7 @@
                     <Label x:Name="Tuesday" TextColor="White" HorizontalOptions="Center" FontSize="16" FontAttributes="Bold" Text="Wt"/>
                 </VerticalStackLayout>
             </Frame>
-            <Frame x:Name="WednesdayTapFrameBackground" VerticalOptions="Center"  CornerRadius="10" Grid.Column="5" BackgroundColor="#1c1c1c" BorderColor="Transparent" Margin="0" Padding="0">
+            <Frame x:Name="WednesdayTapFrameBackground" VerticalOptions="Center"  CornerRadius="10" Grid.Column="5" BackgroundColor="{StaticResource StandardBackground_Shade_3}" BorderColor="Transparent" Margin="0" Padding="0">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding ChangeDateOfWeekCommand}" CommandParameter="{Binding Text, Source={x:Reference WednesdayDate}}"/>
                     <TapGestureRecognizer Tapped="ChangeDaysButtonsBackgroundOnPress"/>
@@ -126,7 +126,7 @@
                     <Label x:Name="Wednesday" TextColor="White" HorizontalOptions="Center" FontSize="16" FontAttributes="Bold" Text="Sr"/>
                 </VerticalStackLayout>
             </Frame>
-            <Frame x:Name="ThursdayTapFrameBackground" VerticalOptions="Center"  CornerRadius="10" Grid.Column="7" BackgroundColor="#1c1c1c" BorderColor="Transparent" Margin="0" Padding="0">
+            <Frame x:Name="ThursdayTapFrameBackground" VerticalOptions="Center"  CornerRadius="10" Grid.Column="7" BackgroundColor="{StaticResource StandardBackground_Shade_3}" BorderColor="Transparent" Margin="0" Padding="0">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding ChangeDateOfWeekCommand}" CommandParameter="{Binding Text, Source={x:Reference ThursdayDate}}"/>
                     <TapGestureRecognizer Tapped="ChangeDaysButtonsBackgroundOnPress"/>
@@ -136,7 +136,7 @@
                     <Label x:Name="Thursday" TextColor="White" HorizontalOptions="Center" FontSize="16" FontAttributes="Bold" Text="Czw"/>
                 </VerticalStackLayout>
             </Frame>
-            <Frame x:Name="FridayTapFrameBackground" VerticalOptions="Center"  CornerRadius="10" Grid.Column="9" BackgroundColor="#1c1c1c" BorderColor="Transparent" Margin="0" Padding="0">
+            <Frame x:Name="FridayTapFrameBackground" VerticalOptions="Center"  CornerRadius="10" Grid.Column="9" BackgroundColor="{StaticResource StandardBackground_Shade_3}" BorderColor="Transparent" Margin="0" Padding="0">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding ChangeDateOfWeekCommand}" CommandParameter="{Binding Text, Source={x:Reference FridayDate}}"/>
                     <TapGestureRecognizer Tapped="ChangeDaysButtonsBackgroundOnPress"/>
@@ -146,7 +146,7 @@
                     <Label x:Name="Friday" TextColor="White" HorizontalOptions="Center" FontSize="16" FontAttributes="Bold" Text="Pt"/>
                 </VerticalStackLayout>
             </Frame>
-            <Frame x:Name="SaturdayTapFrameBackground" VerticalOptions="Center"  CornerRadius="10" Grid.Column="11" BackgroundColor="#1c1c1c" BorderColor="Transparent" Margin="0" Padding="0">
+            <Frame x:Name="SaturdayTapFrameBackground" VerticalOptions="Center"  CornerRadius="10" Grid.Column="11" BackgroundColor="{StaticResource StandardBackground_Shade_3}" BorderColor="Transparent" Margin="0" Padding="0">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding ChangeDateOfWeekCommand}" CommandParameter="{Binding Text, Source={x:Reference SaturdayDate}}"/>
                     <TapGestureRecognizer Tapped="ChangeDaysButtonsBackgroundOnPress"/>
@@ -156,7 +156,7 @@
                     <Label x:Name="Saturday" TextColor="Red" HorizontalOptions="Center" FontSize="16" FontAttributes="Bold" Text="Sob"/>
                 </VerticalStackLayout>
             </Frame>
-            <Frame x:Name="SundayTapFrameBackground" VerticalOptions="Center"  CornerRadius="10" Grid.Column="13" BackgroundColor="#1c1c1c" BorderColor="Transparent" Margin="0" Padding="0">
+            <Frame x:Name="SundayTapFrameBackground" VerticalOptions="Center"  CornerRadius="10" Grid.Column="13" BackgroundColor="{StaticResource StandardBackground_Shade_3}" BorderColor="Transparent" Margin="0" Padding="0">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding ChangeDateOfWeekCommand}" CommandParameter="{Binding Text, Source={x:Reference SundayDate}}"/>
                     <TapGestureRecognizer Tapped="ChangeDaysButtonsBackgroundOnPress"/>
@@ -166,7 +166,7 @@
                     <Label x:Name="Sunday" TextColor="Red" HorizontalOptions="Center" FontSize="16" FontAttributes="Bold" Text="Nd"/>
                 </VerticalStackLayout>
             </Frame>
-            <Frame VerticalOptions="Center" CornerRadius="10" Grid.Column="15" BackgroundColor="#1c1c1c" BorderColor="Transparent" Margin="0" Padding="0" >
+            <Frame VerticalOptions="Center" CornerRadius="10" Grid.Column="15" BackgroundColor="{StaticResource StandardBackground_Shade_3}" BorderColor="Transparent" Margin="0" Padding="0" >
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding ShowCalendarCommand}"/>
                 </Frame.GestureRecognizers>
@@ -175,6 +175,6 @@
                 </VerticalStackLayout>
             </Frame>
         </Grid>
-        <Button Text="+" FontSize="24" BackgroundColor="ForestGreen" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,10,10" ZIndex="1" WidthRequest="80" HeightRequest="80" CornerRadius="50" Command="{Binding ShowProductSelection}"/>
+        <Button Text="+" FontSize="24" BackgroundColor="{StaticResource AddButtonColor}" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,10,10" ZIndex="1" WidthRequest="80" HeightRequest="80" CornerRadius="50" Command="{Binding ShowProductSelection}"/>
     </Grid>
 </ContentPage>

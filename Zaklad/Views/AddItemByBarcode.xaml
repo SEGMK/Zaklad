@@ -5,7 +5,7 @@
              xmlns:local="clr-namespace:Zaklad"
              xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Controls"
              Shell.NavBarIsVisible="False"
-             BackgroundColor="#303030">
+             BackgroundColor="{StaticResource StandardBackground_Shade_1}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>

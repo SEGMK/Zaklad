@@ -10,17 +10,23 @@ public partial class ProductEditor : Popup
 {
     public ProductEditor(IProductEditorViewModel viewModel)
 	{
-		InitializeComponent();
+        SetUpColorsInCollection();
+        InitializeComponent();
         BindingContext = viewModel;
         AddDecisionButtons();
     }
-    Dictionary<string, Color> EditableTextColors = new Dictionary<string, Color>()
+    private void SetUpColorsInCollection()
     {
-        { "labelEditableKcal", Color.Parse("White") },
-        { "labelEditableProteins", Color.Parse("Blue") },
-        { "labelEditableFat", Color.Parse("Yellow") },
-        { "labelEditableCarbohydrates", Color.Parse("White") }
-    };
+        App.Current.Resources.TryGetValue("KcalColor", out var kcalColor);
+        App.Current.Resources.TryGetValue("ProteinsColor", out var proteinsColor);
+        App.Current.Resources.TryGetValue("FatColor", out var fatColor);
+        App.Current.Resources.TryGetValue("SugarColor", out var sugarColor);
+        EditableTextColors.Add("labelEditableKcal", (Color)kcalColor);
+        EditableTextColors.Add("labelEditableProteins", (Color)proteinsColor);
+        EditableTextColors.Add("labelEditableFat", (Color)fatColor);
+        EditableTextColors.Add("labelEditableCarbohydrates", (Color)sugarColor);
+    }
+    Dictionary<string, Color> EditableTextColors = new Dictionary<string, Color>();
     private void AddDecisionButtons()
     {
         foreach (ButtonWithDecision i in ((IProductEditorViewModel)BindingContext).DecisionButtonsCollection)

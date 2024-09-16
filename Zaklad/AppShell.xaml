@@ -6,7 +6,7 @@
     xmlns:local="clr-namespace:Zaklad"
     Title="Zaklad"
     Shell.FlyoutBehavior="Disabled"
-    Shell.TabBarBackgroundColor="#212121"
+    Shell.TabBarBackgroundColor="{StaticResource StandardBackground_Shade_2}"
     Shell.TabBarForegroundColor="White"
     Shell.TabBarUnselectedColor="#303030">
     <ShellContent

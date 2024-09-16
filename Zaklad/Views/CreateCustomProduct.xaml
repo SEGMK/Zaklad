@@ -5,7 +5,7 @@
              Title="CreateCustomProduct"
              Shell.NavBarIsVisible="False"
              xmlns:local="clr-namespace:Zaklad"
-             BackgroundColor="#303030">
+             BackgroundColor="{StaticResource StandardBackground_Shade_1}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="10"/>
@@ -13,10 +13,10 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
-        <Border Grid.Row="1">
+        <Border Grid.Row="1" BackgroundColor="{StaticResource StandardBackground_Shade_2}">
             <FlexLayout Direction="Row"  JustifyContent="Center"  HorizontalOptions="Fill" VerticalOptions="Center">
-                <Entry Placeholder="Produkt" Text="{Binding UserInputProduct}" WidthRequest="300" BackgroundColor="#1c1c1c" VerticalOptions="Center" TextColor="White"/>
-                <Button Text="Szukaj" WidthRequest="100" VerticalOptions="Center" Command="{Binding SearchCommand}" BackgroundColor="#512BD4"/>
+                <Entry Placeholder="Produkt" Text="{Binding UserInputProduct}" WidthRequest="300" BackgroundColor="{StaticResource StandardBackground_Shade_3}" VerticalOptions="Center" TextColor="White"/>
+                <Button Text="Szukaj" WidthRequest="100" VerticalOptions="Center" Command="{Binding SearchCommand}"/>
             </FlexLayout>
         </Border>
         <ListView ItemsSource="{Binding Products}" Grid.Row="2" RowHeight="150">
@@ -32,7 +32,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button Grid.Row="2" Text="+" FontSize="24" BackgroundColor="ForestGreen" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,10,10" ZIndex="1" WidthRequest="80"
+        <Button Grid.Row="2" Text="+" FontSize="24" BackgroundColor="{StaticResource AddButtonColor}" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,10,10" ZIndex="1" WidthRequest="80"
                 HeightRequest="80" CornerRadius="50" Command="{Binding AddNewProductTemplateCommand}"/>
     </Grid>
 </ContentPage>

@@ -18,21 +18,23 @@ namespace Zaklad
         }
         private void ChangeDaysButtonsBackgroundOnDateChanged(object sender, DateTime date)
         {
+            App.Current.Resources.TryGetValue("StandardBackground_Shade_3", out var standardBackground_Shade_3);
             VisualElement button = FindByName(date.DayOfWeek.ToString() + "TapFrameBackground") as VisualElement;
             Microsoft.Maui.Controls.Grid grid = button.Parent as Microsoft.Maui.Controls.Grid;
             foreach (VisualElement i in grid.Children)
             {
-                i.BackgroundColor = Color.FromHex("#1c1c1c");
+                i.BackgroundColor = (Color)standardBackground_Shade_3;
             }
             button.BackgroundColor = Color.FromHex("#121212");
         }
         private void ChangeDaysButtonsBackgroundOnPress(object sender, EventArgs e)
         {
+            App.Current.Resources.TryGetValue("StandardBackground_Shade_3", out var standardBackground_Shade_3);
             VisualElement clickedElement = sender as VisualElement;
             Microsoft.Maui.Controls.Grid grid = clickedElement.Parent as Microsoft.Maui.Controls.Grid;
             foreach (VisualElement i in grid.Children)
             { 
-                i.BackgroundColor = Color.FromHex("#1c1c1c");
+                i.BackgroundColor = (Color)standardBackground_Shade_3;
             }
             clickedElement.BackgroundColor = Color.FromHex("#121212");
         }

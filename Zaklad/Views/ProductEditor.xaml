@@ -5,7 +5,7 @@
              xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              CanBeDismissedByTappingOutsideOfPopup="True"
              x:Name="ThisPopup"
-             Color="#303030"
+             Color="{StaticResource StandardBackground_Shade_1}"
              Size="400, 600">
     <mct:Popup.Resources>
         <ResourceDictionary>
@@ -18,12 +18,12 @@
             <RowDefinition Height="8*"/>
             <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
-        <ScrollView Grid.Row="0" Grid.Column="0" BackgroundColor="#303030">
+        <ScrollView Grid.Row="0" Grid.Column="0" BackgroundColor="{StaticResource StandardBackground_Shade_1}">
             <Grid RowSpacing="10" Margin="10,0,10,10">
                 <Grid.Background>
                     <LinearGradientBrush EndPoint="0,1">
-                        <GradientStop Color="#1a1a1a" Offset="0.1"/>
-                        <GradientStop Color="#303030" Offset="1.0"/>
+                        <GradientStop Color="{StaticResource StandardBackground_Shade_4}" Offset="0.1"/>
+                        <GradientStop Color="{StaticResource StandardBackground_Shade_1}" Offset="1.0"/>
                     </LinearGradientBrush>
                 </Grid.Background>
                 <Grid.RowDefinitions>
@@ -66,18 +66,18 @@
                         </Style>
                     </Grid.Resources>
                     <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" TextColor="Gray" FontSize="12" Text="Wartości odżywcze na: 100g"/>
-                    <Label Grid.Row="1" Grid.Column="0" TextColor="Gray" Text="Kcal:"/>
-                    <Entry Grid.Row="1" Grid.Column="1" ClassId="labelEditableKcal" TextChanged="ValueCheckEntry" TextColor="Gray" Text="{Binding EditableKcal}" Keyboard="Numeric"/>
-                    <Label Grid.Row="1" Grid.Column="2" TextColor="Gray" Text="g"/>
-                    <Label Grid.Row="2" Grid.Column="0" TextColor="Blue" Text="Białka:"/>
-                    <Entry Grid.Row="2" Grid.Column="1" ClassId="labelEditableProteins" TextChanged="ValueCheckEntry" TextColor="Blue" Text="{Binding EditableProteins}" Keyboard="Numeric"/>
-                    <Label Grid.Row="2" Grid.Column="2" TextColor="Blue" Text="g"/>
-                    <Label Grid.Row="3" Grid.Column="0" TextColor="Yellow" Text="Tłuszcze:"/>
-                    <Entry Grid.Row="3" Grid.Column="1" ClassId="labelEditableFat" TextChanged="ValueCheckEntry" TextColor="Yellow" Text="{Binding EditableFat}" Keyboard="Numeric"/>
-                    <Label Grid.Row="3" Grid.Column="2" TextColor="Yellow" Text="g"/>
-                    <Label Grid.Row="4" Grid.Column="0" TextColor="White" Text="Cukry:"/>
-                    <Entry Grid.Row="4" Grid.Column="1" ClassId="labelEditableCarbohydrates" TextChanged="ValueCheckEntry" TextColor="White" Text="{Binding EditableCarbohydrates}" Keyboard="Numeric"/>
-                    <Label Grid.Row="4" Grid.Column="2" TextColor="White" Text="g"/>
+                    <Label Grid.Row="1" Grid.Column="0" TextColor="{StaticResource KcalColor}" Text="Kcal:"/>
+                    <Entry Grid.Row="1" Grid.Column="1" ClassId="labelEditableKcal" TextChanged="ValueCheckEntry" TextColor="{StaticResource KcalColor}" Text="{Binding EditableKcal}" Keyboard="Numeric"/>
+                    <Label Grid.Row="1" Grid.Column="2" TextColor="{StaticResource KcalColor}" Text="g"/>
+                    <Label Grid.Row="2" Grid.Column="0" TextColor="{StaticResource ProteinsColor}" Text="Białka:"/>
+                    <Entry Grid.Row="2" Grid.Column="1" ClassId="labelEditableProteins" TextChanged="ValueCheckEntry" TextColor="{StaticResource ProteinsColor}" Text="{Binding EditableProteins}" Keyboard="Numeric"/>
+                    <Label Grid.Row="2" Grid.Column="2" TextColor="{StaticResource ProteinsColor}" Text="g"/>
+                    <Label Grid.Row="3" Grid.Column="0" TextColor="{StaticResource FatColor}" Text="Tłuszcze:"/>
+                    <Entry Grid.Row="3" Grid.Column="1" ClassId="labelEditableFat" TextChanged="ValueCheckEntry" TextColor="{StaticResource FatColor}" Text="{Binding EditableFat}" Keyboard="Numeric"/>
+                    <Label Grid.Row="3" Grid.Column="2" TextColor="{StaticResource FatColor}" Text="g"/>
+                    <Label Grid.Row="4" Grid.Column="0" TextColor="{StaticResource SugarColor}" Text="Cukry:"/>
+                    <Entry Grid.Row="4" Grid.Column="1" ClassId="labelEditableCarbohydrates" TextChanged="ValueCheckEntry" TextColor="{StaticResource SugarColor}" Text="{Binding EditableCarbohydrates}" Keyboard="Numeric"/>
+                    <Label Grid.Row="4" Grid.Column="2" TextColor="{StaticResource SugarColor}" Text="g"/>
 
                     <Label Grid.Row="0" Grid.Column="4" TextColor="Gray" Text="suma wartości odżywczych"/>
                     <Label Grid.Row="1" Grid.Column="4" TextColor="Gray">
@@ -88,7 +88,7 @@
                             </MultiBinding>
                         </Label.Text>
                     </Label>
-                    <Label Grid.Row="2" Grid.Column="4" TextColor="Blue">
+                    <Label Grid.Row="2" Grid.Column="4" TextColor="{StaticResource ProteinsColor}">
                         <Label.Text>
                             <MultiBinding Converter="{StaticResource MultiMathExpressionConverter}" ConverterParameter="round(x0 * x1 / 100, 2)">
                                 <Binding Path="EditableProteins"/>
@@ -96,7 +96,7 @@
                             </MultiBinding>
                         </Label.Text>
                     </Label>
-                    <Label Grid.Row="3" Grid.Column="4" TextColor="Yellow">
+                    <Label Grid.Row="3" Grid.Column="4" TextColor="{StaticResource FatColor}">
                         <Label.Text>
                             <MultiBinding Converter="{StaticResource MultiMathExpressionConverter}" ConverterParameter="round(x0 * x1 / 100, 2)">
                                 <Binding Path="EditableFat"/>
@@ -104,7 +104,7 @@
                             </MultiBinding>
                         </Label.Text>
                     </Label>
-                    <Label Grid.Row="4" Grid.Column="4" TextColor="White">
+                    <Label Grid.Row="4" Grid.Column="4" TextColor="{StaticResource SugarColor}">
                         <Label.Text>
                             <MultiBinding Converter="{StaticResource MultiMathExpressionConverter}" ConverterParameter="round(x0 * x1 / 100, 2)">
                                 <Binding Path="EditableCarbohydrates"/>
