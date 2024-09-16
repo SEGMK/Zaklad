@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:drawable="clr-namespace:Zaklad.CustomControls"
+             x:Class="Zaklad.CustomControls.MakroProgressBar"
+             x:Name="progressBarContentView">
+    <ContentView.Resources>
+        <drawable:MakroProgressBarDrawable x:Key="makroProgressBarDrawable"/>
+    </ContentView.Resources>
+    <FlexLayout>
+        <GraphicsView x:Name="ProgressBar">
+            <GraphicsView.Drawable>
+                <drawable:MakroProgressBarDrawable BarProgressPercentage="{Binding PercentageOfProgress,Source={x:Reference progressBarContentView}}"
+                                                   ProgressBarColor="{Binding ProgressBarColor,Source={x:Reference progressBarContentView}}"
+                                                   ProgressBarWidth="{Binding ProgressBarWidth,Source={x:Reference progressBarContentView}}"
+                                                   ProgressBarHeight="{Binding ProgressBarHeight,Source={x:Reference progressBarContentView}}"/>
+            </GraphicsView.Drawable>
+        </GraphicsView>
+    </FlexLayout>
+</ContentView>

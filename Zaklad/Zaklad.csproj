@@ -67,6 +67,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="CustomControls\MakroProgressBar.xaml.cs">
+	    <DependentUpon>MakroProgressBar.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\AddItemByBarcode.xaml.cs">
 	    <DependentUpon>AddItemByBarcode.xaml</DependentUpon>
 	  </Compile>
@@ -94,6 +97,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="CustomControls\MakroProgressBar.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\AddItemByBarcode.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:cal="clr-namespace:Plugin.Maui.Calendar.Controls;assembly=Plugin.Maui.Calendar"
+             xmlns:customControls="clr-namespace:Zaklad.CustomControls"
              x:Class="Zaklad.MainPage"
              xmlns:local="clr-namespace:Zaklad"
              Shell.NavBarIsVisible="False"
@@ -9,8 +10,8 @@
     <!--ratio: 20:10-->
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="16*"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="15*"/>
+            <RowDefinition Height="1.5*"/>
             <RowDefinition Height="20"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="20"/>
@@ -28,7 +29,7 @@
                             </local:ProductView.GestureRecognizers>
                         </local:ProductView>
                     </ViewCell>
-                </DataTemplate> 
+                </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
         <FlexLayout Direction="Row"  JustifyContent="SpaceEvenly" HorizontalOptions="Fill" Grid.Row="1" BackgroundColor="{StaticResource StandardBackground_Shade_2}">
@@ -41,23 +42,39 @@
                 <Style TargetType="{x:Type HorizontalStackLayout}">
                     <Setter Property="Spacing" Value="10"/>
                 </Style>
+                <Style TargetType="VerticalStackLayout">
+                    <Setter Property="VerticalOptions" Value="Center"/>
+                    <Setter Property="Spacing" Value="5"/>
+                </Style>
             </FlexLayout.Resources>
-            <HorizontalStackLayout>
-                <Label TextColor="{StaticResource KcalColor}">Kcal:</Label>
-                <Label TextColor="{StaticResource KcalColor}" Text="{Binding Kcal}"></Label>
-            </HorizontalStackLayout>
-            <HorizontalStackLayout>
-                <Label TextColor="{StaticResource ProteinsColor}">Bialko:</Label>
-                <Label TextColor="{StaticResource ProteinsColor}" Text="{Binding Proteins}"></Label>
-            </HorizontalStackLayout>
-            <HorizontalStackLayout>
-                <Label TextColor="{StaticResource FatColor}">Tluszcze:</Label>
-                <Label TextColor="{StaticResource FatColor}" Text="{Binding Fat}"></Label>
-            </HorizontalStackLayout>
-            <HorizontalStackLayout>
-                <Label TextColor="{StaticResource SugarColor}">Cukry:</Label>
-                <Label TextColor="{StaticResource SugarColor}" Text="{Binding Carbohydrates}"></Label>
-            </HorizontalStackLayout>
+            <VerticalStackLayout>
+                <HorizontalStackLayout>
+                    <Label TextColor="{StaticResource KcalColor}">Kcal:</Label>
+                    <Label TextColor="{StaticResource KcalColor}" Text="{Binding Kcal}"></Label>
+                </HorizontalStackLayout>
+                <customControls:MakroProgressBar ProgressBarColor="{StaticResource KcalColor}" ProgressBarWidth="100" ProgressBarHeight="10" PercentageOfProgress="1.2"/>
+            </VerticalStackLayout>
+            <VerticalStackLayout>
+                <HorizontalStackLayout>
+                    <Label TextColor="{StaticResource ProteinsColor}">Bialko:</Label>
+                    <Label TextColor="{StaticResource ProteinsColor}" Text="{Binding Proteins}"></Label>
+                </HorizontalStackLayout>
+                <customControls:MakroProgressBar ProgressBarColor="{StaticResource ProteinsColor}" ProgressBarWidth="100" ProgressBarHeight="10" PercentageOfProgress="0.7"/>
+            </VerticalStackLayout>
+            <VerticalStackLayout>
+                <HorizontalStackLayout>
+                    <Label TextColor="{StaticResource FatColor}">Tluszcze:</Label>
+                    <Label TextColor="{StaticResource FatColor}" Text="{Binding Fat}"></Label>
+                </HorizontalStackLayout>
+                <customControls:MakroProgressBar ProgressBarColor="{StaticResource FatColor}" ProgressBarWidth="100" ProgressBarHeight="10" PercentageOfProgress="1"/>
+            </VerticalStackLayout>
+            <VerticalStackLayout>
+                <HorizontalStackLayout>
+                    <Label TextColor="{StaticResource SugarColor}">Cukry:</Label>
+                    <Label TextColor="{StaticResource SugarColor}" Text="{Binding Carbohydrates}"></Label>
+                </HorizontalStackLayout>
+                <customControls:MakroProgressBar ProgressBarColor="{StaticResource SugarColor}" ProgressBarWidth="100" ProgressBarHeight="10" PercentageOfProgress="1.4"/>
+            </VerticalStackLayout>
         </FlexLayout>
         <Grid Grid.Row="3" BackgroundColor="{StaticResource StandardBackground_Shade_2}" x:Name="DatesGrid">
             <Grid.ColumnDefinitions>
