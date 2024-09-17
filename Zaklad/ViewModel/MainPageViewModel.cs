@@ -31,8 +31,6 @@ namespace Zaklad.ViewModel
         public decimal Carbohydrates { get { return _carbohydrates; } private set { _carbohydrates = value; OnPropertyChange(nameof(Carbohydrates)); } }
         private decimal _kcal = 0;
         public decimal Kcal { get { return _kcal; } private set { _kcal = value; OnPropertyChange(nameof(Kcal)); } }
-        private decimal _test = 10.5m;
-        public decimal Test { get { return _test; } set { _test = value; OnPropertyChange(nameof(_kcal)); } }
         public IPopupService PopupService { get; private set; } = ServiceHelper.Current.GetService<IPopupService>();
         public event PropertyChangedEventHandler? PropertyChanged;
         private void OnPropertyChange(string name) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
