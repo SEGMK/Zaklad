@@ -58,6 +58,7 @@
                 <HorizontalStackLayout>
                     <Label TextColor="{StaticResource ProteinsColor}">Bialko:</Label>
                     <Label TextColor="{StaticResource ProteinsColor}" Text="{Binding Proteins}"></Label>
+                    <Label TextColor="{StaticResource ProteinsColor}">g</Label>
                 </HorizontalStackLayout>
                 <customControls:MakroProgressBar ProgressBarColor="{StaticResource ProteinsColor}" ProgressBarWidth="100" ProgressBarHeight="10" PercentageOfProgress="0.7"/>
             </VerticalStackLayout>
@@ -65,6 +66,7 @@
                 <HorizontalStackLayout>
                     <Label TextColor="{StaticResource FatColor}">Tluszcze:</Label>
                     <Label TextColor="{StaticResource FatColor}" Text="{Binding Fat}"></Label>
+                    <Label TextColor="{StaticResource FatColor}">g</Label>
                 </HorizontalStackLayout>
                 <customControls:MakroProgressBar ProgressBarColor="{StaticResource FatColor}" ProgressBarWidth="100" ProgressBarHeight="10" PercentageOfProgress="1"/>
             </VerticalStackLayout>
@@ -72,6 +74,7 @@
                 <HorizontalStackLayout>
                     <Label TextColor="{StaticResource SugarColor}">Cukry:</Label>
                     <Label TextColor="{StaticResource SugarColor}" Text="{Binding Carbohydrates}"></Label>
+                    <Label TextColor="{StaticResource SugarColor}">g</Label>
                 </HorizontalStackLayout>
                 <customControls:MakroProgressBar ProgressBarColor="{StaticResource SugarColor}" ProgressBarWidth="100" ProgressBarHeight="10" PercentageOfProgress="1.4"/>
             </VerticalStackLayout>

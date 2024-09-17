@@ -23,14 +23,16 @@ namespace Zaklad.ViewModel
     {
         public DateManager DateManager { get; private set; } = new DateManager();
         public ObservableCollection<IUserProduct> Products { get; private set; } = new ObservableCollection<IUserProduct>();
-        private string _proteins = string.Empty;
-        public string Proteins { get { return _proteins; } private set { _proteins = value; OnPropertyChange(nameof(Proteins)); } }
-        private string _fat = string.Empty;
-        public string Fat { get { return _fat; } private set { _fat = value; OnPropertyChange(nameof(Fat)); } }
-        private string _carbohydrates = string.Empty;
-        public string Carbohydrates { get { return _carbohydrates; } private set { _carbohydrates = value; OnPropertyChange(nameof(Carbohydrates)); } }
-        private string _kcal = string.Empty;
-        public string Kcal { get { return _kcal; } private set { _kcal = value; OnPropertyChange(nameof(Kcal)); } }
+        private decimal _proteins = 0;
+        public decimal Proteins { get { return _proteins; } private set { _proteins = value; OnPropertyChange(nameof(Proteins)); } }
+        private decimal _fat = 0;
+        public decimal Fat { get { return _fat; } private set { _fat = value; OnPropertyChange(nameof(Fat)); } }
+        private decimal _carbohydrates = 0;
+        public decimal Carbohydrates { get { return _carbohydrates; } private set { _carbohydrates = value; OnPropertyChange(nameof(Carbohydrates)); } }
+        private decimal _kcal = 0;
+        public decimal Kcal { get { return _kcal; } private set { _kcal = value; OnPropertyChange(nameof(Kcal)); } }
+        private decimal _test = 10.5m;
+        public decimal Test { get { return _test; } set { _test = value; OnPropertyChange(nameof(_kcal)); } }
         public IPopupService PopupService { get; private set; } = ServiceHelper.Current.GetService<IPopupService>();
         public event PropertyChangedEventHandler? PropertyChanged;
         private void OnPropertyChange(string name) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
@@ -85,10 +87,10 @@ namespace Zaklad.ViewModel
                 carbohydrates += i.Carbohydrates;
                 kcal += i.Kcal;
             }
-            Proteins = proteins.ToString() + "g";
-            Fat = fat.ToString() + "g";
-            Carbohydrates = carbohydrates.ToString() + "g";
-            Kcal = kcal.ToString();
+            Proteins = proteins;
+            Fat = fat;
+            Carbohydrates = carbohydrates;
+            Kcal = kcal;
         }
     }
 }
