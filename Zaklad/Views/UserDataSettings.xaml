@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Zaklad.Views.UserDataSettings"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{StaticResource StandardBackground_Shade_1}">
+    <ScrollView>
+        <ScrollView.Resources>
+            <Style TargetType="{x:Type Label}">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+            </Style>
+        </ScrollView.Resources>
+        <VerticalStackLayout Spacing="10" Margin="10">
+            <Label HorizontalOptions="Start" FontSize="16" FontAttributes="Bold"
+                   Text="Zmiana granic spożywanych wartości odżywczych"/>
+            <Label Text="Ręczne ustawienie wartości dziennej ilości makro elementów"/>
+            <Grid>
+                <Grid.Resources>
+                    <Style TargetType="{x:Type Label}">
+                        <Setter Property="VerticalOptions" Value="Center"/>
+                        <Setter Property="HorizontalOptions" Value="Start"/>
+                    </Style>
+                    <Style TargetType="Entry">
+                        <Setter Property="Keyboard" Value="Numeric"/>
+                    </Style>
+                </Grid.Resources>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="35"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" TextColor="{StaticResource KcalColor}" Text="Kcal:"/>
+                <Entry Grid.Row="0" Grid.Column="1" TextColor="{StaticResource KcalColor}" Text="{Binding Kcal}"/>
+                <Label Grid.Row="1" Grid.Column="0" TextColor="{StaticResource ProteinsColor}" Text="Białka:"/>
+                <Entry Grid.Row="1" Grid.Column="1" TextColor="{StaticResource ProteinsColor}" Text="{Binding Proteins}"/>
+                <Label Grid.Row="2" Grid.Column="0" TextColor="{StaticResource FatColor}" Text="Tłuszcz:"/>
+                <Entry Grid.Row="2" Grid.Column="1" TextColor="{StaticResource FatColor}" Text="{Binding Fat}"/>
+                <Label Grid.Row="3" Grid.Column="0" TextColor="{StaticResource SugarColor}" Text="Cukier:"/>
+                <Entry Grid.Row="3" Grid.Column="1" TextColor="{StaticResource SugarColor}" Text="{Binding Sugar}"/>
+            </Grid>
+            <Button WidthRequest="300" Text="Wylicz kalorie na podstawie ankiety"/>
+            <Button WidthRequest="300" Text="Zapisz dane" Command="{Binding SaveChangesCommand}"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

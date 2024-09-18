@@ -31,12 +31,14 @@ namespace Zaklad
             builder.Services.AddSingleton<ICalendarPopupViewModel, CalendarPopupViewModel>();
             builder.Services.AddSingleton<IProductSelectionPopupViewModel, ProductSelectionPopupViewModel>();
             builder.Services.AddSingleton<ICreateCustomProductViewModel, CreateCustomProductViewModel>();
+            builder.Services.AddSingleton<IUserDataSettingsViewModel, UserDataSettingsViewModel>();
             //Sevices
             builder.Services.AddSingleton<IPopupService, Models.PopupService>();
             builder.Services.AddSingleton<IAlertService, AlertService>();
             //Models
             builder.Services.AddTransient<IUserProduct, UserProduct>();
             builder.Services.AddTransient<IProductDataTemplate, ProductDataTemplate>();
+            builder.Services.AddTransient<IMakroSettingsData, MakroSettingsData>();
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
