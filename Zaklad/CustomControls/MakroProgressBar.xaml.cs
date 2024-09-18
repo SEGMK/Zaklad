@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace Zaklad.CustomControls;
@@ -7,13 +8,13 @@ public partial class MakroProgressBar : ContentView
     public MakroProgressBar()
     {
         InitializeComponent();
-        ProgressBarWidth = 100;
-        ProgressBarHeight = 50;
-        PercentageOfProgress = 0;
-        ProgressBarColor = Color.Parse("Blue");
     }
     public static readonly BindableProperty ProgressBarColorProperty = BindableProperty.Create(nameof(ProgressBarColor), typeof(Color), typeof(MakroProgressBar), null);
-    public static readonly BindableProperty PercentageOfProgressProperty = BindableProperty.Create(nameof(PercentageOfProgress), typeof(float), typeof(MakroProgressBar), null);
+    public static readonly BindableProperty PercentageOfProgressProperty = BindableProperty.Create(nameof(PercentageOfProgress), typeof(float), typeof(MakroProgressBar), null, propertyChanged: (bindable, oldValue, newValue) =>
+    {
+        var control = (MakroProgressBar)bindable;
+        control.ProgressBar.Invalidate();
+    });
     public static readonly BindableProperty ProgressBarWidthProperty = BindableProperty.Create(nameof(ProgressBarWidth), typeof(int), typeof(MakroProgressBar), null, propertyChanged: (bindable, oldValue, newValue) =>
     {
         var control = (MakroProgressBar)bindable;

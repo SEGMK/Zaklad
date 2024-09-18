@@ -11,14 +11,14 @@
                     <Label x:Name="labelKcal_100g" FontSize="12" TextColor="{StaticResource KcalColor}" Text="Energia: 0 kcal"/>
                     <Label x:Name="labelProteins_100g" FontSize="10" TextColor="{StaticResource ProteinsColor}" Text="Białko: 0g"/>
                     <Label x:Name="labelFat_100g" FontSize="10" TextColor="{StaticResource FatColor}" Text="Tłuszcze: 0g"/>
-                    <Label x:Name="labelCarbohydrates_100g" FontSize="10" TextColor="{StaticResource SugarColor}" Text="Cukry: 0g"/>
+                    <Label x:Name="labelCarbohydrates_100g" FontSize="10" TextColor="{StaticResource CarbohydratesColor}" Text="Cukry: 0g"/>
                 </VerticalStackLayout>
                 <VerticalStackLayout VerticalOptions="End">
                     <Label x:Name="labelGramature" FontSize="14" Text="Spożyta porcja produktu: 0g"/>
                     <Label x:Name="labelKcal" FontSize="12" TextColor="{StaticResource KcalColor}" Text="Energia: 0 kcal"/>
                     <Label x:Name="labelProteins" FontSize="10" TextColor="{StaticResource ProteinsColor}" Text="Białko: 0g"/>
                     <Label x:Name="labelFat" FontSize="10" TextColor="{StaticResource FatColor}" Text="Tłuszcze: 0g"/>
-                    <Label x:Name="labelCarbohydrates" FontSize="10" TextColor="{StaticResource SugarColor}" Text="Cukry: 0g"/>
+                    <Label x:Name="labelCarbohydrates" FontSize="10" TextColor="{StaticResource CarbohydratesColor}" Text="Cukry: 0g"/>
                 </VerticalStackLayout>
             </HorizontalStackLayout>
         </VerticalStackLayout>

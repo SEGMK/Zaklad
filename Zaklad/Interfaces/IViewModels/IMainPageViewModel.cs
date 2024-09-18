@@ -16,11 +16,13 @@ namespace Zaklad.Interfaces.IViewModels
         decimal Proteins { get; }
         decimal Fat { get; }
         IPopupService PopupService { get; }
+        IMakroSettingsData UserMakroIntakeSettings { get; }
         decimal Carbohydrates { get; }
         ICommand ChangeDateOfWeekCommand { get; }
         ICommand ShowCalendarCommand { get; }
         ICommand OpenProductEditorCommand { get; }
         ObservableCollection<IUserProduct> Products { get; }
         void GetProductsCollection();
+        void UpdateUserMakro();
     }
 }

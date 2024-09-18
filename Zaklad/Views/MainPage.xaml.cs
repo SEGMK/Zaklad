@@ -41,6 +41,7 @@ namespace Zaklad
         protected override void OnAppearing()
         {
             ((IMainPageViewModel)BindingContext).GetProductsCollection();
+            ((IMainPageViewModel)BindingContext).UpdateUserMakro();
             base.OnAppearing();
         }
     }

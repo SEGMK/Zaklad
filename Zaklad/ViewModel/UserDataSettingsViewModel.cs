@@ -20,7 +20,7 @@ namespace Zaklad.ViewModel
             Kcal = makro.Kcal;
             Proteins = makro.Proteins;
             Fat = makro.Fat;
-            Sugar = makro.Sugar;
+            Carbohydrates = makro.Carbohydrates;
         }
         private int _kcal;
         public int Kcal
@@ -52,14 +52,14 @@ namespace Zaklad.ViewModel
                 OnPropertyChange(nameof(Fat));
             }
         }
-        private int _sugar;
-        public int Sugar
+        private int _carbohydrates;
+        public int Carbohydrates
         {
-            get => _sugar;
+            get => _carbohydrates;
             set
             {
-                _sugar = value;
-                OnPropertyChange(nameof(Sugar));
+                _carbohydrates = value;
+                OnPropertyChange(nameof(Carbohydrates));
             }
         }
 
@@ -69,7 +69,7 @@ namespace Zaklad.ViewModel
             makro.Kcal = Kcal;
             makro.Proteins = Proteins;
             makro.Fat = Fat;
-            makro.Sugar = Sugar;
+            makro.Carbohydrates = Carbohydrates;
             UserSettingsCRUD.SaveUserSettingsData(makro);
         });
 

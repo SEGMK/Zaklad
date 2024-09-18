@@ -42,8 +42,8 @@
                 <Entry Grid.Row="1" Grid.Column="1" TextColor="{StaticResource ProteinsColor}" Text="{Binding Proteins}"/>
                 <Label Grid.Row="2" Grid.Column="0" TextColor="{StaticResource FatColor}" Text="Tłuszcz:"/>
                 <Entry Grid.Row="2" Grid.Column="1" TextColor="{StaticResource FatColor}" Text="{Binding Fat}"/>
-                <Label Grid.Row="3" Grid.Column="0" TextColor="{StaticResource SugarColor}" Text="Cukier:"/>
-                <Entry Grid.Row="3" Grid.Column="1" TextColor="{StaticResource SugarColor}" Text="{Binding Sugar}"/>
+                <Label Grid.Row="3" Grid.Column="0" TextColor="{StaticResource CarbohydratesColor}" Text="Cukier:"/>
+                <Entry Grid.Row="3" Grid.Column="1" TextColor="{StaticResource CarbohydratesColor}" Text="{Binding Carbohydrates}"/>
             </Grid>
             <Button WidthRequest="300" Text="Wylicz kalorie na podstawie ankiety"/>
             <Button WidthRequest="300" Text="Zapisz dane" Command="{Binding SaveChangesCommand}"/>

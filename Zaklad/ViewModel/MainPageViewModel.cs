@@ -44,6 +44,17 @@ namespace Zaklad.ViewModel
             if (redirectToEarlierPage != null)
                 GetProductsCollection();
         });
+        private IMakroSettingsData _userMakroIntakeSettings;
+        public IMakroSettingsData UserMakroIntakeSettings 
+        {
+            get => _userMakroIntakeSettings;
+            private set
+            { 
+                _userMakroIntakeSettings = value;
+                OnPropertyChange(nameof(UserMakroIntakeSettings));
+            }
+        }
+
         public MainPageViewModel()
         {
             Products.Clear();
@@ -52,7 +63,9 @@ namespace Zaklad.ViewModel
             Products.CollectionChanged += new NotifyCollectionChangedEventHandler((sender, e) => CalculateMakro());
             DateManager.ChangeCurrentDate(DateTime.Now);
             GetProductsCollection();
+            UpdateUserMakro();
         }
+        public void UpdateUserMakro() => UserMakroIntakeSettings = UserSettingsCRUD.GetUserSettingsData();
         private void GetProductsCollection(string date)
         {
             Products.Clear();

@@ -15,6 +15,6 @@ namespace Zaklad.Interfaces
         int Kcal { get; set; }
         int Proteins { get; set; }
         int Fat { get; set; }
-        int Sugar { get; set; }
+        int Carbohydrates { get; set; }
     }
 }

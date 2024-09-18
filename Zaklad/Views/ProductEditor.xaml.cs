@@ -20,11 +20,11 @@ public partial class ProductEditor : Popup
         App.Current.Resources.TryGetValue("KcalColor", out var kcalColor);
         App.Current.Resources.TryGetValue("ProteinsColor", out var proteinsColor);
         App.Current.Resources.TryGetValue("FatColor", out var fatColor);
-        App.Current.Resources.TryGetValue("SugarColor", out var sugarColor);
+        App.Current.Resources.TryGetValue("CarbohydratesColor", out var CarbohydratesColor);
         EditableTextColors.Add("labelEditableKcal", (Color)kcalColor);
         EditableTextColors.Add("labelEditableProteins", (Color)proteinsColor);
         EditableTextColors.Add("labelEditableFat", (Color)fatColor);
-        EditableTextColors.Add("labelEditableCarbohydrates", (Color)sugarColor);
+        EditableTextColors.Add("labelEditableCarbohydrates", (Color)CarbohydratesColor);
     }
     Dictionary<string, Color> EditableTextColors = new Dictionary<string, Color>();
     private void AddDecisionButtons()

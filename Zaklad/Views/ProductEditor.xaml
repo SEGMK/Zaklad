@@ -75,9 +75,9 @@
                     <Label Grid.Row="3" Grid.Column="0" TextColor="{StaticResource FatColor}" Text="Tłuszcze:"/>
                     <Entry Grid.Row="3" Grid.Column="1" ClassId="labelEditableFat" TextChanged="ValueCheckEntry" TextColor="{StaticResource FatColor}" Text="{Binding EditableFat}" Keyboard="Numeric"/>
                     <Label Grid.Row="3" Grid.Column="2" TextColor="{StaticResource FatColor}" Text="g"/>
-                    <Label Grid.Row="4" Grid.Column="0" TextColor="{StaticResource SugarColor}" Text="Cukry:"/>
-                    <Entry Grid.Row="4" Grid.Column="1" ClassId="labelEditableCarbohydrates" TextChanged="ValueCheckEntry" TextColor="{StaticResource SugarColor}" Text="{Binding EditableCarbohydrates}" Keyboard="Numeric"/>
-                    <Label Grid.Row="4" Grid.Column="2" TextColor="{StaticResource SugarColor}" Text="g"/>
+                    <Label Grid.Row="4" Grid.Column="0" TextColor="{StaticResource CarbohydratesColor}" Text="Cukry:"/>
+                    <Entry Grid.Row="4" Grid.Column="1" ClassId="labelEditableCarbohydrates" TextChanged="ValueCheckEntry" TextColor="{StaticResource CarbohydratesColor}" Text="{Binding EditableCarbohydrates}" Keyboard="Numeric"/>
+                    <Label Grid.Row="4" Grid.Column="2" TextColor="{StaticResource CarbohydratesColor}" Text="g"/>
 
                     <Label Grid.Row="0" Grid.Column="4" TextColor="Gray" Text="suma wartości odżywczych"/>
                     <Label Grid.Row="1" Grid.Column="4" TextColor="Gray">
@@ -104,7 +104,7 @@
                             </MultiBinding>
                         </Label.Text>
                     </Label>
-                    <Label Grid.Row="4" Grid.Column="4" TextColor="{StaticResource SugarColor}">
+                    <Label Grid.Row="4" Grid.Column="4" TextColor="{StaticResource CarbohydratesColor}">
                         <Label.Text>
                             <MultiBinding Converter="{StaticResource MultiMathExpressionConverter}" ConverterParameter="round(x0 * x1 / 100, 2)">
                                 <Binding Path="EditableCarbohydrates"/>

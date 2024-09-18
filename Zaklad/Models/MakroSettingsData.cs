@@ -15,7 +15,7 @@ namespace Zaklad.Models
         public int Proteins { get => _proteins; set => _proteins = value; }
         private int _fat;
         public int Fat { get => _fat; set => _fat = value; }
-        private int _sugar;
-        public int Sugar { get => _sugar; set => _sugar = value; }
+        private int _carbohydrates;
+        public int Carbohydrates { get => _carbohydrates; set => _carbohydrates = value; }
     }
 }

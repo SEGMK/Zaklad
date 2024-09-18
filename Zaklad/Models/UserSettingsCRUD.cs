@@ -30,7 +30,7 @@ namespace Zaklad.Models
                     Kcal = 2000,
                     Proteins = 100,
                     Fat = 100,
-                    Sugar = 100
+                    Carbohydrates = 100
                 };
             }
         }
