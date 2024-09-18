@@ -50,13 +50,24 @@
                 </Style>
                 <Style TargetType="VerticalStackLayout">
                     <Setter Property="VerticalOptions" Value="Center"/>
-                    <Setter Property="Spacing" Value="5"/>
+                    <Setter Property="Spacing" Value="1"/>
                 </Style>
             </FlexLayout.Resources>
             <VerticalStackLayout>
                 <HorizontalStackLayout>
                     <Label TextColor="{StaticResource KcalColor}">Kcal:</Label>
                     <Label TextColor="{StaticResource KcalColor}" Text="{Binding Kcal}"></Label>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout>
+                    <HorizontalStackLayout.Resources>
+                        <Style TargetType="Label">
+                            <Setter Property="FontSize" Value="10"/>
+                            <Setter Property="TextColor" Value="{StaticResource KcalColor}"/>
+                        </Style>
+                    </HorizontalStackLayout.Resources>
+                    <Label Text="Max tłuszcze: " />
+                    <Label Text="{Binding UserMakroIntakeSettings.Kcal}"/>
+                    <Label Text="g"/>
                 </HorizontalStackLayout>
                 <customControls:MakroProgressBar ProgressBarColor="{StaticResource KcalColor}" ProgressBarWidth="100" ProgressBarHeight="10">
                     <customControls:MakroProgressBar.PercentageOfProgress>
@@ -73,20 +84,42 @@
                     <Label TextColor="{StaticResource ProteinsColor}" Text="{Binding Proteins}"></Label>
                     <Label TextColor="{StaticResource ProteinsColor}">g</Label>
                 </HorizontalStackLayout>
+                <HorizontalStackLayout>
+                    <HorizontalStackLayout.Resources>
+                        <Style TargetType="Label">
+                            <Setter Property="FontSize" Value="10"/>
+                            <Setter Property="TextColor" Value="{StaticResource ProteinsColor}"/>
+                        </Style>
+                    </HorizontalStackLayout.Resources>
+                    <Label Text="Max tłuszcze: " />
+                    <Label Text="{Binding UserMakroIntakeSettings.Proteins}"/>
+                    <Label Text="g"/>
+                </HorizontalStackLayout>
                 <customControls:MakroProgressBar ProgressBarColor="{StaticResource ProteinsColor}" ProgressBarWidth="100" ProgressBarHeight="10">
-                <customControls:MakroProgressBar.PercentageOfProgress>
-                    <MultiBinding Converter="{StaticResource MultiMathExpressionConverter}" ConverterParameter="x0 / x1">
-                        <Binding Path="Proteins"/>
-                        <Binding Path="UserMakroIntakeSettings.Proteins"/>
-                    </MultiBinding>
-                </customControls:MakroProgressBar.PercentageOfProgress>
+                    <customControls:MakroProgressBar.PercentageOfProgress>
+                        <MultiBinding Converter="{StaticResource MultiMathExpressionConverter}" ConverterParameter="x0 / x1">
+                            <Binding Path="Proteins"/>
+                            <Binding Path="UserMakroIntakeSettings.Proteins"/>
+                        </MultiBinding>
+                    </customControls:MakroProgressBar.PercentageOfProgress>
                 </customControls:MakroProgressBar>
             </VerticalStackLayout>
             <VerticalStackLayout>
                 <HorizontalStackLayout>
-                    <Label TextColor="{StaticResource FatColor}">Tluszcze:</Label>
+                    <Label TextColor="{StaticResource FatColor}">Tłuszcze:</Label>
                     <Label TextColor="{StaticResource FatColor}" Text="{Binding Fat}"></Label>
                     <Label TextColor="{StaticResource FatColor}">g</Label>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout>
+                    <HorizontalStackLayout.Resources>
+                        <Style TargetType="Label">
+                            <Setter Property="FontSize" Value="10"/>
+                            <Setter Property="TextColor" Value="{StaticResource FatColor}"/>
+                        </Style>
+                    </HorizontalStackLayout.Resources>
+                    <Label Text="Max tłuszcze: " />
+                    <Label Text="{Binding UserMakroIntakeSettings.Fat}"/>
+                    <Label Text="g"/>
                 </HorizontalStackLayout>
                 <customControls:MakroProgressBar ProgressBarColor="{StaticResource FatColor}" ProgressBarWidth="100" ProgressBarHeight="10">
                     <customControls:MakroProgressBar.PercentageOfProgress>
@@ -102,6 +135,17 @@
                     <Label TextColor="{StaticResource CarbohydratesColor}">Cukry:</Label>
                     <Label TextColor="{StaticResource CarbohydratesColor}" Text="{Binding Carbohydrates}"></Label>
                     <Label TextColor="{StaticResource CarbohydratesColor}">g</Label>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout>
+                    <HorizontalStackLayout.Resources>
+                        <Style TargetType="Label">
+                            <Setter Property="FontSize" Value="10"/>
+                            <Setter Property="TextColor" Value="{StaticResource CarbohydratesColor}"/>
+                        </Style>
+                    </HorizontalStackLayout.Resources>
+                    <Label Text="Max cukry: " />
+                    <Label Text="{Binding UserMakroIntakeSettings.Carbohydrates}"/>
+                    <Label Text="g"/>
                 </HorizontalStackLayout>
                 <customControls:MakroProgressBar ProgressBarColor="{StaticResource CarbohydratesColor}" ProgressBarWidth="100" ProgressBarHeight="10">
                     <customControls:MakroProgressBar.PercentageOfProgress>
