@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +7,12 @@ using System.Threading.Tasks;
 
 namespace Zaklad.CustomControls
 {
-    public class MakroProgressBarDrawable : BindableObject, IDrawable
+    public partial class MakroProgressBarDrawable : BindableObject, IDrawable
     {
-        public static readonly BindableProperty BarProgressPercentageProperty = BindableProperty.Create(nameof(BarProgressPercentage), typeof(float), typeof(MakroProgressBarDrawable));
+        public static readonly BindableProperty BarProgressPercentageProperty = BindableProperty.Create(nameof(BarProgressPercentage), typeof(float), typeof(MakroProgressBarDrawable), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            
+        });
         public static readonly BindableProperty ProgressBarColorProperty = BindableProperty.Create(nameof(ProgressBarColor), typeof(Color), typeof(MakroProgressBarDrawable));
         public static readonly BindableProperty ProgressBarWidthProperty = BindableProperty.Create(nameof(ProgressBarWidth), typeof(int), typeof(MakroProgressBarDrawable));
         public static readonly BindableProperty ProgressBarHeightProperty = BindableProperty.Create(nameof(ProgressBarHeight), typeof(int), typeof(MakroProgressBarDrawable));
@@ -42,14 +46,11 @@ namespace Zaklad.CustomControls
             canvas.StrokeColor = ProgressBarColor;
             int cornerRadius = 10;
             canvas.DrawRectangle(0, 0, ProgressBarWidth, ProgressBarHeight);
-            if (BarProgressPercentage < 0)
-                BarProgressPercentage = 0;
-            else if (2 < BarProgressPercentage)
-                BarProgressPercentage = 2;
             int integralPart = (int)BarProgressPercentage;
             float fractionalPart = (float)BarProgressPercentage - integralPart;
             canvas.FillColor = ProgressBarColor;
-            canvas.FillRectangle(0, 0, cornerRadius, ProgressBarHeight);
+            if(0 < BarProgressPercentage)
+                canvas.FillRectangle(0, 0, 5, ProgressBarHeight);
             if (BarProgressPercentage <= 1)
                 canvas.FillRoundedRectangle(0, 0, ProgressBarWidth * BarProgressPercentage, ProgressBarHeight, cornerRadius);
             if (1 <= BarProgressPercentage)

@@ -7,6 +7,7 @@
              xmlns:local="clr-namespace:Zaklad"
              Shell.NavBarIsVisible="False"
              xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Name="mainPage"
              BackgroundColor="{StaticResource StandardBackground_Shade_1}">
     <!--ratio: 20:10-->
     <ContentPage.Resources>
@@ -69,13 +70,8 @@
                     <Label Text="{Binding UserMakroIntakeSettings.Kcal}"/>
                     <Label Text="g"/>
                 </HorizontalStackLayout>
-                <customControls:MakroProgressBar ProgressBarColor="{StaticResource KcalColor}" ProgressBarWidth="100" ProgressBarHeight="10">
-                    <customControls:MakroProgressBar.PercentageOfProgress>
-                        <MultiBinding Converter="{StaticResource MultiMathExpressionConverter}" ConverterParameter="x0 / x1">
-                            <Binding Path="Kcal"/>
-                            <Binding Path="UserMakroIntakeSettings.Kcal"/>
-                        </MultiBinding>
-                    </customControls:MakroProgressBar.PercentageOfProgress>
+                <customControls:MakroProgressBar ProgressBarColor="{StaticResource KcalColor}" ProgressBarWidth="100" ProgressBarHeight="10"
+                                                  PercentageOfProgress="{Binding ProgressBarKcal,Source={x:Reference mainPage}}">
                 </customControls:MakroProgressBar>
             </VerticalStackLayout>
             <VerticalStackLayout>
@@ -95,13 +91,8 @@
                     <Label Text="{Binding UserMakroIntakeSettings.Proteins}"/>
                     <Label Text="g"/>
                 </HorizontalStackLayout>
-                <customControls:MakroProgressBar ProgressBarColor="{StaticResource ProteinsColor}" ProgressBarWidth="100" ProgressBarHeight="10">
-                    <customControls:MakroProgressBar.PercentageOfProgress>
-                        <MultiBinding Converter="{StaticResource MultiMathExpressionConverter}" ConverterParameter="x0 / x1">
-                            <Binding Path="Proteins"/>
-                            <Binding Path="UserMakroIntakeSettings.Proteins"/>
-                        </MultiBinding>
-                    </customControls:MakroProgressBar.PercentageOfProgress>
+                <customControls:MakroProgressBar ProgressBarColor="{StaticResource ProteinsColor}" ProgressBarWidth="100" ProgressBarHeight="10" 
+                                                 PercentageOfProgress="{Binding ProgressBarProteins,Source={x:Reference mainPage}}">
                 </customControls:MakroProgressBar>
             </VerticalStackLayout>
             <VerticalStackLayout>
@@ -121,13 +112,8 @@
                     <Label Text="{Binding UserMakroIntakeSettings.Fat}"/>
                     <Label Text="g"/>
                 </HorizontalStackLayout>
-                <customControls:MakroProgressBar ProgressBarColor="{StaticResource FatColor}" ProgressBarWidth="100" ProgressBarHeight="10">
-                    <customControls:MakroProgressBar.PercentageOfProgress>
-                        <MultiBinding Converter="{StaticResource MultiMathExpressionConverter}" ConverterParameter="x0 / x1">
-                            <Binding Path="Fat"/>
-                            <Binding Path="UserMakroIntakeSettings.Fat"/>
-                        </MultiBinding>
-                    </customControls:MakroProgressBar.PercentageOfProgress>
+                <customControls:MakroProgressBar ProgressBarColor="{StaticResource FatColor}" ProgressBarWidth="100" ProgressBarHeight="10"
+                                                  PercentageOfProgress="{Binding ProgressBarCarbohydrates,Source={x:Reference mainPage}}">
                 </customControls:MakroProgressBar>
             </VerticalStackLayout>
             <VerticalStackLayout>
@@ -147,13 +133,8 @@
                     <Label Text="{Binding UserMakroIntakeSettings.Carbohydrates}"/>
                     <Label Text="g"/>
                 </HorizontalStackLayout>
-                <customControls:MakroProgressBar ProgressBarColor="{StaticResource CarbohydratesColor}" ProgressBarWidth="100" ProgressBarHeight="10">
-                    <customControls:MakroProgressBar.PercentageOfProgress>
-                        <MultiBinding Converter="{StaticResource MultiMathExpressionConverter}" ConverterParameter="x0 / x1">
-                            <Binding Path="Carbohydrates"/>
-                            <Binding Path="UserMakroIntakeSettings.Carbohydrates"/>
-                        </MultiBinding>
-                    </customControls:MakroProgressBar.PercentageOfProgress>
+                <customControls:MakroProgressBar ProgressBarColor="{StaticResource CarbohydratesColor}" ProgressBarWidth="100" ProgressBarHeight="10"
+                                                  PercentageOfProgress="{Binding ProgressBarCarbohydrates,Source={x:Reference mainPage}}">
                 </customControls:MakroProgressBar>
             </VerticalStackLayout>
         </FlexLayout>

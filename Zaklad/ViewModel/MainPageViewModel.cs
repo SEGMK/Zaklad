@@ -24,13 +24,45 @@ namespace Zaklad.ViewModel
         public DateManager DateManager { get; private set; } = new DateManager();
         public ObservableCollection<IUserProduct> Products { get; private set; } = new ObservableCollection<IUserProduct>();
         private decimal _proteins = 0;
-        public decimal Proteins { get { return _proteins; } private set { _proteins = value; OnPropertyChange(nameof(Proteins)); } }
+        public decimal Proteins
+        {
+            get { return _proteins; }
+            private set
+            {
+                _proteins = value;
+                OnPropertyChange(nameof(Proteins));
+            }
+        }
         private decimal _fat = 0;
-        public decimal Fat { get { return _fat; } private set { _fat = value; OnPropertyChange(nameof(Fat)); } }
+        public decimal Fat
+        {
+            get { return _fat; }
+            private set
+            {
+                _fat = value;
+                OnPropertyChange(nameof(Fat));
+            }
+        }
         private decimal _carbohydrates = 0;
-        public decimal Carbohydrates { get { return _carbohydrates; } private set { _carbohydrates = value; OnPropertyChange(nameof(Carbohydrates)); } }
+        public decimal Carbohydrates
+        {
+            get { return _carbohydrates; }
+            private set
+            {
+                _carbohydrates = value;
+                OnPropertyChange(nameof(Carbohydrates));
+            }
+        }
         private decimal _kcal = 0;
-        public decimal Kcal { get { return _kcal; } private set { _kcal = value; OnPropertyChange(nameof(Kcal)); } }
+        public decimal Kcal
+        {
+            get { return _kcal; }
+            private set
+            {
+                _kcal = value;
+                OnPropertyChange(nameof(Kcal));
+            }
+        }
         public IPopupService PopupService { get; private set; } = ServiceHelper.Current.GetService<IPopupService>();
         public event PropertyChangedEventHandler? PropertyChanged;
         private void OnPropertyChange(string name) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
@@ -45,11 +77,11 @@ namespace Zaklad.ViewModel
                 GetProductsCollection();
         });
         private IMakroSettingsData _userMakroIntakeSettings;
-        public IMakroSettingsData UserMakroIntakeSettings 
+        public IMakroSettingsData UserMakroIntakeSettings
         {
             get => _userMakroIntakeSettings;
             private set
-            { 
+            {
                 _userMakroIntakeSettings = value;
                 OnPropertyChange(nameof(UserMakroIntakeSettings));
             }

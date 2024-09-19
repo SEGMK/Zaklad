@@ -13,11 +13,12 @@ namespace Zaklad.Interfaces.IViewModels
     public interface IMainPageViewModel : INotifyPropertyChanged
     {
         DateManager DateManager { get; }
+        decimal Kcal { get; }
         decimal Proteins { get; }
         decimal Fat { get; }
+        decimal Carbohydrates { get; }
         IPopupService PopupService { get; }
         IMakroSettingsData UserMakroIntakeSettings { get; }
-        decimal Carbohydrates { get; }
         ICommand ChangeDateOfWeekCommand { get; }
         ICommand ShowCalendarCommand { get; }
         ICommand OpenProductEditorCommand { get; }
