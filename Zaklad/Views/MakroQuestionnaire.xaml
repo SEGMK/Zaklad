@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="Zaklad.Views.MakroQuestionnaire"
+             CanBeDismissedByTappingOutsideOfPopup="False"
+             Color="{StaticResource StandardBackground_Shade_1}"
+             Size="400, 600">
+    <VerticalStackLayout HorizontalOptions="Center" Margin="10" Spacing="20">
+        <VerticalStackLayout.Resources>
+            <Style TargetType="Label">
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+            <Style TargetType="RadioButton">
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+        </VerticalStackLayout.Resources>
+        <Grid Margin="10" ColumnSpacing="10">
+            <Grid.Resources>
+                <Style TargetType="Entry">
+
+                </Style>
+            </Grid.Resources>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="40"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" Text="Wiek"/>
+            <Entry Grid.Row="0" Grid.Column="1" Keyboard="Numeric" Text="{Binding Age}" x:Name="entryAge"/>
+            <Label Grid.Row="0" Grid.Column="2" Text="lata"/>
+            <Label Grid.Row="1" Grid.Column="0" Text="Wysokość"/>
+            <Entry Grid.Row="1" Grid.Column="1" Keyboard="Numeric" Text="{Binding Height}" x:Name="entryHeight"/>
+            <Label Grid.Row="1" Grid.Column="2" Text="cm"/>
+            <Label Grid.Row="2" Grid.Column="0" Text="Waga"/>
+            <Entry Grid.Row="2" Grid.Column="1" Keyboard="Numeric" Text="{Binding Weight}" x:Name="entryWeight"/>
+            <Label Grid.Row="2" Grid.Column="2" Text="kg"/>
+        </Grid>
+        <HorizontalStackLayout HorizontalOptions="Center">
+            <RadioButton GroupName="Sex" Content="Mężczyzna" IsChecked="{Binding IsMen}"/>
+            <RadioButton GroupName="Sex" Content="Kobieta"/>
+        </HorizontalStackLayout>
+        <VerticalStackLayout>
+            <Label Text="{Binding ExerciseIntensityDescritpion}" HorizontalOptions="Center"/>
+            <Slider WidthRequest="300" Minimum="0" Maximum="3" Value="{Binding ExerciseIntensity}"/>
+        </VerticalStackLayout>
+        <Button WidthRequest="250" Text="Oblicz" Pressed="Button_Pressed"/>
+    </VerticalStackLayout>
+</mct:Popup>

@@ -73,7 +73,15 @@ namespace Zaklad.ViewModel
             UserSettingsCRUD.SaveUserSettingsData(makro);
         });
 
-        public ICommand OpenMakroQuestionnaire => throw new NotImplementedException();
+        public ICommand OpenMakroQuestionnaire => new Command(async (product) =>
+        {
+            await ServiceHelper.Current.GetService<IPopupService>().ShowPopupAsync(new MakroQuestionnaire());
+            IMakroSettingsData makroData = UserSettingsCRUD.GetUserSettingsData();
+            Kcal = makroData.Kcal;
+            Fat = makroData.Fat;
+            Carbohydrates = makroData.Carbohydrates;
+            Proteins = makroData.Proteins;
+        });
 
         public event PropertyChangedEventHandler? PropertyChanged;
         private void OnPropertyChange(string name) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));

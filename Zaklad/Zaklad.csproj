@@ -85,6 +85,9 @@
 	  <Compile Update="Views\LoadingIndicatorPopup.xaml.cs">
 	    <DependentUpon>LoadingIndicatorPopup.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\MakroQuestionnaire.xaml.cs">
+	    <DependentUpon>MakroQuestionnaire.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\UserDataSettings.xaml.cs">
 	    <DependentUpon>UserDataSettings.xaml</DependentUpon>
 	  </Compile>
@@ -116,6 +119,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\LoadingIndicatorPopup.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\MakroQuestionnaire.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\UserDataSettings.xaml">

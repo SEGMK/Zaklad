@@ -32,6 +32,7 @@ namespace Zaklad
             builder.Services.AddSingleton<IProductSelectionPopupViewModel, ProductSelectionPopupViewModel>();
             builder.Services.AddSingleton<ICreateCustomProductViewModel, CreateCustomProductViewModel>();
             builder.Services.AddSingleton<IUserDataSettingsViewModel, UserDataSettingsViewModel>();
+            builder.Services.AddSingleton<IMakroQuestionnaireViewModel, MakroQuestionnaireViewModel>();
             //Sevices
             builder.Services.AddSingleton<IPopupService, Models.PopupService>();
             builder.Services.AddSingleton<IAlertService, AlertService>();
