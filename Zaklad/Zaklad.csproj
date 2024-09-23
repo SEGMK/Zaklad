@@ -58,11 +58,13 @@
 
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Maui" Version="9.0.1" />
+		<PackageReference Include="CommunityToolkit.Maui.Camera" Version="1.0.2" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.14" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.14" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0-preview.5.24306.7" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="Plugin.Maui.Calendar" Version="1.1.4" />
+		<PackageReference Include="System.Drawing.Common" Version="8.0.8" />
 		<PackageReference Include="ZXing.Net.Maui.Controls" Version="0.4.0" />
 	</ItemGroup>
 
@@ -87,6 +89,9 @@
 	  </Compile>
 	  <Compile Update="Views\MakroQuestionnaire.xaml.cs">
 	    <DependentUpon>MakroQuestionnaire.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\MauiCamera.xaml.cs">
+	    <DependentUpon>MauiCamera.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Views\UserDataSettings.xaml.cs">
 	    <DependentUpon>UserDataSettings.xaml</DependentUpon>
@@ -122,6 +127,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\MakroQuestionnaire.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\MauiCamera.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\UserDataSettings.xaml">

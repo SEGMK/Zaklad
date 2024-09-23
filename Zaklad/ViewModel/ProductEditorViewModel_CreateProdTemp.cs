@@ -5,10 +5,12 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Zaklad.CustomControls;
 using Zaklad.Interfaces;
 using Zaklad.Interfaces.IViewModels;
 using Zaklad.Models;
+using Zaklad.Views;
 
 namespace Zaklad.ViewModel
 {
@@ -80,7 +82,7 @@ namespace Zaklad.ViewModel
             }
         }
         public int EditableCarbohydrates
-        {
+        { 
             get => ProductDataTemplate.Carbohydrates;
             set
             {
@@ -98,9 +100,27 @@ namespace Zaklad.ViewModel
             }
         }
 
-        public ImageSource ProductImage => ProductDataTemplate.ProductImage;
+        public ImageSource ProductImage
+        {
+            get => ProductDataTemplate.ProductImage;
+            set
+            {
+                ProductDataTemplate.ProductImage = value;
+                OnPropertyChange(nameof(ProductImage));
+            }
+        }
 
         public bool IsGramatureReadOnly => true;
+
+        public IAsyncCommand TakeNewPhotoCommand => new AsyncCommand(TakeNewPhoto);
+        private async Task TakeNewPhoto()
+        {
+            MessagingCenter.Subscribe<MauiCamera, System.Drawing.Bitmap>(this, "photo", (sender, image) =>
+            {
+                ProductDataTemplate.ProductImage = CustomProductImagesCRUD.SaveImage(image);
+            });
+            await ServiceHelper.Current.GetService<IPopupService>().ShowPopupAsync(new MauiCamera());
+        }
 
         public event PropertyChangedEventHandler? PropertyChanged;
         private void OnPropertyChange(string name) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));

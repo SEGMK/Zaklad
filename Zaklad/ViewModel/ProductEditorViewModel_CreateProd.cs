@@ -13,6 +13,7 @@ using Zaklad.CustomControls;
 using Zaklad.Interfaces;
 using Zaklad.Interfaces.IViewModels;
 using Zaklad.Models;
+using Zaklad.Views;
 
 namespace Zaklad.ViewModel
 {
@@ -21,7 +22,7 @@ namespace Zaklad.ViewModel
         public ObservableCollection<ButtonWithDecision> DecisionButtonsCollection { get; private set; }
         public ProductEditorViewModel_CreateProd(IProductDataTemplate productTemplate)
         {
-            ProductTemplate = productTemplate;
+            ProductDataTemplate = productTemplate;
             Gramature = 100;
             DecisionButtonsCollection = new ObservableCollection<ButtonWithDecision>()
             {
@@ -33,7 +34,7 @@ namespace Zaklad.ViewModel
                     Command = new Command(() =>
                     {
                         IUserProduct product = ServiceHelper.Current.GetService<IUserProduct>();
-                        product.ProductTemplate = ProductTemplate;
+                        product.ProductTemplate = ProductDataTemplate;
                         product.Gramature = Gramature;
                         UserProductsData.SaveProduct(product, DateManager.CurrentDate);
                     })
@@ -42,7 +43,7 @@ namespace Zaklad.ViewModel
         }
         public ProductEditorViewModel_CreateProd(IUserProduct userProduct)
         {
-            ProductTemplate = userProduct.ProductTemplate;
+            ProductDataTemplate = userProduct.ProductTemplate;
             Gramature = userProduct.Gramature;
             DecisionButtonsCollection = new ObservableCollection<ButtonWithDecision>()
             {
@@ -67,8 +68,16 @@ namespace Zaklad.ViewModel
                 }
             };
         }
-        IProductDataTemplate ProductTemplate { get; set; }
-        public ImageSource ProductImage => ProductTemplate.ProductImage;
+        IProductDataTemplate ProductDataTemplate { get; set; }
+        public ImageSource ProductImage
+        {
+            get => ProductDataTemplate.ProductImage;
+            set
+            { 
+                ProductDataTemplate.ProductImage = value;
+                OnPropertyChange(nameof(ProductImage));
+            }
+        }
         private int _gramature;
         public int Gramature
         {
@@ -81,51 +90,62 @@ namespace Zaklad.ViewModel
         }
         public int EditableKcal
         {
-            get => ProductTemplate.Kcal;
+            get => ProductDataTemplate.Kcal;
             set
             {
-                ProductTemplate.Kcal = value;
+                ProductDataTemplate.Kcal = value;
                 OnPropertyChange(nameof(EditableKcal));
             }
         }
         public int EditableProteins
         {
-            get => ProductTemplate.Proteins;
+            get => ProductDataTemplate.Proteins;
             set
             {
-                ProductTemplate.Proteins = value;
+                ProductDataTemplate.Proteins = value;
                 OnPropertyChange(nameof(EditableProteins));
             }
         }
         public int EditableFat
         {
-            get => ProductTemplate.Fat;
+            get => ProductDataTemplate.Fat;
             set
             {
-                ProductTemplate.Fat = value;
+                ProductDataTemplate.Fat = value;
                 OnPropertyChange(nameof(EditableFat));
             }
         }
         public int EditableCarbohydrates
         {
-            get => ProductTemplate.Carbohydrates;
+            get => ProductDataTemplate.Carbohydrates;
             set
             {
-                ProductTemplate.Carbohydrates = value;
+                ProductDataTemplate.Carbohydrates = value;
                 OnPropertyChange(nameof(EditableCarbohydrates));
             }
         }
         public string ProductName
         {
-            get => ProductTemplate.Name;
+            get => ProductDataTemplate.Name;
             set
             {
-                ProductTemplate.Name = value;
+                ProductDataTemplate.Name = value;
                 OnPropertyChange(nameof(ProductName));
             }
         }
 
         public bool IsGramatureReadOnly => false;
+
+        public IAsyncCommand TakeNewPhotoCommand => new AsyncCommand(TakeNewPhoto);
+
+        private async Task TakeNewPhoto()
+        {
+            MessagingCenter.Subscribe<MauiCamera, System.Drawing.Bitmap>(this, "photo", (sender, image) =>
+            {
+                ProductDataTemplate.ProductImage = CustomProductImagesCRUD.SaveImage(image);
+            });
+            await ServiceHelper.Current.GetService<IPopupService>().ShowPopupAsync(new MauiCamera());
+        }
 
         public event PropertyChangedEventHandler? PropertyChanged;
         private void OnPropertyChange(string name) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));

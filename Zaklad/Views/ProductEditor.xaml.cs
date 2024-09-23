@@ -1,8 +1,9 @@
-using CommunityToolkit.Maui.Views;
+﻿using CommunityToolkit.Maui.Views;
 using Zaklad.CustomControls;
 using Zaklad.Interfaces.IViewModels;
 using Zaklad.Models;
 using Zaklad.ViewModel;
+using ZXing;
 
 namespace Zaklad;
 
@@ -11,10 +12,45 @@ public partial class ProductEditor : Popup
     public ProductEditor(IProductEditorViewModel viewModel)
 	{
         SetUpColorsInCollection();
-        InitializeComponent();
         BindingContext = viewModel;
+        InitializeComponent();
         AddDecisionButtons();
+        
     }
+    //private void CheckImageLayoutMode()
+    //{
+    //    ImageLayout.Clear();
+    //    ImageSource img = ((IProductEditorViewModel)BindingContext).ProductImage;
+    //    ImageLayout.Add(new Image()
+    //    {
+    //        HorizontalOptions = LayoutOptions.Center,
+    //        VerticalOptions = LayoutOptions.Center,
+    //        Source = ((IProductEditorViewModel)BindingContext).ProductImage
+    //    });
+    //    if (img as FileImageSource != null)
+    //    {
+    //        FileImageSource image = img as FileImageSource;
+    //        if (image.File.ToString() == "no_product.png")
+    //        {
+    //            Button btn = new Button()
+    //            {
+    //                BackgroundColor = Color.Parse("ForestGreen"),
+    //                Text = "Dodaj zdjęcie",
+    //                FontAttributes = FontAttributes.Bold,
+    //                FontSize = 16,
+    //                TextColor = Color.Parse("White"),
+    //                WidthRequest = 200,
+    //            };
+    //            btn.Pressed += (s, e) => TakeProductPhoto();
+    //            ImageLayout.Add(btn);
+    //        }
+    //    }
+    //}
+    //private async Task TakeProductPhoto()
+    //{
+    //    await ((IProductEditorViewModel)BindingContext).TakeNewPhotoCommand.ExecuteAsync();
+    //    CheckImageLayoutMode();
+    //}
     private void SetUpColorsInCollection()
     {
         App.Current.Resources.TryGetValue("KcalColor", out var kcalColor);

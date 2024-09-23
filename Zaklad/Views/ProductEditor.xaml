@@ -33,7 +33,10 @@
                     <RowDefinition Height="100"/>
                     <RowDefinition Height="230"/>
                 </Grid.RowDefinitions>
-                <Image Grid.Row="1" Source="{Binding ProductImage}" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <VerticalStackLayout x:Name="ImageLayout" Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center" Spacing="20">
+                    <Image HorizontalOptions="Center" VerticalOptions="Center" Source="{Binding ProductImage}"/>
+                    <Button BackgroundColor="ForestGreen" Text="Dodaj zdjęcie" FontAttributes="Bold" FontSize="16" TextColor="White" WidthRequest="200" Command="{Binding TakeNewPhotoCommand}"/>
+                </VerticalStackLayout>
                 <Entry Grid.Row="2" Text="{Binding ProductName}" VerticalOptions="Center" HorizontalOptions="Center" FontSize="24" TextColor="Red" FontAttributes="Bold" HorizontalTextAlignment="Center" Margin="10"/>
                 <HorizontalStackLayout Grid.Row="3" Spacing="10">
                     <Label Text="Ile gram produktu:" TextColor="Gray" FontSize="16" VerticalOptions="Center" FontAttributes="Bold"/>
@@ -121,7 +124,6 @@
                     <Setter Property="FontSize" Value="24"/>
                     <Setter Property="TextColor" Value="Gray"/>
                     <Setter Property="FontAttributes" Value="Bold"/>
-
                 </Style>
             </VerticalStackLayout.Resources>
         </VerticalStackLayout>

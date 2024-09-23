@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Zaklad.CustomControls;
 
 namespace Zaklad.Interfaces.IViewModels
@@ -19,6 +20,7 @@ namespace Zaklad.Interfaces.IViewModels
         public int EditableFat { get; set; }
         public int EditableCarbohydrates { get; set; }
         public string ProductName { get; set; }
-        public ImageSource ProductImage { get; }
+        public ImageSource ProductImage { get; set; }
+        public IAsyncCommand TakeNewPhotoCommand { get; }
     }
 }
