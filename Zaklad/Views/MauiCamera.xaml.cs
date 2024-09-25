@@ -14,7 +14,6 @@ public partial class MauiCamera : Popup
 
     private void MyCamera_MediaCaptured(object sender, CommunityToolkit.Maui.Views.MediaCapturedEventArgs e)
     {
-        //ImageSource img = ImageSource.FromStream(() => e.Media);
         Bitmap bmp = (Bitmap)Bitmap.FromStream(e.Media);
         MessagingCenter.Send<MauiCamera, Bitmap>(this, "photo", bmp);
         Close();

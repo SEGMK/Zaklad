@@ -50,16 +50,15 @@ namespace Zaklad.Models
         {
             string json = File.ReadAllText(Path.Combine(DataPath, JsonProductsFileList + date.ToString(DateFormat)));
             List<IUserProduct> products = System.Text.Json.JsonSerializer.Deserialize<List<IUserProduct>>(json, options: ProductConverter);
-            int i = 0;
-            for (; i < products.Count; i++)
+            for (int i = 0; i < products.Count; i++)
             {
                 if (products[i].Id == product.Id)
                 { 
                     products.RemoveAt(i);
+                    products.Insert(i, product);
                     break;
                 }
-            }
-            products.Insert(i, product);
+            }            
             json = System.Text.Json.JsonSerializer.Serialize(products, options: ProductConverter);
             File.WriteAllText(Path.Combine(DataPath, JsonProductsFileList + date.ToString(DateFormat)), json);
         }

@@ -14,10 +14,15 @@ namespace Zaklad.Models
         private static readonly string FilePath = Path.Combine(AppPath + UserProductsFile);
         public static ImageSource SaveImage(Bitmap bmp)
         {
-            Guid guid = Guid.NewGuid();
-            bmp.Save(FilePath + guid.ToString());
-            ImageSource img = ImageSource.FromFile(FilePath + guid.ToString());
+            bmp.Save(FilePath + bmp.GetHashCode().ToString());
+            ImageSource img = ImageSource.FromFile(FilePath + bmp.GetHashCode().ToString());
             return img;
+        }
+        public static void DeleteImage(FileImageSource imageSource)
+        {
+            if (imageSource == string.Empty)
+                return;
+            File.Delete(imageSource.File);
         }
     }
 }

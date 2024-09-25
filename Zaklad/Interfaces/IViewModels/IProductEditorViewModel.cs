@@ -12,7 +12,7 @@ namespace Zaklad.Interfaces.IViewModels
 {
     public interface IProductEditorViewModel : INotifyPropertyChanged
     {
-        public ObservableCollection<ButtonWithDecision> DecisionButtonsCollection { get; }
+        public ReadOnlyObservableCollection<ButtonWithDecision> DecisionButtonsCollection { get; }
         public bool IsGramatureReadOnly { get; }
         public int Gramature { get; }
         public int EditableKcal { get; set; }

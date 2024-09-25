@@ -14,115 +14,59 @@ using Zaklad.Views;
 
 namespace Zaklad.ViewModel
 {
-    internal class ProductEditorViewModel_CreateProdTemp : IProductEditorViewModel
+    internal class ProductEditorViewModel_CreateProdTemp : ProductEditorViewModelBase
     {
-        public ObservableCollection<ButtonWithDecision> DecisionButtonsCollection { get; private set; }
-        public ProductEditorViewModel_CreateProdTemp(IProductDataTemplate productDataTemplate, bool editExisting = false)
+        public ProductEditorViewModel_CreateProdTemp(IProductDataTemplate productDataTemplate, bool editExisting = false) : base(productDataTemplate)
         {
-            ProductDataTemplate = productDataTemplate;
             if (editExisting)
             {
-                DecisionButtonsCollection = new ObservableCollection<ButtonWithDecision>()
+                InternalDecisionButtonsCollection.Add(new ButtonWithDecision()
                 {
-                    new ButtonWithDecision()
+                    Text = "Edytuj",
+                    BackgroundColor = Color.Parse("Yellow"),
+                    Command = new Command(() =>
                     {
-                        Text = "Edytuj",
-                        BackgroundColor = Color.Parse("Yellow"),
-                        Command = new Command(() => UserCustomProductTemplates.UpdateCustomTemplate(ProductDataTemplate))
-                    },
-                    new ButtonWithDecision()
+                        ManageImageChanges();
+                        UserCustomProductTemplates.UpdateCustomTemplate(ProductDataTemplate);
+                    })
+                });
+                InternalDecisionButtonsCollection.Add(new ButtonWithDecision()
+                {
+                    Text = "Usuń",
+                    BackgroundColor = Color.Parse("Red"),
+                    Command = new Command(() =>
                     {
-                        Text = "Usuń",
-                        BackgroundColor = Color.Parse("Red"),
-                        Command = new Command(() => UserCustomProductTemplates.DeleteCustomTemplate(productDataTemplate.Id))
-                    }
-                };
+                        ManageImageChanges();
+                        FileImageSource fileImageSource = ProductImage as FileImageSource;
+                        if (fileImageSource != null && fileImageSource.File != "no_product")
+                            CustomProductImagesCRUD.DeleteImage(fileImageSource);
+                        UserCustomProductTemplates.DeleteCustomTemplate(productDataTemplate.Id);
+                    })
+                });
             }
             else
             {
-                DecisionButtonsCollection = new ObservableCollection<ButtonWithDecision>()
+                InternalDecisionButtonsCollection.Add(new ButtonWithDecision()
                 {
-                    new ButtonWithDecision()
+                    RedirectToEarlierPage = true,
+                    Text = "Dodaj",
+                    BackgroundColor = Color.Parse("Green"),
+                    Command = new Command(() =>
                     {
-                        RedirectToEarlierPage = true,
-                        Text = "Dodaj",
-                        BackgroundColor = Color.Parse("Green"),
-                        Command = new Command(() => UserCustomProductTemplates.SaveCustomTemplate(ProductDataTemplate))
-                    }
-                };
+                        ManageImageChanges();
+                        UserCustomProductTemplates.SaveCustomTemplate(ProductDataTemplate);
+                    })
+                });
             }
         }
-        IProductDataTemplate ProductDataTemplate;
-        public int Gramature => 100;
-        public int EditableKcal
+        public override int Gramature
         {
-            get => ProductDataTemplate.Kcal;
-            set
+            get => 100;
+            protected set
             {
-                ProductDataTemplate.Kcal = value;
-                OnPropertyChange(nameof(EditableKcal));
-            }
-        }
-        public int EditableProteins
-        {
-            get => ProductDataTemplate.Proteins;
-            set
-            {
-                ProductDataTemplate.Proteins = value;
-                OnPropertyChange(nameof(EditableProteins));
-            }
-        }
-        public int EditableFat
-        {
-            get => ProductDataTemplate.Fat;
-            set
-            {
-                ProductDataTemplate.Fat = value;
-                OnPropertyChange(nameof(EditableFat));
-            }
-        }
-        public int EditableCarbohydrates
-        { 
-            get => ProductDataTemplate.Carbohydrates;
-            set
-            {
-                ProductDataTemplate.Carbohydrates = value;
-                OnPropertyChange(nameof(EditableCarbohydrates));
-            }
-        }
-        public string ProductName
-        {
-            get => ProductDataTemplate.Name;
-            set
-            {
-                ProductDataTemplate.Name = value;
-                OnPropertyChange(nameof(ProductName));
-            }
-        }
 
-        public ImageSource ProductImage
-        {
-            get => ProductDataTemplate.ProductImage;
-            set
-            {
-                ProductDataTemplate.ProductImage = value;
-                OnPropertyChange(nameof(ProductImage));
             }
         }
-
-        public bool IsGramatureReadOnly => true;
-
-        public IAsyncCommand TakeNewPhotoCommand => new AsyncCommand(TakeNewPhoto);
-        private async Task TakeNewPhoto()
-        {
-            MessagingCenter.Subscribe<MauiCamera, System.Drawing.Bitmap>(this, "photo", (sender, image) =>
-            {
-                ProductDataTemplate.ProductImage = CustomProductImagesCRUD.SaveImage(image);
-            });
-            await ServiceHelper.Current.GetService<IPopupService>().ShowPopupAsync(new MauiCamera());
-        }
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-        private void OnPropertyChange(string name) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        public override bool IsGramatureReadOnly => true;
     }
 }

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Zaklad.ProductEditor"
              xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             CanBeDismissedByTappingOutsideOfPopup="True"
+             CanBeDismissedByTappingOutsideOfPopup="False"
              x:Name="ThisPopup"
              Color="{StaticResource StandardBackground_Shade_1}"
              Size="400, 600">
@@ -29,21 +29,20 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="10"/>
                     <RowDefinition Height="350"/>
+                    <RowDefinition Height="50"/>
                     <RowDefinition Height="75"/>
                     <RowDefinition Height="100"/>
                     <RowDefinition Height="230"/>
                 </Grid.RowDefinitions>
-                <VerticalStackLayout x:Name="ImageLayout" Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center" Spacing="20">
-                    <Image HorizontalOptions="Center" VerticalOptions="Center" Source="{Binding ProductImage}"/>
-                    <Button BackgroundColor="ForestGreen" Text="Dodaj zdjęcie" FontAttributes="Bold" FontSize="16" TextColor="White" WidthRequest="200" Command="{Binding TakeNewPhotoCommand}"/>
-                </VerticalStackLayout>
-                <Entry Grid.Row="2" Text="{Binding ProductName}" VerticalOptions="Center" HorizontalOptions="Center" FontSize="24" TextColor="Red" FontAttributes="Bold" HorizontalTextAlignment="Center" Margin="10"/>
-                <HorizontalStackLayout Grid.Row="3" Spacing="10">
+                <Image Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" Source="{Binding ProductImage}"/>
+                <Button Grid.Row="2" BackgroundColor="ForestGreen" Text="Dodaj zdjęcie" FontAttributes="Bold" FontSize="16" TextColor="White" WidthRequest="200" Command="{Binding TakeNewPhotoCommand}"/>
+                <Entry Grid.Row="3" Text="{Binding ProductName}" VerticalOptions="Center" HorizontalOptions="Center" FontSize="24" TextColor="Red" FontAttributes="Bold" HorizontalTextAlignment="Center" Margin="10"/>
+                <HorizontalStackLayout Grid.Row="4" Spacing="10">
                     <Label Text="Ile gram produktu:" TextColor="Gray" FontSize="16" VerticalOptions="Center" FontAttributes="Bold"/>
                     <Entry Keyboard="Numeric" WidthRequest="100" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="Start" Text="{Binding Gramature}" IsReadOnly="{Binding IsGramatureReadOnly}"/>
                     <Label Text="g" TextColor="Gray" FontSize="16" VerticalOptions="Center" FontAttributes="Bold"/>
                 </HorizontalStackLayout>
-                <Grid Grid.Row="4" Grid.Column="1" Margin="5" RowSpacing="5">
+                <Grid Grid.Row="5" Grid.Column="1" Margin="5" RowSpacing="5">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="40"/>
                         <RowDefinition Height="40"/>

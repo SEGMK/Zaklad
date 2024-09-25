@@ -17,137 +17,64 @@ using Zaklad.Views;
 
 namespace Zaklad.ViewModel
 {
-    public class ProductEditorViewModel_CreateProd : IProductEditorViewModel
+    internal class ProductEditorViewModel_CreateProd : ProductEditorViewModelBase
     {
-        public ObservableCollection<ButtonWithDecision> DecisionButtonsCollection { get; private set; }
-        public ProductEditorViewModel_CreateProd(IProductDataTemplate productTemplate)
+        public override bool IsGramatureReadOnly => false;
+
+        public ProductEditorViewModel_CreateProd(IProductDataTemplate productTemplate) : base(productTemplate)
         {
-            ProductDataTemplate = productTemplate;
             Gramature = 100;
-            DecisionButtonsCollection = new ObservableCollection<ButtonWithDecision>()
+            InternalDecisionButtonsCollection.Add(new ButtonWithDecision()
             {
-                new ButtonWithDecision()
+                RedirectToEarlierPage = true,
+                Text = "Dodaj",
+                BackgroundColor = Color.Parse("Green"),
+                Command = new Command(() =>
                 {
-                    RedirectToEarlierPage = true,
-                    Text = "Dodaj",
-                    BackgroundColor = Color.Parse("Green"),
-                    Command = new Command(() =>
-                    {
-                        IUserProduct product = ServiceHelper.Current.GetService<IUserProduct>();
-                        product.ProductTemplate = ProductDataTemplate;
-                        product.Gramature = Gramature;
-                        UserProductsData.SaveProduct(product, DateManager.CurrentDate);
-                    })
-                }
-            };
+                    ManageImageChanges();
+                    IUserProduct product = ServiceHelper.Current.GetService<IUserProduct>();
+                    product.ProductTemplate = ProductDataTemplate;
+                    product.Gramature = Gramature;
+                    UserProductsData.SaveProduct(product, DateManager.CurrentDate);
+                })
+            });
         }
-        public ProductEditorViewModel_CreateProd(IUserProduct userProduct)
+        public ProductEditorViewModel_CreateProd(IUserProduct userProduct) : base(userProduct) 
         {
-            ProductDataTemplate = userProduct.ProductTemplate;
-            Gramature = userProduct.Gramature;
-            DecisionButtonsCollection = new ObservableCollection<ButtonWithDecision>()
+            InternalDecisionButtonsCollection.Add(new ButtonWithDecision()
             {
-                new ButtonWithDecision()
+                Text = "Edytuj",
+                BackgroundColor = Color.Parse("Yellow"),
+                Command = new Command(() =>
                 {
-                    Text = "Edytuj",
-                    BackgroundColor = Color.Parse("Yellow"),
-                    Command = new Command(() =>
-                    {
-                        userProduct.Gramature = Gramature;
-                        UserProductsData.EditProduct(userProduct, DateManager.CurrentDate);
-                    })
-                },
-                new ButtonWithDecision()
+                    ManageImageChanges();
+                    userProduct.Gramature = Gramature;
+                    UserProductsData.EditProduct(userProduct, DateManager.CurrentDate);
+                })
+            });
+            InternalDecisionButtonsCollection.Add(new ButtonWithDecision()
+            {
+                Text = "Usuń",
+                BackgroundColor = Color.Parse("Red"),
+                Command = new Command(() =>
                 {
-                    Text = "Usuń",
-                    BackgroundColor = Color.Parse("Red"),
-                    Command = new Command(() =>
-                    {
-                        UserProductsData.DeleteProduct(userProduct.Id, DateManager.CurrentDate);
-                    })
-                }
-            };
-        }
-        IProductDataTemplate ProductDataTemplate { get; set; }
-        public ImageSource ProductImage
-        {
-            get => ProductDataTemplate.ProductImage;
-            set
-            { 
-                ProductDataTemplate.ProductImage = value;
-                OnPropertyChange(nameof(ProductImage));
-            }
+                    ManageImageChanges();
+                    FileImageSource fileImageSource = ProductImage as FileImageSource;
+                    if (fileImageSource != null && fileImageSource.File != "no_product")
+                        CustomProductImagesCRUD.DeleteImage(fileImageSource);
+                    UserProductsData.DeleteProduct(userProduct.Id, DateManager.CurrentDate);
+                })
+            });
         }
         private int _gramature;
-        public int Gramature
+        public override int Gramature
         {
             get => _gramature;
-            set
+            protected set
             {
                 _gramature = value;
                 OnPropertyChange(nameof(Gramature));
             }
         }
-        public int EditableKcal
-        {
-            get => ProductDataTemplate.Kcal;
-            set
-            {
-                ProductDataTemplate.Kcal = value;
-                OnPropertyChange(nameof(EditableKcal));
-            }
-        }
-        public int EditableProteins
-        {
-            get => ProductDataTemplate.Proteins;
-            set
-            {
-                ProductDataTemplate.Proteins = value;
-                OnPropertyChange(nameof(EditableProteins));
-            }
-        }
-        public int EditableFat
-        {
-            get => ProductDataTemplate.Fat;
-            set
-            {
-                ProductDataTemplate.Fat = value;
-                OnPropertyChange(nameof(EditableFat));
-            }
-        }
-        public int EditableCarbohydrates
-        {
-            get => ProductDataTemplate.Carbohydrates;
-            set
-            {
-                ProductDataTemplate.Carbohydrates = value;
-                OnPropertyChange(nameof(EditableCarbohydrates));
-            }
-        }
-        public string ProductName
-        {
-            get => ProductDataTemplate.Name;
-            set
-            {
-                ProductDataTemplate.Name = value;
-                OnPropertyChange(nameof(ProductName));
-            }
-        }
-
-        public bool IsGramatureReadOnly => false;
-
-        public IAsyncCommand TakeNewPhotoCommand => new AsyncCommand(TakeNewPhoto);
-
-        private async Task TakeNewPhoto()
-        {
-            MessagingCenter.Subscribe<MauiCamera, System.Drawing.Bitmap>(this, "photo", (sender, image) =>
-            {
-                ProductDataTemplate.ProductImage = CustomProductImagesCRUD.SaveImage(image);
-            });
-            await ServiceHelper.Current.GetService<IPopupService>().ShowPopupAsync(new MauiCamera());
-        }
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-        private void OnPropertyChange(string name) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
     }
 }
