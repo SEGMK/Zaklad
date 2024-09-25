@@ -35,7 +35,7 @@
                     <RowDefinition Height="230"/>
                 </Grid.RowDefinitions>
                 <Image Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" Source="{Binding ProductImage}"/>
-                <Button Grid.Row="2" BackgroundColor="ForestGreen" Text="Dodaj zdjęcie" FontAttributes="Bold" FontSize="16" TextColor="White" WidthRequest="200" Command="{Binding TakeNewPhotoCommand}"/>
+                <Button Grid.Row="2" BackgroundColor="ForestGreen" Text="Zmień zdjęcie" FontAttributes="Bold" FontSize="16" TextColor="White" WidthRequest="200" Command="{Binding TakeNewPhotoCommand}"/>
                 <Entry Grid.Row="3" Text="{Binding ProductName}" VerticalOptions="Center" HorizontalOptions="Center" FontSize="24" TextColor="Red" FontAttributes="Bold" HorizontalTextAlignment="Center" Margin="10"/>
                 <HorizontalStackLayout Grid.Row="4" Spacing="10">
                     <Label Text="Ile gram produktu:" TextColor="Gray" FontSize="16" VerticalOptions="Center" FontAttributes="Bold"/>

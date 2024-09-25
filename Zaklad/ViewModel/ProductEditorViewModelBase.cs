@@ -33,7 +33,7 @@ namespace Zaklad.ViewModel
             DecisionButtonsCollection = new ReadOnlyObservableCollection<ButtonWithDecision>(InternalDecisionButtonsCollection);
         }
         protected IProductDataTemplate ProductDataTemplate;
-        public abstract int Gramature { get; protected set; }
+        public abstract int Gramature { get; set; }
         public abstract bool IsGramatureReadOnly { get; }
 
         public int EditableKcal

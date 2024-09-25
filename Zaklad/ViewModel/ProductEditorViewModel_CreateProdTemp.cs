@@ -62,7 +62,7 @@ namespace Zaklad.ViewModel
         public override int Gramature
         {
             get => 100;
-            protected set
+            set
             {
 
             }

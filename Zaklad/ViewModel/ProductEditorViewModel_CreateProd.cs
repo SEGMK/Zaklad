@@ -70,7 +70,7 @@ namespace Zaklad.ViewModel
         public override int Gramature
         {
             get => _gramature;
-            protected set
+            set
             {
                 _gramature = value;
                 OnPropertyChange(nameof(Gramature));
