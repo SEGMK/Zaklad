@@ -113,7 +113,7 @@
                     <Label Text="g"/>
                 </HorizontalStackLayout>
                 <customControls:MakroProgressBar ProgressBarColor="{StaticResource FatColor}" ProgressBarWidth="100" ProgressBarHeight="10"
-                                                  PercentageOfProgress="{Binding ProgressBarCarbohydrates,Source={x:Reference mainPage}}">
+                                                  PercentageOfProgress="{Binding ProgressBarFat,Source={x:Reference mainPage}}">
                 </customControls:MakroProgressBar>
             </VerticalStackLayout>
             <VerticalStackLayout>
