@@ -9,7 +9,6 @@ namespace Zaklad
 {
     public partial class AddItemByBarcode : ContentPage
 	{
-        AddItemByBarcodeViewModel Context;
         public AddItemByBarcode()
 		{
             InitializeComponent();

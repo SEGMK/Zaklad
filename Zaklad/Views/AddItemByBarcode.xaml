@@ -15,6 +15,5 @@
         </Grid.ColumnDefinitions>
         <zxing:CameraBarcodeReaderView x:Name="cameraView" IsDetecting="True" BarcodesDetected="CameraBarcodeReaderView_BarcodesDetected">
         </zxing:CameraBarcodeReaderView>
-
     </Grid>
 </ContentPage>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommunityToolkit.Maui.Storage;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -94,27 +95,33 @@ namespace Zaklad.ViewModel
         public IAsyncCommand TakeNewPhotoCommand => new AsyncCommand(TakeNewPhoto);
         private async Task TakeNewPhoto()
         {
-            //it subs and unsubs on photo taken cuz GC does not collect this class upon popup close and can't be forced to
-            SubscribeForPhoto();
-            await ServiceHelper.Current.GetService<IPopupService>().ShowPopupAsync(new MauiCamera());
-            MessagingCenter.Unsubscribe<MauiCamera, System.Drawing.Bitmap>(this, "photo");
-        }
-        private void SubscribeForPhoto() => MessagingCenter.Subscribe<MauiCamera, System.Drawing.Bitmap>(this, "photo", (sender, image) =>
-        {
-            //can't hold image as a Stream cuz ImageSource.FromStream() has a bug 
             ManageImageChanges();
-            FileImageSource fileImageSource = ProductImage as FileImageSource;
-            if (fileImageSource != null)
-                OldImageSourceFilePath = fileImageSource.File;
-            ProductImage = CustomProductImagesCRUD.SaveImage(image);
-            IsNewPhotoTaken = true;
-        });
-        private string OldImageSourceFilePath = "";
-        private bool IsNewPhotoTaken = false;
+            if (MediaPicker.Default.IsCaptureSupported)
+            {
+                FileResult photo = await MediaPicker.Default.CapturePhotoAsync();
+
+                if (photo != null)
+                {
+                    if (ProductImage as FileImageSource != null && (ProductImage as FileImageSource).File != "no_product.png")
+                        OldImageSource = (ProductImage as FileImageSource).File;
+                    using Stream sourceStream = await photo.OpenReadAsync();
+                    ProductImage = CustomProductImagesCRUD.SaveImage(sourceStream);
+                }
+                else
+                {
+                    ServiceHelper.Current.GetService<IAlertService>().ShowAlert("Error", $"Zdjęcie nie zostało zrobione");
+                }
+            }
+            else
+            {
+                ServiceHelper.Current.GetService<IAlertService>().ShowAlert("Error", $"Urządzenie nie wspiera kamery");
+            }
+        }
+        protected string OldImageSource = "";
         protected async Task ManageImageChanges()
         {
-            if (IsNewPhotoTaken)
-                CustomProductImagesCRUD.DeleteImage(OldImageSourceFilePath);
+            if (OldImageSource != "")
+                CustomProductImagesCRUD.DeleteImage(OldImageSource);
         }
     }
 }

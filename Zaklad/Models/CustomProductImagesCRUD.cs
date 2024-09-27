@@ -12,10 +12,11 @@ namespace Zaklad.Models
         private static string AppPath = FileSystem.Current.AppDataDirectory;
         private const string UserProductsFile = "CustomProductImage";
         private static readonly string FilePath = Path.Combine(AppPath + UserProductsFile);
-        public static ImageSource SaveImage(Bitmap bmp)
+        public static ImageSource SaveImage(Stream stream)
         {
-            bmp.Save(FilePath + bmp.GetHashCode().ToString());
-            ImageSource img = ImageSource.FromFile(FilePath + bmp.GetHashCode().ToString());
+            using FileStream localFileStream = File.OpenWrite(FilePath + stream.GetHashCode());
+            stream.CopyTo(localFileStream);
+            ImageSource img = ImageSource.FromFile(FilePath + stream.GetHashCode().ToString());
             return img;
         }
         public static void DeleteImage(FileImageSource imageSource)
