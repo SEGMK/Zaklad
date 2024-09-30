@@ -66,9 +66,8 @@
                             <Setter Property="TextColor" Value="{StaticResource KcalColor}"/>
                         </Style>
                     </HorizontalStackLayout.Resources>
-                    <Label Text="Max tłuszcze: " />
+                    <Label Text="Max kcal: " />
                     <Label Text="{Binding UserMakroIntakeSettings.Kcal}"/>
-                    <Label Text="g"/>
                 </HorizontalStackLayout>
                 <customControls:MakroProgressBar ProgressBarColor="{StaticResource KcalColor}" ProgressBarWidth="100" ProgressBarHeight="10"
                                                   PercentageOfProgress="{Binding ProgressBarKcal,Source={x:Reference mainPage}}">
@@ -87,7 +86,7 @@
                             <Setter Property="TextColor" Value="{StaticResource ProteinsColor}"/>
                         </Style>
                     </HorizontalStackLayout.Resources>
-                    <Label Text="Max tłuszcze: " />
+                    <Label Text="Max białko: " />
                     <Label Text="{Binding UserMakroIntakeSettings.Proteins}"/>
                     <Label Text="g"/>
                 </HorizontalStackLayout>

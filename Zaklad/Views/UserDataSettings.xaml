@@ -35,15 +35,19 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="60"/>
                     <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="20"/>
                 </Grid.ColumnDefinitions>
                 <Label Grid.Row="0" Grid.Column="0" TextColor="{StaticResource KcalColor}" Text="Kcal:"/>
                 <Entry Grid.Row="0" Grid.Column="1" TextColor="{StaticResource KcalColor}" Text="{Binding Kcal}"/>
                 <Label Grid.Row="1" Grid.Column="0" TextColor="{StaticResource ProteinsColor}" Text="Białka:"/>
                 <Entry Grid.Row="1" Grid.Column="1" TextColor="{StaticResource ProteinsColor}" Text="{Binding Proteins}"/>
+                <Label Grid.Row="1" Grid.Column="2" TextColor="{StaticResource ProteinsColor}" Text="g"/>
                 <Label Grid.Row="2" Grid.Column="0" TextColor="{StaticResource FatColor}" Text="Tłuszcz:"/>
                 <Entry Grid.Row="2" Grid.Column="1" TextColor="{StaticResource FatColor}" Text="{Binding Fat}"/>
+                <Label Grid.Row="2" Grid.Column="2" TextColor="{StaticResource FatColor}" Text="g"/>
                 <Label Grid.Row="3" Grid.Column="0" TextColor="{StaticResource CarbohydratesColor}" Text="Cukier:"/>
                 <Entry Grid.Row="3" Grid.Column="1" TextColor="{StaticResource CarbohydratesColor}" Text="{Binding Carbohydrates}"/>
+                <Label Grid.Row="3" Grid.Column="2" TextColor="{StaticResource CarbohydratesColor}" Text="g"/>
             </Grid>
             <Button WidthRequest="300" Text="Wylicz kalorie na podstawie ankiety" Command="{Binding OpenMakroQuestionnaire}"/>
             <Button WidthRequest="300" Text="Zapisz dane" Command="{Binding SaveChangesCommand}"/>

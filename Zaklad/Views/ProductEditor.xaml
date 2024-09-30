@@ -70,7 +70,6 @@
                     <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" TextColor="Gray" FontSize="12" Text="Wartości odżywcze na: 100g"/>
                     <Label Grid.Row="1" Grid.Column="0" TextColor="{StaticResource KcalColor}" Text="Kcal:"/>
                     <Entry Grid.Row="1" Grid.Column="1" ClassId="labelEditableKcal" TextChanged="ValueCheckEntry" TextColor="{StaticResource KcalColor}" Text="{Binding EditableKcal}" Keyboard="Numeric"/>
-                    <Label Grid.Row="1" Grid.Column="2" TextColor="{StaticResource KcalColor}" Text="g"/>
                     <Label Grid.Row="2" Grid.Column="0" TextColor="{StaticResource ProteinsColor}" Text="Białka:"/>
                     <Entry Grid.Row="2" Grid.Column="1" ClassId="labelEditableProteins" TextChanged="ValueCheckEntry" TextColor="{StaticResource ProteinsColor}" Text="{Binding EditableProteins}" Keyboard="Numeric"/>
                     <Label Grid.Row="2" Grid.Column="2" TextColor="{StaticResource ProteinsColor}" Text="g"/>
