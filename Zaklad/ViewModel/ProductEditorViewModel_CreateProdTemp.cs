@@ -27,6 +27,7 @@ namespace Zaklad.ViewModel
                     Command = new Command(() =>
                     {
                         ManageImageChanges();
+                        DeleteOriginalImageIfImageWasChanged();
                         UserCustomProductTemplates.UpdateCustomTemplate(ProductDataTemplate);
                     })
                 });
@@ -37,6 +38,7 @@ namespace Zaklad.ViewModel
                     Command = new Command(() =>
                     {
                         ManageImageChanges();
+                        DeleteOriginalImageIfImageWasChanged();
                         FileImageSource fileImageSource = ProductImage as FileImageSource;
                         if (fileImageSource != null && fileImageSource.File != "no_product")
                             CustomProductImagesCRUD.DeleteImage(fileImageSource);
@@ -54,6 +56,7 @@ namespace Zaklad.ViewModel
                     Command = new Command(() =>
                     {
                         ManageImageChanges();
+                        DeleteOriginalImageIfImageWasChanged();
                         UserCustomProductTemplates.SaveCustomTemplate(ProductDataTemplate);
                     })
                 });

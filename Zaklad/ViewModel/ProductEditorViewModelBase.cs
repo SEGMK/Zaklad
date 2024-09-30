@@ -95,12 +95,24 @@ namespace Zaklad.ViewModel
         }
         public ICommand TakeNewPhotoCommand => new Command(() => TakeNewPhoto().FireAndForgetSafeAsync());
 
-        public ICommand ClearSavedDataUponDismissedByTappingOutsideOfPopup => new Command(() => 
+        public ICommand ClearSavedDataUponDismissedByTappingOutsideOfPopup => new Command(() =>
         {
-            if(OldImageSource == string.Empty)
+            if (IsOriginalImage)
                 return;
+            ManageImageChanges();
             FileImageSource fileImageSource = ProductImage as FileImageSource;
             CustomProductImagesCRUD.DeleteImage(fileImageSource.File);
+            switch (_imageSourceType)
+            {
+                case ImageSourceType.Uri:
+                    ProductImage = new UriImageSource();
+                    (ProductImage as UriImageSource).Uri = new Uri(OriginalSource);
+                    break;
+                case ImageSourceType.File:
+                    ProductImage = new FileImageSource();
+                    (ProductImage as FileImageSource).File = OriginalSource;
+                    break;
+            }
         });
 
         private async Task TakeNewPhoto()
@@ -112,10 +124,27 @@ namespace Zaklad.ViewModel
 
                 if (photo != null)
                 {
+                    if (ProductImage as UriImageSource != null)
+                    {
+                        if (IsOriginalImage)
+                        {
+                            OriginalSource = (ProductImage as UriImageSource).Uri.AbsoluteUri;
+                            _imageSourceType = ImageSourceType.Uri;
+                        }
+                    }
                     if (ProductImage as FileImageSource != null && (ProductImage as FileImageSource).File != "no_product.png")
-                        OldImageSource = (ProductImage as FileImageSource).File;
+                    {
+                        if (IsOriginalImage)
+                        {
+                            OriginalSource = (ProductImage as FileImageSource).File;
+                            _imageSourceType = ImageSourceType.File;
+                        }
+                        else
+                            OldImageSource = (ProductImage as FileImageSource).File;
+                    }
                     using Stream sourceStream = await photo.OpenReadAsync();
                     ProductImage = CustomProductImagesCRUD.SaveImage(sourceStream);
+                    IsOriginalImage = false;
                 }
                 else
                 {
@@ -127,11 +156,24 @@ namespace Zaklad.ViewModel
                 ServiceHelper.Current.GetService<IAlertService>().ShowAlert("Error", $"Urządzenie nie wspiera kamery");
             }
         }
-        protected string OldImageSource = "";
-        protected async Task ManageImageChanges()
+        private enum ImageSourceType
+        { 
+            Uri = 0,
+            File = 1
+        }
+        private ImageSourceType _imageSourceType;
+        private bool IsOriginalImage = true;
+        private string OriginalSource = "";
+        private string OldImageSource = "";
+        protected void ManageImageChanges()
         {
             if (OldImageSource != "")
                 CustomProductImagesCRUD.DeleteImage(OldImageSource);
+        }
+        protected void DeleteOriginalImageIfImageWasChanged()
+        {
+            if (!IsOriginalImage && (ProductImage as FileImageSource) != null)
+                CustomProductImagesCRUD.DeleteImage(OriginalSource);
         }
     }
 }

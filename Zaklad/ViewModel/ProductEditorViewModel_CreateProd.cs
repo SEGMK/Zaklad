@@ -32,6 +32,7 @@ namespace Zaklad.ViewModel
                 Command = new Command(() =>
                 {
                     ManageImageChanges();
+                    DeleteOriginalImageIfImageWasChanged();
                     IUserProduct product = ServiceHelper.Current.GetService<IUserProduct>();
                     product.ProductTemplate = ProductDataTemplate;
                     product.Gramature = Gramature;
@@ -48,6 +49,7 @@ namespace Zaklad.ViewModel
                 Command = new Command(() =>
                 {
                     ManageImageChanges();
+                    DeleteOriginalImageIfImageWasChanged();
                     userProduct.Gramature = Gramature;
                     UserProductsData.EditProduct(userProduct, DateManager.CurrentDate);
                 })
@@ -59,6 +61,7 @@ namespace Zaklad.ViewModel
                 Command = new Command(() =>
                 {
                     ManageImageChanges();
+                    DeleteOriginalImageIfImageWasChanged();
                     FileImageSource fileImageSource = ProductImage as FileImageSource;
                     if (fileImageSource != null && fileImageSource.File != "no_product")
                         CustomProductImagesCRUD.DeleteImage(fileImageSource);
