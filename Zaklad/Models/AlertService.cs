@@ -11,8 +11,7 @@ namespace Zaklad.Models
     {
         public void ShowAlert(string title, string message, string cancel = "OK")
         {
-            Application.Current.MainPage.Dispatcher.Dispatch(async () =>
-            await ShowAlertAsync(title, message, cancel));
+            Application.Current.MainPage.Dispatcher.Dispatch(() => ShowAlertAsync(title, message, cancel).FireAndForgetSafeAsync());
         }
         public Task ShowAlertAsync(string title, string message, string cancel = "OK")
         {

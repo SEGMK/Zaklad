@@ -49,7 +49,7 @@
                 <Entry Grid.Row="3" Grid.Column="1" TextColor="{StaticResource CarbohydratesColor}" Text="{Binding Carbohydrates}"/>
                 <Label Grid.Row="3" Grid.Column="2" TextColor="{StaticResource CarbohydratesColor}" Text="g"/>
             </Grid>
-            <Button WidthRequest="300" Text="Wylicz kalorie na podstawie ankiety" Command="{Binding OpenMakroQuestionnaire}"/>
+            <Button WidthRequest="300" Text="Wylicz kalorie na podstawie ankiety" Command="{Binding OpenMakroQuestionnaireCommand}"/>
             <Button WidthRequest="300" Text="Zapisz dane" Command="{Binding SaveChangesCommand}"/>
         </VerticalStackLayout>
     </ScrollView>

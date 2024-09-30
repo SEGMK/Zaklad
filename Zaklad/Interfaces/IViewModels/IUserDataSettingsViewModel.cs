@@ -15,6 +15,6 @@ namespace Zaklad.Interfaces.IViewModels
         int Fat { get; set; }
         int Carbohydrates { get; set; }
         ICommand SaveChangesCommand { get; }
-        ICommand OpenMakroQuestionnaire { get; }
+        ICommand OpenMakroQuestionnaireCommand { get; }
     }
 }

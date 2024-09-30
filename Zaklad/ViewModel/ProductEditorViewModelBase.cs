@@ -93,7 +93,7 @@ namespace Zaklad.ViewModel
                 OnPropertyChange(nameof(ProductImage));
             }
         }
-        public IAsyncCommand TakeNewPhotoCommand => new AsyncCommand(TakeNewPhoto);
+        public ICommand TakeNewPhotoCommand => new Command(() => TakeNewPhoto().FireAndForgetSafeAsync());
 
         public ICommand ClearSavedDataUponDismissedByTappingOutsideOfPopup => new Command(() => 
         {

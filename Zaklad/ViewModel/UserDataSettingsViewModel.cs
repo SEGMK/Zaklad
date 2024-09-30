@@ -73,7 +73,8 @@ namespace Zaklad.ViewModel
             UserSettingsCRUD.SaveUserSettingsData(makro);
         });
 
-        public ICommand OpenMakroQuestionnaire => new Command(async (product) =>
+        public ICommand OpenMakroQuestionnaireCommand => new Command(() => OpenMakroQuestionnaire().FireAndForgetSafeAsync());
+        private async Task OpenMakroQuestionnaire()
         {
             await ServiceHelper.Current.GetService<IPopupService>().ShowPopupAsync(new MakroQuestionnaire());
             IMakroSettingsData makroData = UserSettingsCRUD.GetUserSettingsData();
@@ -81,8 +82,7 @@ namespace Zaklad.ViewModel
             Fat = makroData.Fat;
             Carbohydrates = makroData.Carbohydrates;
             Proteins = makroData.Proteins;
-        });
-
+        }
         public event PropertyChangedEventHandler? PropertyChanged;
         private void OnPropertyChange(string name) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
     }

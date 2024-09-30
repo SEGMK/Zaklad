@@ -69,13 +69,14 @@ namespace Zaklad.ViewModel
         public ICommand ChangeDateOfWeekCommand => new Command<string>(GetProductsCollection);
         public ICommand ShowCalendarCommand => new Command(() => PopupService.ShowPopup(new CalendarPopup()));
         public ICommand ShowProductSelection => new Command(() => PopupService.ShowPopup(new ProductSelectionPopup()));
-        public ICommand OpenProductEditorCommand => new Command<IUserProduct>(async (product) =>
+        public ICommand OpenProductEditorCommand => new Command<IUserProduct>((product) => OpenProductEditor(product).FireAndForgetSafeAsync());
+        private async Task OpenProductEditor(IUserProduct product)
         {
             bool? redirectToEarlierPage = (bool?)await ServiceHelper.Current.GetService<IPopupService>().ShowPopupAsync(new ProductEditor(new ProductEditorViewModel_CreateProd(product)));
             //check if popup was closed by button or by DissmisedByTappingOutsideOfPopup
             if (redirectToEarlierPage != null)
                 GetProductsCollection();
-        });
+        }
         private IMakroSettingsData _userMakroIntakeSettings;
         public IMakroSettingsData UserMakroIntakeSettings
         {

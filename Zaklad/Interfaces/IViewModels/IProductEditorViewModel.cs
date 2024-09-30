@@ -21,7 +21,7 @@ namespace Zaklad.Interfaces.IViewModels
         public int EditableCarbohydrates { get; set; }
         public string ProductName { get; set; }
         public ImageSource ProductImage { get; set; }
-        public IAsyncCommand TakeNewPhotoCommand { get; }
+        public ICommand TakeNewPhotoCommand { get; }
         public ICommand ClearSavedDataUponDismissedByTappingOutsideOfPopup { get; }
     }
 }

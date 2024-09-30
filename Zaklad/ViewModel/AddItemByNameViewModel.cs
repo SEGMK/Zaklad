@@ -56,13 +56,13 @@ namespace Zaklad.ViewModel
         }
         public ObservableCollection<IProductDataTemplate> Products { get; private set; } = new ObservableCollection<IProductDataTemplate>();
         public IPopupService PopupService { get; private set; } = ServiceHelper.Current.GetService<IPopupService>();
-        public ICommand SearchCommand => new Command<string>(GetProducts);
-        public ICommand OpenProductEditorCommand => new Command<IProductDataTemplate>(OpenProductEditor);
+        public ICommand SearchCommand => new Command<string>((productName) => GetProducts(productName).FireAndForgetSafeAsync());
+        public ICommand OpenProductEditorCommand => new Command<IProductDataTemplate>((productDataTemplate) => OpenProductEditor(productDataTemplate).FireAndForgetSafeAsync());
 
         public event PropertyChangedEventHandler? PropertyChanged;
         private void OnPropertyChange(string name) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         public ICommand ShowCalendarCommand => new Command(() => PopupService.ShowPopup(new CalendarPopup()));
-        private async void GetProducts(string productName)
+        private async Task GetProducts(string productName)
         {
             if(String.IsNullOrWhiteSpace(productName))
                 return;
@@ -87,7 +87,7 @@ namespace Zaklad.ViewModel
                 loadingIndicatorPopup.Close();
             }
         }
-        private async void OpenProductEditor(IProductDataTemplate product)
+        private async Task OpenProductEditor(IProductDataTemplate product)
         {
             bool? redirectToEarlierPage = (bool?)await ServiceHelper.Current.GetService<IPopupService>().ShowPopupAsync(new ProductEditor(new ProductEditorViewModel_CreateProd(product)));
             if(redirectToEarlierPage == true)
