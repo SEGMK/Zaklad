@@ -12,7 +12,6 @@
             <mct:MultiMathExpressionConverter x:Key="MultiMathExpressionConverter" />
         </ResourceDictionary>
     </mct:Popup.Resources>
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="8*"/>

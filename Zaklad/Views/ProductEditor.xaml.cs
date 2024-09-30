@@ -15,7 +15,11 @@ public partial class ProductEditor : Popup
         BindingContext = viewModel;
         InitializeComponent();
         AddDecisionButtons();
-        
+    }
+    protected override Task OnClosed(object? result, bool wasDismissedByTappingOutsideOfPopup, CancellationToken token = default)
+    {
+        ((IProductEditorViewModel)BindingContext).ClearSavedDataUponDismissedByTappingOutsideOfPopup.Execute(this);
+        return base.OnClosed(result, wasDismissedByTappingOutsideOfPopup, token);
     }
     private void SetUpColorsInCollection()
     {

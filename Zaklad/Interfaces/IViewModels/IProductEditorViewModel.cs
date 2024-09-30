@@ -22,5 +22,6 @@ namespace Zaklad.Interfaces.IViewModels
         public string ProductName { get; set; }
         public ImageSource ProductImage { get; set; }
         public IAsyncCommand TakeNewPhotoCommand { get; }
+        public ICommand ClearSavedDataUponDismissedByTappingOutsideOfPopup { get; }
     }
 }

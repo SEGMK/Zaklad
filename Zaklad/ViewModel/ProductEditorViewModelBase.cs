@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Zaklad.CustomControls;
 using Zaklad.Interfaces;
 using Zaklad.Interfaces.IViewModels;
@@ -93,6 +94,15 @@ namespace Zaklad.ViewModel
             }
         }
         public IAsyncCommand TakeNewPhotoCommand => new AsyncCommand(TakeNewPhoto);
+
+        public ICommand ClearSavedDataUponDismissedByTappingOutsideOfPopup => new Command(() => 
+        {
+            if(OldImageSource == string.Empty)
+                return;
+            FileImageSource fileImageSource = ProductImage as FileImageSource;
+            CustomProductImagesCRUD.DeleteImage(fileImageSource.File);
+        });
+
         private async Task TakeNewPhoto()
         {
             ManageImageChanges();
