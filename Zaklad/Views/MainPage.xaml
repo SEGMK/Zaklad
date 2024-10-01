@@ -5,7 +5,7 @@
              xmlns:customControls="clr-namespace:Zaklad.CustomControls"
              x:Class="Zaklad.MainPage"
              xmlns:local="clr-namespace:Zaklad"
-             Shell.NavBarIsVisible="False"
+             Shell.NavBarIsVisible="True"
              xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Name="mainPage"
              BackgroundColor="{StaticResource StandardBackground_Shade_1}">
@@ -107,7 +107,7 @@
                             <Setter Property="TextColor" Value="{StaticResource FatColor}"/>
                         </Style>
                     </HorizontalStackLayout.Resources>
-                    <Label Text="Max tłuszcze: " />
+                    <Label Text="Max tłuszcz:" />
                     <Label Text="{Binding UserMakroIntakeSettings.Fat}"/>
                     <Label Text="g"/>
                 </HorizontalStackLayout>

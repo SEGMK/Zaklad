@@ -7,11 +7,13 @@
     xmlns:views="clr-namespace:Zaklad.Views"
     Title="Zaklad"
     Shell.FlyoutBehavior="Flyout"
-    Shell.TabBarBackgroundColor="{StaticResource StandardBackground_Shade_2}"
-    Shell.TabBarForegroundColor="White"
-    Shell.TabBarUnselectedColor="#303030">
+    Shell.BackgroundColor="{StaticResource StandardBackground_Shade_2}"
+    Shell.ForegroundColor="White"
+    Shell.UnselectedColor="{StaticResource StandardBackground_Shade_1}">
     <ShellContent
-        Title="Home"
+        Shell.BackgroundColor="{StaticResource StandardBackground_Shade_1}"
+        Shell.TitleColor="White"
+        Title="Produkty"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
     <ShellContent

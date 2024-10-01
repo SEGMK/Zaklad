@@ -67,16 +67,13 @@ namespace Zaklad.ViewModel
             if(String.IsNullOrWhiteSpace(productName))
                 return;
             var loadingIndicatorPopup = new LoadingIndicatorPopup();
+            List<IProductDataTemplate> products = new List<IProductDataTemplate>();
+            products = UserCustomProductTemplates.GetCustomTemplates(productName);
             try
             {
                 PopupService.ShowPopup(loadingIndicatorPopup);
+                products.AddRange(await FoodAPI.GetFoodByMode(productName, (FoodAPI.SearchMode)SearchModsMatrix.FirstOrDefault(x => x.Value == SearchMode).Key));
                 Products.Clear();
-                List<IProductDataTemplate> products = await FoodAPI.GetFoodByMode(productName, (FoodAPI.SearchMode)SearchModsMatrix.FirstOrDefault(x => x.Value == SearchMode).Key);
-                products.AddRange(UserCustomProductTemplates.GetCustomTemplates(productName));
-                foreach (var i in products)
-                {
-                    Products.Add(i);
-                }
             }
             catch (HttpRequestException ex)
             {
@@ -84,6 +81,10 @@ namespace Zaklad.ViewModel
             }
             finally
             {
+                foreach (var i in products)
+                {
+                    Products.Add(i);
+                }
                 loadingIndicatorPopup.Close();
             }
         }

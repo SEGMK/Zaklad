@@ -17,17 +17,14 @@
                 <Setter Property="VerticalOptions" Value="Center"/>
                 <Setter Property="TextColor" Value="White"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource StandardBackground_Shade_1}"/>
             </Style>
             <Style TargetType="Entry">
                 <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="TextColor" Value="White"/>
             </Style>
         </VerticalStackLayout.Resources>
         <Grid Margin="10" ColumnSpacing="10">
-            <Grid.Resources>
-                <Style TargetType="Entry">
-
-                </Style>
-            </Grid.Resources>
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="50"/>
